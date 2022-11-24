@@ -1,0 +1,47 @@
+# parsing [[c_strings|strings]]
+an approach to reading in data in multiple fields is replacing each delimiter with '\0', effectively splitting each string into substrings
+
+then all you'd need is a starting point for each substring, which you could store in a char* pointer.
+
+we can do this with strtok_s()
+
+##### syntax
+```c
+strtok_s(char[] string_to_parse, char[] delimiters, char* ptr);
+
+/*
+here, the pointer is used to store the internal state of the strtok_s function, and needs to be NULL on the first call to a string
+*/
+```
+
+###### example code
+```c
+char string_to_parse[] = "tab\tdelimited\tstring\n";
+char delims[] = "\t";       // not strictly necessary, but handy
+char* next = NULL;
+char* first = strtok_s(string_to_parse, delims, &next);
+
+printf("%s\n", first);
+printf("%s\n", next);
+printf("%s\n", string_to_parse);
+
+/*
+output:
+tab
+delimited    string
+tab
+*/
+
+// note: strtok_s is destructive, as can be seen here - the original string has been changed
+```
+
+### moving to the next substring
+next time you call strtok\_s, it will replace the next delimiter with '\0', and will return a pointer to the next substring
+
+however, you must pass in NULL as the first argument, that's how strtok knows you're still on the same string
+
+#### csv files
+comma separated value files
+most spreadsheets can be saved in this manner
+
+> #c #programming 

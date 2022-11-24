@@ -1,0 +1,48 @@
+constants
+    (also called literals)
+    fixed values that a program cannot change during its execution
+
+    syntax
+        const <type> <name> = <value>;
+        e.g.
+            const float gravity = 9.81;     // there's something ironic about "float gravity"
+
+    you can also declare constants outside of main(), using #define
+        this creates what is called a macro
+            - a fragment of code that we've given a name to
+                -> whenever the name is called, it is replaced by the contents of the macro
+            - there are two kinds of macros, object-like and function-like
+
+            syntax in this context
+                #define <name> <value>;
+
+puts
+    a function that prints a string to the screen
+    syntax
+        puts(<string>);
+
+    why use puts over printf?
+        simple, less computationally expensive, more secure
+        // basically, if you're only printing a string, use puts. if you're printing other data types, use printf
+
+gets
+    a function for reading string input from the keyboard
+    syntax
+        gets(<string>);
+
+    uses
+        only for strings
+        only stops reading on a newline
+
+sscanf_s
+    you may get strings from anywhere, including files & databases
+        these may then need to be parsed (transformed into another type of data)
+    sscanf_s is useful for scanning formatted data from a string
+
+    can be used the same way as scanf_s, IF you know the exact format of a string, and it won't be changed
+    syntax
+        sscanf_s(<name_of_string>, "<format>", <output>);
+        e.g.
+            puts("enter 'firstname' 'surname 'dd/mm/yyyy");
+            gets(string);
+            sscanf_s(string, "%s %s %d/%d/%d", firstname, 20, surname, 20, &dd, &mm, &yyyy);

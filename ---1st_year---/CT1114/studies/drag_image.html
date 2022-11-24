@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> drag image </title>
+
+        <script>
+            "use strict";
+            var ismousedown = false;
+
+            function f_mousedown(e) {
+                ismousedown = true;
+            }
+
+            function f_mouseup() {
+                ismousedown = false;
+            }
+
+            function ismoving(e) {
+                if (ismousedown) {
+                    var tm_img = document.getElementById("to_move");
+                    tm_img.style.left = e.clientX-(tm_img.naturalWidth/2)+"px";
+                    tm_img.style.top = e.clientY-(tm_img.naturalHeight/2)+"px";
+                }
+            }
+        </script>
+    </head>
+    <body onmousemove="ismoving(event);">
+        <div style="width:100%; height:100%; position:absolute; left:0px; top:0px;">
+            <img id="to_move" draggable="false" src="images_for_studies/sad_shinji_2.png" onmousedown="f_mousedown();" onmouseup="f_mouseup();" style='position:absolute; left:0px; top:0px;'>
+            <!--- the draggable="false" stops the image itself from being dragged away --->
+            <!--- preventDefault() is also useful --->
+        </div>
+    </body>
+</html>

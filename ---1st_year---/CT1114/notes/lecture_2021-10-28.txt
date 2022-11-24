@@ -1,0 +1,32 @@
+images in html
+    added with the empty tag <img>, and require a source (src) attribute with the url of the image
+        url can be absolute or relative
+
+the window
+    represents an open window in a browser
+    a window is an object, which means that it has attributes, and methods
+        methods are things that an object can do
+            sample window methods
+                - alert
+                - prompt
+                - confirm
+                - setTimeout
+
+    methods:
+        //  methods are called using <object>.<method>
+            // that's how you access anything belonging to an object
+        alert
+            displays a modal dialog box containing a message
+                // modal means it must be acknowledged before anything else can take place
+            takes a string argument
+            syntax
+                window.alert("<text>");
+                alert("<text>");    // both work
+                    // window is implicit, as all of your code belongs to the window
+        prompt
+            prompts the user to enter input via a modal dialog box
+            e.g.
+                var result = window.prompt("<prompt_text>", "<default_field_value>");
+                    // note: the second argument is optional
+
+            // note: prompt has a return value

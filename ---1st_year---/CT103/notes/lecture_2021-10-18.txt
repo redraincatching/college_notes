@@ -1,0 +1,20 @@
+loops (cont.)
+
+for loops
+    useful if we want to repeat something a predetermined amount of times
+        possible with a while loops, but for loops are shorter
+            while
+                1. initialise variable
+                2. test + loop
+                3. increment
+            for
+                1. test + loop
+
+    // syntax
+    for (int i = 0; i < [max]; i++) {   // we can also initialise beforehand
+        // do something
+    }
+
+    // useful for loops: when printing a variable, such as the counter here,
+    // you could use printf("%d", i+1); to increase human readability
+        // (arrays start at 0)

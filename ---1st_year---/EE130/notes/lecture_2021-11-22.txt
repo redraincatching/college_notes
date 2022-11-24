@@ -1,0 +1,65 @@
+logic circuits
+    comparison function
+        and, or, and not functions can be combined to form various functions
+        the comparison function indicates whether a binary value is greater than, equal to, or less than another
+            performed by a comparator
+
+    arithmetic functions
+        include addition, subtraction, multiplication, and division
+        [[diagram]]
+
+    encoder function
+        a circuit that converts information into a coded form
+
+    decoder function
+        circuit that converts binary code to a nonbinary code of some kind
+
+    data selection function
+        - multiplexer
+            a circuit that connects one of several data inputs to a single data output line, also called a _mux_
+        [diagram]
+        - demultiplexer
+            a circuit that connects one data input line to one of several data output lines, also called a demux
+
+    counting function
+        counter:
+        a sequential device, a state machine that has a unique internal sequence of states
+        used to count events, or generate output sequences represented by changing levels or pulses
+
+programmable logic devices
+    programmable logic devices (plds) are an alternative to fixed function devices, and can be programmed for a specific purpose.
+    in general, they cost less and use less board space than fixed function devices.
+    [diagram]
+
+    pld hierarchy
+    [diagram]
+
+    simple programmable logic devices
+        - programmable array logic (PAL)
+        can be programmed once, has a programmable array of AND gates, and a fixed array of or gates.
+
+        - generic array logic (GAL)
+        similar to PAL, but can be reprogrammed
+
+    complex programmable logic devices
+        devices that contain multiple splds 
+
+boolean variables
+    literal - a variable or its complement
+    complement of a variable - its inverse, denoted by a bar above it
+
+    boolean addition
+        equivalent to the or operation
+        the sum term is 1 if one or more literals is 1, otherwise 0
+
+    boolean multiplication
+        equivalent to the and operation
+        the product term is 1 if all literals are 1
+
+        // commutative, distributive, and associative laws apply to both of these
+        [distributive law diagram]
+
+inverter
+    performs the boolean not operation
+    gives the complement of the number
+    [not example waveform]

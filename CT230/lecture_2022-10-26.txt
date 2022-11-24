@@ -1,0 +1,17 @@
+normalisations - first normal form (1NF)
+    a table is in 1NF if it has no repeating groups
+        a group of attributes that occur a variable number of times in each record
+        to ensure, choose appropriate primary key and split table if necessary
+    
+2NF
+    a table is in 2NF if it is in 1NF and satisfies the following
+        where there is a composite primary key, all non-key attributes must be fully functionally dependent on the whole primary key 
+
+        example
+            [[diagram]]
+
+3NF
+    in 3NF if in 2NF and there are no dependencies between attributes that are not primary keys
+
+boyce-codd normal form (BCNF)
+    a table in 3NF where there are no overlapping candidate keys

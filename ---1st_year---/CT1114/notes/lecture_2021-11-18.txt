@@ -1,0 +1,18 @@
+textarea
+    an area where the user can type text, whose size is manipulable
+
+    methods
+        .value
+            gets the value of the area (the typed string)
+        .substr(<start_char>, <end_char>)
+            take a section of the string, starting at start_char, and ending end_chars further over
+        .length
+            length of string thing
+    attributes
+        placeholder
+            placeholder text that stays until the user enters text
+
+onkey attributes
+    onkeydown   - when the hey is first pressed
+    onkeypress  - registers when a key is held
+    onkeyup     - when the key is released (when output of key is registered, as well)

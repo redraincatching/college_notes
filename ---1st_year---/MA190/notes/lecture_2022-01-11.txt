@@ -1,0 +1,50 @@
+implication
+    a → b
+    if statement a is true, then b is true
+
+    a | b | a→b
+    ------------
+    0 | 0 |  1      // "vacuously" true
+    0 | 1 |  1      // means conclusion can be independent of premise
+    1 | 0 |  0      // can never be true, "if a then b" and a, !b, then contradictory
+    1 | 1 |  1      // well, yeah
+
+        /*
+        1 can never imply 0
+        0 can imply anything
+        */
+
+biconditional conjective
+    a ↔ b
+    "if and only if", iff
+
+    essentially, (a→b)*(b→a)
+
+
+    a | b | a↔b
+    ------------
+    0 | 0 |  1
+    0 | 1 |  0
+    1 | 0 |  0
+    1 | 1 |  1
+
+tautologies and contradictions
+    tautology - a statement that is always true, no matter the propositions
+        e.g. a+!a
+
+    contradictions - a statement that is similarly always false
+        e.g. a*!a
+
+logical equivalence
+    statements are logically equivalent (≡) if they have the same truth values for each assignment of truth values to constituent propositions
+    otherwise, they are not (≡/≡)
+
+    some important equivalencies
+        a ∧ (b ∨ c) ≡ (a ∧ b) ∨ (a ∧ c)
+        a ∨ (b ∧ c) ≡ (a ∨ b) ∧ (a ∨ c)
+
+    de morgan's laws
+         ¬(a ∨ b) ≡ ¬a ∧ ¬b
+         ¬(a ∧ b) ≡ ¬a ∨ ¬b
+
+         // note: it can be demonstrated that each of these laws follow from the other

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>prompt study</title>
+
+        <script>
+            "use strict";
+
+            function ask_user() {
+                var name = window.prompt("what\'s your name?", "enter your name here");
+                var p = document.getElementById("greeting");
+                p.innerHTML = "nice to meet you, " + name;
+            }
+
+        </script>
+
+
+    </head>
+    <body>
+        <button onclick="ask_user();"> click me </button>
+        <p id="greeting">
+
+        </p>
+    </body>
+</html>

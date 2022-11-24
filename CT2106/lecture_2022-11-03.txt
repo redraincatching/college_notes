@@ -1,0 +1,4 @@
+packages
+    when a class is part of a package it has a fully qualified name
+    e.g. java.lang.Object, java.util.ArrayList
+    

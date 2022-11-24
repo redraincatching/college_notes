@@ -1,0 +1,217 @@
+// bash script notes - finish later
+
+    for var in `ls ./*`; do
+        echo "files:" $var
+    done
+
+// can execute commands in scripts
+
+for loops, you are restricted to a list
+while loops, only conditional
+
+    #!/bin/bash
+
+    x=10
+    while [ $x -ge 0 ]; do
+        read x
+        echo $x
+    done
+
+
+concurrent programming
+    concurrent programs
+        interleaving sets of sequential atomic instructions
+        interacting sequential processes run at the same time, on the same or different processors
+        as a programmer, you don't know how your program wil be interleaved
+    
+    correctness
+        say you have a program that loads a value to a register, adds one, and stores it
+        if all the maths is done in registers, then the results are dependent on interleaving (indeterminate computation)
+        imagine, for example, this program is run twice concurrently
+            p_1: load reg, n
+            p_2: load reg, n
+            p_1: add reg, #1
+            p_2: add reg, #1
+            p_1: store reg, n
+            p_2: store reg, n
+
+            this may lead to whichever program is running second having an incorrect result
+            - this dependency on unforseen circumstances is known as a race condition
+
+        generalisation
+            a program is correct if when its preconditions hold, its post conditions hold
+
+        a concurrent program must be correct under all possible interleavings
+
+    race conditions in practice
+        a race condition occurs when its output is dependent on the sequence or timing of the code execution
+            - if multiple processes enter a critical section at the same time, both attempt to update the shared data structure
+            - this is one of the hardest issues to debug as it only occurs conditionally
+
+        critical section
+            a part of the program where a shared resource is accessed
+            this needs to be protected in ways that avoid concurrent access
+
+        example bank transaction
+            int withdraw(account, amount) {
+                int balance = account.balance;
+                balance = balance - amount;
+                account.balance = balance;
+
+                return balance;
+            }
+
+            two processes at once:
+                // account.balance = 100;
+                --- process 1 starts ---
+                int withdraw(account, amount = 10) {
+                    int balance = account.balance;  // 100
+                    balance = balance - amount;     // 90
+                --- process 2 starts --- 
+                int withdraw(account, amount = 20) {
+                    int balance = account.balance;  // 100
+                    balance = balance - amount;     // 80
+                    account.balance = balance;      // 80
+                --- process 1 interleaved again ---
+                    account.balance = balance;      // 90
+                    return balance;                 // 90
+                }
+                --- process 2 again ---
+                    return balance;                 // account.balance = 90 !!!
+                }
+
+    race condition consequences
+            results are indeterminate
+            deterministic computations have the same result each time
+                - we want deterministic concurrent code
+                - we can use synchronisation mechanisms
+
+    handling race conditions
+        we need a mechanism to control access to shared resources in concurrent code
+        idea:
+            - focus on critical sections of code
+            - critical sections should run with mutual exclusion
+                -> only one process can execute that code at one time
+
+        what is the critical section in our previous example?
+            int withdraw(account, amount) {
+                int balance = account.balance;      <--
+                balance = balance - amount;             this whole section
+                account.balance = balance;          <--
+
+                return balance;
+            }
+
+            anything between accessing the shared resource and dropping it for the last time should be protected
+
+        critical section properties
+            - mutual exclusion
+            - guarantee of progress
+                no other processes can execute _at all_ 
+            - bounded waiting
+                a process waiting to enter must eventually enter, and one in the section must eventually leave
+            - performance
+                a critical section has a severe overhead, and this must be minimised
+        
+        synchronisation solutions
+            ways to protect critical solutions
+                atomicity
+                    atomic interruptions cannot be interrupted
+                conditional synchronisation (ordering)
+                    making sure one process runs before another
+                
+
+            atomicity
+                basic atomicity is provided by the hardware
+                    references and assignments, e.g. read/write are atomic in cpus
+                however, high-level constructs are not atomic in general
+                some languages have mechanisms to specify multiple instructions as atomic (e.g. java)
+
+            conditional synchronisation
+                strategy:
+                    person A writes a rough draft, person B edits it
+                    A and B cannot write at the same time, as they are working on different versions of the paper, and person B cannot start until person A finishes
+
+                what might this look like?
+                    [[diagram]]
+
+        code constructs to support defining critical sections
+            locks
+                very primitive, just provide mutual exclusion, minimal semantics, useful as a building block for other methods
+            semaphores
+                basic, easy to understand
+            monitors
+                higher level abstraction, requires language support, implicit operations
+
+
+
+        locks
+            a token used to enter a critical section of code
+            if a process wants to execute a critical section, it must have the lock
+                - need to ask for lock, need to ask to release lock
+            -> no restrictions on executing other code
+            -> the process can go do whatever else
+            [[diagram]]
+
+            locks have 2 states
+                - held: some process is in the critical section
+                - not held: no process is in the critical section
+            locks have two operations
+                - acquire:
+                    mark lock as held, or wait until it is released
+                    if not held, execute immediately
+                - release:
+                    mark lock as not held
+            a process can hold as many locks as it wants, but only one process can hold a specific lock
+
+            using locks
+                locks are declared like variables
+                    Lock someLock;
+                a program can use multiple locks
+                    Lock someLock, otherLock;
+                to use a lock
+                    surround critical section as follows
+                        call acquire() at the beginning of the critical section
+                        call release() at the end
+                    // this is blocking, so use conditionals or whatever
+
+                lock benefits
+                    - only one process can execute the critical section at a time
+                    - when one process releases, another can progress
+                lock limitations
+                    - acquiring a lock only blocks processes trying to acquire the same resource
+                        -> lock the resource, not the operation
+                    
+                lock implementation - vq
+                    struct lock {
+                        bool held; //initially FALSE
+                    }
+                    void acquire(lock) {
+                        while(lock->held)
+                            ; //just wait
+                        lock->held = TRUE;
+                    }
+                    void release(lock) {
+                        lock->held = FALSE;
+                    }
+
+                    does this work?
+                        [[diagram]]
+                        nope
+                        most of the time, locks needs a specific hardware implementation for this reason
+
+                        // c code for test and set behaviour
+                        bool test_and_set (bool *flag) {
+                            bool old = *flag;
+                            *flag = true;
+                            return old;
+                        }
+                        // allows atomic read and update
+
+                        hardware-based spinlock
+                            struct lock {
+                                bool held;
+                            }
+                            void acquire (lock) {
+                                while(test_and_set(&lock))
+                            }

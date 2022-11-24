@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> number table </title>
+
+        <script>
+
+            "use strict";
+
+            var nums = [ ];
+
+            function add_number() {
+                var txt = document.getElementById("txt_number").value;
+        		var number = parseInt(txt);
+        		if (isNaN(number))
+        			alert(txt+" is not a number");
+        		else {
+        			nums.push(number);
+        			redraw_table();
+        		}
+            }
+
+            function delete_number(i) {
+                nums.splice(i, 1);  // TODO: finish this
+            }
+
+            function redraw_table() {
+                var table_in = "<table>";
+                for (var i = 0; i < nums.length; i++)
+                    table_in += `<tr> <td> ${nums[i]} </td> </tr>`;
+                table_in += "</table>";
+                document.getElementById("p_output").innerHTML = table_in;
+            }
+        </script>
+
+    </head>
+    <body>
+        <input type='text' id='txt_number'> <button onclick='add_number();'>add number</button>
+
+        <p id="p_output">
+        </p>
+    </body>
+</html>

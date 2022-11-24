@@ -1,0 +1,42 @@
+circuits
+    represent systems as connected elements
+        - through which currents flow (through variables)
+        - and across which voltages develop (across variables)
+
+    circuits are important for two reasons
+        - as physical systems (power, electronics)
+        - as models of complex systems (neurons, cardiovascular systems)
+
+    all circuits have three common attributes
+        - a voltage source
+        - a load
+        - a complete path
+
+a series circuit is one that only has one current path
+    - because there is only one path, the current everywhere is the same
+    - the total resistance is the sum of the resistors in series
+    - the total voltage in series is the algebraic sum of voltages
+
+kirchhoff's voltage law (kvl)
+    - the sum of all voltage drops around a closed loop is equal to the total
+      source voltage in that closed path
+    - planar circuits are characterised by their "inner" loops, as those are
+      linearly independent
+    - the sign of a voltage is defined by its bias - the "entering" sign is
+      placed before the voltage
+
+voltage divider rule
+    the voltage drop across any given resistor in a sries circuit is equal to
+    the ratio of that resistor to the total resistance, times the source
+    voltage.
+
+voltage is relative, and is measured with respect to another point in the
+circuit
+    voltage with respect to ground (called reference ground) is written with
+    one subscript
+        e.g. V_a    // voltage at a with respect to ground
+    voltage between two points is written with two subscripts
+        e.g. V_ab   // voltage between a and b
+
+    ground reference is not always the lowest point in the circuit
+        in that case, any drops below ground are written as -ve

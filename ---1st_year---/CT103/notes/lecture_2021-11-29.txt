@@ -1,0 +1,42 @@
+passing arrays to functions
+    in order to accept arrays as function parameters, we have to specify its parameters as follows
+
+        <type> <function> (<type> <array>[]) {}
+            // note the [], indicating that it is an array being passed
+
+passing a string as a parameter
+    just a character array, so can be passed as above, or as a pointer, as seen [[here]]
+    // passing strings as pointers is the accepted convention in c
+
+    you can pass int arrays as pointers, too
+
+random numbers ✨✨
+    to do this, we can use the rand() function, from the <stdlib.h> library
+    gives a random number from 0 to 32767
+        // use % to set a limit on which numbers can be given
+
+    -> however, every time the program is run, the numbers printed will be the same
+        rand() is an algorithm, and therefore has a starting point
+    use srand() to achieve more randomness
+        done by "seeding" the algorithm
+        a different seed is necessary every time, done by using the current time as a seed
+
+        // getting truly random numbers is actually non-trivial, and is an active field of study
+        // the algorithms computers use are called pseudorandom number generators
+
+    getting this seed
+        long lt = time(NULL);  // gets the time sinc epoch
+        srand(lt);             // seeding the random number
+        randnum = rand();      // actually call the rand function
+
+misc
+    formatting int display
+        can print out using %xd, where x is any integer
+        the x specifies how many characters to print out with the array
+            -> if you're printing out the number 10 with %3d, printf will print " 10", adding a space beforehand
+            // works for float and characters too
+
+    breakpoints
+        handy way to see what your code is doing
+        stops the program at the given point
+            you can inspect the values of variables, etc. at a given point with breakpoints

@@ -1,0 +1,83 @@
+sequential logic
+    most fundamental sequential components are the latch and the flip-flop
+        latches can be built from gates, and flip-flops from latches
+        their outputs depend on current _and previous_ inputs and outputs
+        they store one bit of data, and make it available to other components
+
+        a latch is _level-triggered_, and a flip-flop is _edge-triggered_
+        both have a clock input
+
+        clock
+            usually derived from an oscillator whose output alternates from 0 to 1
+            used to synchronise the flow of data
+            [diagram]
+
+    D flip-flop
+    [diagram]
+    - one data input (D)
+    - when the clock input changes from 0 to 1 (positive edge), the data in D is loaded
+    - the data is made available via output Q, and its complement via output Q'
+    - some variations have a load signal (LD) that has to be high (active) to load the data
+    // Q_0 means retain previous value
+    // -> this component updates data, so when not active, it isn't changing anything
+
+    D latch
+    [diagram]
+    - positive level triggered latch -> note the discrete level, not edge, of the clock
+    - loads data as long as load (LD) and clock are 1
+    - if data changes while the component is active, the data changes accordingly
+    - if either the clock or ld goes to 0, the Q value is latched and held
+
+    D latch with clear/set capabilities
+    [diagram]
+    - some variations of the D latch and flip-flop have asynchronous set and clear capabilities
+    - regardless of the other inputs to the latch, can set the Q value to 1 or 0
+        - basically an asynchronous override for the D latch
+
+    SR latch
+    [diagram]
+    - S sets Q to 1, R resets Q to 0
+    - when S and R are 0, output is unchanged
+    - no clock input
+        - only sequential component without one
+        - output of the latch is undefined when S and R are 1, designer has to make sure this state is unreachable
+
+    JK flip-flop
+    [diagram]
+    - resolves problem of undefined outputs of SR latch
+    - J sets output to 1, K resets to 0, JK inverts stored Q
+
+    T (toggle) flip-flop
+    [diagram]
+    - doesn't specify an output value, only determines if the output should be changed
+    - if !T, unchanges, if T, invert (on rising edge)
+
+    // all of these so far have been positive edge or level triggered, with active high load inputs
+    // negative edge/level triggers and active low inputs are also options
+    // flip-flops and latches can be combined in parallel to store more than 1 bit
+
+    4-bit D flip-flop
+    [diagram]
+    - control signals are tied together
+    - act as one unified data register
+    - usually only output the data, not the complement
+
+    counters
+    [diagram]
+    - store a binary value, and when signalled to do so, increment or decrement its value
+    - can be loaded with an externally supplied value
+    - can be designated as synchronous or asynchronous
+        - asynchronous are relatively slow, as the output from one flip-flop triggers the change in the next
+        - in a synchronous counter (used in CPUs), all change at the same time
+
+    up/down counter with parallel load
+    [diagram]
+    - ability to load external data as well as count
+    - down counter decrements and generates a borrow, rather than a carry out
+    - can perform either operation with U/D'
+
+    shift registers
+    [diagram]
+    - can shift its data one bit-position to the left
+    - useful for hardware multipliers/dividers
+    - may shift left, right, or both due to certain control conditions (like up/down counter)

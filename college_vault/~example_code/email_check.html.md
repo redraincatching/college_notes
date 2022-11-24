@@ -1,0 +1,37 @@
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function validateYear() {
+                var oYear = document.getElementById('year');
+                var y = parseInt(oYear.value);
+                if (isNaN(y) || y<1900 || y>2019)
+                    oYear.style.background = "#FF0000";
+                    else
+                    oYear.style.background = "#FFFFFF";
+                }
+            function validateEmail() {
+                var oEmail = document.getElementById('eMail');
+                var e = oEmail.value;
+                if (e.indexOf("@")<0 || e.indexOf(".")<0) {
+                    oEmail.style.background = "#FF0000";
+                }
+                else {
+                    oEmail.style.background = "#FFFFFF";
+                }
+            }
+        </script>
+    </head>
+    <body>
+        Please enter your year of birth:
+        <input type="text" id="year" value="1980" size="10" onkeyup="validateYear();"><br><br>
+        Please enter your email address:
+        <input type="text" id="eMail" value="" size="10" onkeyup="validateEmail();"><br><br>
+    </body>
+</html>
+
+<!--- checks to see if an email is valid, if not, changes field to red --->
+
+```
+#html #javascript #css 

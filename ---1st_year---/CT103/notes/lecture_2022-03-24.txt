@@ -1,0 +1,28 @@
+ct103 test
+    - dynamic memory allocation
+    - random numbers
+
+command line arguments
+    you can set inputs for the .exe in debug options
+        from project properties -> configuration properties -> debugging -> command arguments
+
+    or just open with command prompt
+
+    reading in command line arguments
+        arguments of main
+            e.g.
+            void main (int argc, char* argv[]) {
+                int count;
+                // argc is the number of arguments
+                // argv[0] is the exe name, including path  -> 2d char array
+
+                if (argc > 1) {
+                    // argv[1], [2], etc. are the actual arguments
+                    for (count = 1; count < argc; count++) {
+                        printf("argv[%d] = %s\n", count, argv[count]);
+                        }
+                        else {
+                            printf("called with no command-line arguments.\n");
+                        }
+                }
+            }

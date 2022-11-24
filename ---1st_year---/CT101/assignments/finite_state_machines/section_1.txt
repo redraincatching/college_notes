@@ -1,0 +1,21 @@
+fsm - definition
+    a finite state machine is, in broad strokes, an abstract model of computation, that can be in exactly one of a finite number of states at a given time. the machine can change from one state to another in response to some inputs; this change of state is known as a transition. [1]
+    an fsm is defined by its list of states, its transitions between states, and its associated inputs and outputs.
+
+    history
+    the first paper to present the idea of finite automata was [2], which aimed to model the human thought process, aiming to simulate the firing of neurons as they perform a task in a living brain. this work was foundational to neural network theory, as well as computational theory. these ideas were expanded upon by g.h. mealy [3] and e.f. moore [4], who, in separate papers, generalised these ideas to more powerful machines. the two "styles" of finite state machine are named after them, in recognition of their work.
+
+    in-depth description of finite state machines
+    so what, precisely, is a finite state machine?
+
+    firstly, an automaton is a mechanism designed to follow a sequence of predetermined operations, or respond to a set of predefined instructions. a finite state machine is an abstract automaton consisting of a set of "states" that the machine can occupy, a set of acceptable inputs, and a set of possible outputs. along with these three sets, the machine also contains two functions - a state transition function, which controls how the machine changes from state to state, and an output function, which, based on the result of the state transition function, computes the output of the machine. [5]
+
+    finite state machines do not maintain memory beyond the transition between the states, and so are ideal computation models for a small amount of memory. they are not, however, capable of complex calculations like that of a turing machine, or a modern computer. this is because although every bit of a computer can only be in two states, 0 or 1, and 2 is a finite number [6][7], however there exist an infinite number of operations that can be carried out, due to interactions between the different sets of bits.
+
+
+    mealy vs. moore
+
+
+    3 examples
+
+    drawn up diagram illustrating one - lift

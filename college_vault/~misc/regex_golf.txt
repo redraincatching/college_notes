@@ -1,0 +1,10 @@
+/m | [tnbj]|wa/gm
+    matches all star wars subtitles, but not star trek
+/ [dv]|[dh] |[tf]i|yo|sis/gm
+    all star trek, and no star wars
+lowercase replace
+    ([A-Z])(.*)
+        finds all uppercase letters
+    \L$1$2
+        replace with lowercase
+        (can also use ctrl + k + a)

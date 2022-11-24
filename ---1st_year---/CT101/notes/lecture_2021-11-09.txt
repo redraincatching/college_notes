@@ -1,0 +1,130 @@
+floating point numbers in computing systems
+    the leading bit of the mantissa must be 1 if the number is normalised
+        // this bit can be treated implicitly
+
+    disadvantages
+        since leading bit is always 1, this limits the range of small numbers
+
+IEEE 754 standard
+    most common standard for representing floating point numbers
+    instructions on how to organise the processor
+        single precision (32 bits)
+            sign bit (1 bit)
+            exponent (8 bits)
+            mantissa (23 bits)
+                | 1 |     8     |      23      |
+        double precision (64 bits)
+            sign bit (1 bit)
+            exponent (11 bits)
+            mantissa (52 bits)
+                | 1 |       11       |        52        |
+    single precision format
+        the mantissa needs to be normalised
+            has an implied 1 on the left of the point
+                // this is a logical flag, not a number
+            e.g.
+            mantissa - 10100000000000000000000
+            representation - 1.101_2 = 1.625_10
+
+        exponent is formatted excess-127, with an implied base of 2
+            exponent - 10000111 (135)
+            representation - 135 = 127 + 8 -> exponent is ^8
+            // note: exponential range is 2^-126 to 2^127
+
+    double precision format
+        pretty much the same, except
+            exponent uses 11 bits, therefore excess-1023 is used
+
+conversions between base 10 and base 2
+    the whole and fractional parts of an embedded decimal or binary point must be converted separately
+
+    examples
+        decimal value of 32-bit floating point number
+        1 10000010 11110110000000000000000
+
+            sb - 1, negative
+            exp - 130 = 2^3
+            mantissa - 1.1111011 (can discard the trailing zeroes) = 1.9609375
+                // jump over, divide by 2^<no_of_jumps>
+
+            -1.9609375 * 2^3 = -15.6875
+
+        3.14 as a 32-bit floating number
+            // convert separately, use 10 significant bits for the mantissa
+
+            11 = 3 (n_1)
+
+            sb  - 0, positive
+            exp - [later]
+            man - .14
+                    .14 * 2 = 0.28   (0)
+                    .28 * 2 = 0.56   (0)
+                    .56 * 2 = 1.12   (1)
+                    .12 * 2 = 0.24   (0)
+                    .24 * 2 = 0.48   (0)
+                    .48 * 2 = 0.96   (0)
+                    .96 * 2 = 1.92   (1)
+                    .92 * 2 = 1.94   (1)
+                    .94 * 2 = 1.84   (1)
+                    .84 * 2 = 1.68   (1)
+                    .68 * 2 = 1.36   (1)
+                    .36 * 2 = 0.72   (0)
+                        -> 0010001111100000000..... (n_2)
+
+            11.00100011110...
+                // normalise, so that only one number is left of the point
+            1.100100011110 x 2^1
+                exponent here is 10000000 (128)
+            full number - 0 10000000 10010001111000000000000
+
+        45.45 as ieee 754 single precision
+            sb - 0
+            45 = 101101
+
+            .45
+                0 1 1 1 0 0 1 1 0 0 1
+                01110011001
+
+                101101.01110011001
+                1.0110101110011001 * 2 ^ 5
+                0 10000100 01101011100110010000000
+
+arithmetic with floating point numbers
+    you need to "line up" the exponents, and so arithmetic is more complicated than with simple numbers
+        example
+            perform the addition 3_10 + 1.5_10
+
+            3
+                n_1 = 3 = 11
+                -> 11
+                    1.1 * 2^1
+            1.5
+                n_1 = 1
+                n_2 = .1
+                -> 1.1
+                    1.1 * 2^0
+
+            convert smaller exponent to larger
+                1.1  * 2^1
+              + 0.11 * 2^1
+               ------------
+               10.01 * 2^1    -> 1.001 * 2^2    // can't have more than 1 digit left of the point
+
+    addition exercise
+        x - 0100 0010 0000 1111 0000...
+        y - 0100 0001 1010 0100 0000...
+
+        x
+            sb - 0
+            exp - 10000100, 5
+            mantissa - 00011110000...
+
+        y
+            sb - 0
+            exp - 10000011, 4
+            mantissa - 01001000000...
+
+            1.0001111 * 2^5
+            0.1010010 * 2^5
+            ---------------
+            1.1100001 * 2^5 = 111000.01 = 56.25_10

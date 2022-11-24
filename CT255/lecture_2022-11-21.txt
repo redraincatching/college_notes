@@ -1,0 +1,73 @@
+stream ciphers
+    process a message bitwise
+    requires a stream key K that is a pseudorandom series of 0s and 1s
+    bit-stream K is xor'd with the plaintext M bit by bit to generate the ciphertext C
+        C = M_i XOR K_i
+    randomness of key destroys statistical properties
+    the receiver generates an identical bitstream K and decodes the message M
+        M = C_i XOR K_i
+    
+    vernam cipher
+        requires as many random bits as message is long
+        every message requires a new key
+        such keys must be distributed securely (inefficient)
+        for practical reasons, stream ciphers are based on PRGs, pseudo-random generators
+            - often based on linear feedback shift registers
+            - therefore only the seed for this register must need to be shared
+        
+        linear feedback shift registers (lfsr)
+            [[diagram]]
+            - consists of a consists of a binary shift register along with a linear feedback function that operates on some of the bits
+            - each time a bit is needed, all bits shift right one position
+            - the bit bumped out is the output bit
+            - the linear feedback function forms a new bit
+            - correctly designed lfsrs can 
+
+        // TODO: finish
+        // man, he talks fast
+
+message authentication
+    types of security attack
+        - interception
+            of info-traffic flow, attacks confidentiality
+        - interruption
+            of service, attacks availability
+        - modification
+            of information, attacks integrity
+        - fabrication
+            of information, attacks authentication
+
+    passive attacks
+        eavesdropping or monitoring transmissions
+            release of message content
+            traffic analysis
+                -> pattern of messages rather than content
+            // wireshark
+    
+    active attacks
+        involve modification or creation of data streams
+            masquerade
+                pretend to be a different entity
+            replay
+                retransmission of intercepted data
+            modification
+            ddos
+
+    four types of attack in the context of communication across a network, that are addressed by message authentication
+        - masquerade
+        - content modification
+        - sequence modification
+        - timing modification -> delete or repeat messages
+
+        hash functions 
+            hash function is a variation of a MAC, which produces a fixed-size hash code ("fingerprint") based on the input size
+            public and not keyed, therfore the hash value must be encrypted
+            traditional CRCs are too weak, and cannot be used
+            128-512 bit hash values required
+
+        uses of hash function
+            [[diagram]]
+            [[diagram]]
+
+    
+

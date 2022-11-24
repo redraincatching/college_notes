@@ -1,0 +1,3 @@
+compiler vs. interpreter
+    compiler changes the code to machine language, which allows the program to run faster
+    interpreter runs the code in real time, which is easier to do, but runs slower

@@ -1,0 +1,23 @@
+conditional operator
+    returns a value after checking if something is true or false
+
+    syntax
+        (<expression>) ? <value if true> : <value if false>;
+
+    this value can be anything - a character, a number, a function call, anything.
+
+    /*
+    this can be really useful
+        printf("you have %d apple%c", n, (n>1) ? "s" : " ";
+    the conditional operator is evaluated before the print statement executes
+    */
+
+maths functions
+    require the <math.h> library
+
+    floor()
+        rounds down
+    ceil()
+        rounds up
+    fabs()
+        returns absolute value

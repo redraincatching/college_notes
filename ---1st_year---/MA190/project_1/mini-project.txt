@@ -1,0 +1,59 @@
+group 1
+    - me
+    - liam
+    - fionn
+
+ideas
+    the collatz problem
+        construct a sequence as follows:
+            the first term is a positive integer n that you choose. subsequent terms are defined by
+            - if the last number introduced was even, halve it
+            - if the last number was odd, multiply by three and add one
+            - repeat
+
+        question - does it always end in repetitions of 4, 2, 1?
+            // collatz pattern on piano?
+
+    divisibility by 7 trick - chika ofili, 2019 (professional 12 year old)
+        positive number is a multiple of 7 if and only if the following operation is a multiple of 7
+            - delete the last digit a, leaving the integer b
+            - take the number b + 5a
+                -> can be repeated until the number is easily recognised, but holds for all.
+
+    neusis construction in classical greek geometry
+        // noy-sis
+        if l and m are (non-parallel) lines in the plane, and p is a point, and t is a fixed length, the neusis construction allows for the construction of a line segment of length t, that has one end each on l and m, and points towards p. it allows for some geometric constructions that would otherwise be impossible, such as trisecting an angle
+            // note: mathematical origami?
+            based on classical greek attempts to draw stuff with only a compass and straight-edge, and going beyond those constraints
+
+    P vs NP
+        famous unsolved problem in complexity theory
+        a problem is classified as P (polynomial time) if there is an algorithm that will provide a solution in a time that is a polynomial function of the input
+        a problem is classified as NP (non-deterministic polynomial time) if there is an algorithm that will check a proposed solution in a time that is a polynomial function of the input
+        it is plausible to suppose that there are problems in the second category, but not the first, however, no one has found one yet.
+            // google np-hard problems as well
+
+    christmas counting problem
+        how many gifts were given? what is the most efficient way of counting them?
+        day 1
+            1
+        day 2
+            1 + 2
+        day 3
+            1 + 2 + 3
+        [...]
+        day 12
+            12 + 11 + 10 + 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1
+
+        geometric series
+            S = \frac{n(n+1)}{2}
+
+    goldbach conjecture
+
+    3blue1brown?
+
+    // there's a wikipedia page for every number
+    // cut-the-knot.org
+
+    happy numbers
+        numbers are happy in a base b if its the sum of its digits squared eventually add up to 1

@@ -1,0 +1,6 @@
+Labrador
+German Shepherd
+Golden Retriever
+Beagle
+Poodle
+Boxer

@@ -1,0 +1,41 @@
+xp - e_x_treme programming
+    general principles
+        communication, simplicity, feedback, respect
+
+    ci - continuous integration
+        jenkins, travis
+    cd - continuous delivery
+    collective ownership
+
+    specific xp concepts
+        - test driven development
+        - pair programming
+        - continuous integration
+
+        refactoring
+            in order to reduce redundancy, remove duplication, increase cohesion
+
+        tdd cycle
+            create a test for every new feature - make sure it fails at first
+            run all the tests
+            write the code (doesn't have to be perfect, just pass)
+            run all the tests
+            refactor the code, as tdd can result in duplication
+            repeat
+
+            never write new functionality without a failing test
+            keep the system running at all times and continually make incremental changes
+
+            advantages
+                - discourages a "gold plating" of implementation
+                - forces the developer to specify an end criteria
+
+            disadvantages
+                - big time investment
+                - complex to write
+                - mock code needs to be written to pass the test
+
+        ci server
+            github -> ci server -> firebase
+
+            full pipeline deployment

@@ -1,0 +1,81 @@
+modifying output
+    AS
+        rename or alias any tables found in SELECT or FROM
+    CONCAT
+        `concatenate strings
+    CAST
+        CAST(expression AS datatype(length))
+    ORDER BY
+        last clause to order results
+        ORDER BY <attribute list>
+        ASC for ascending, DESC for descending
+    LIMIT and TOP
+        both select the first n tuples, however only limit is supported by mysql
+    
+    example
+        SELECT
+            CONCAT(fname, ' ', minit, ' ', lname) AS name
+        FROM
+            employee
+        WHERE
+            salary BETWEEN 50000 AND 80000
+        ORDER BY
+            lname
+        LIMIT 6;
+
+    sanitising data
+        for apostrophes in incoming data, either double the apostrophe ('') or escape it using backslash
+
+working with strings and pattern matching
+    %
+        0 or more characters
+    _
+        exactly one character
+
+    // note: %a% means "has a in it"
+    // both of these use the keyword LIKE
+
+    can use regular expressions for more complicated string matching
+        ^   - matches position at the beginning of a string
+        $   - matches the end of the string
+        []  - matches anything inside the brackets
+        [^] - matches anything not in the brackets
+        *   - preceeding character 0 or more times
+        +   - preceeding character 1 or more times
+        |   - or
+        {n} - matches preceeding character n times
+
+        // note: this uses the keyword REGEXP
+
+    
+linking tables in an sql query
+    3 potential approaches
+        - joins
+        - subqueries
+        - union queries
+
+        // not all are always applicable
+
+        subquery
+            nested query
+            usually returns data that will be used in the main query
+            may be a set of values, or a single value
+            can use full dml statements
+
+            when to use
+                when an existing value from the databasse needs to be retrieved and used as part of the solution
+                when an aggregate function needs to be performed
+                can sometimes replace a join
+
+            subqueries can be used as part of the WHERE and HAVING clauses
+                SELECT ... FROM ... WHERE (SELECT ... FROM ... WHERE ...);
+
+            if a subquery returns only one value, operators such as !=, >= can be used
+            if a set of values could be returned, IN, ANY, or ALL must be used
+            NOT, EXISTS, and NOT EXISTS are all useful
+
+                >ALL returns true if the comparison is true for every tuple in the subquery
+                =ANY returns true if true for any tuple
+                IN - checks for equality, true if at least one is true
+
+            

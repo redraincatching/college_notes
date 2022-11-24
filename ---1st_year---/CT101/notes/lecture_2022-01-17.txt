@@ -1,0 +1,111 @@
+programmable logic devices
+    most of the circuits presented thus far are available on a ttl ic chip
+    circuits can be constructed using these chips, and wiring them together
+    an alternative would be programming all of the components into a single chip
+        an example of this would be a PLA, or a programmable logic array, that contains one or more and/or gates
+
+    programmable logic array - PLA
+        [diagram]
+        the inputs and their complements are made available to several and gates
+        the x indicates that the value is input to the and gate
+        the outputs from these and gates are passed to the or gates, the output of which which form the output of the chip
+
+
+    programmable array of logic - PAL
+        [diagram]
+        similar to PLA, however the or gates are hardwired, not programmable
+
+        both PAL and PLA are limited by the fact that they can only implement combinatorial logic, and do not contain any latches or flip-flops
+
+    programmable logic device - PLD
+        a more complex device, needed to realise sequential circuits
+        usually made up of logic blocks, with the ability to interconnect them
+        each logic block is made out of macro cells, that may be equivalent to a PAL with an output flip-flop
+        the i/o pins of the PLD can be configured to the desired function
+
+        complex programmable logic devices - CPLD
+            [diagram]
+            an array of PLDs
+            has global routing resources for connections between PLDs, and between PLD and I/Os
+
+        field programmable gate array - FPGA
+            most complex
+            contains an array of cells, each of which can be programmed to realise a function
+            programmable interconnects between cells
+            include flip-flops, allowing the design and implementation of complex sequential logic
+            [diagram]
+
+            basic FPGA operation
+                [diagram]
+                - load configuration memory
+                    defines system function
+                - changing configuration memory
+                    changes system function
+                    can change at any time, even at runtime
+
+            programmable logic blocks - PLB
+                [diagram]
+                can perform any logic function
+                    - look-up tables (LUTs)
+                        combinational logic or in RAM
+                    - flip-flops
+                        sequential logic
+                    - special logic
+                        add, subtract, multiply
+                        count up or down
+
+            programmable interconnect
+                wire segments and programmable interconnect points (PIPs)
+                    - cross-point PIPs - connect/disconnect wire segments
+                        to turn corners
+                    - break-point PIPs - connect/disconnect also
+                        to make long and short signal routes
+                    - multiplexer (MUX) PIPs select one of many wires for output
+                        used at PLB inputs
+                        primary interconnect for new FPGAs
+
+                    [diagram]
+
+finite state machine design
+    a finite state machine (FSM) is a tool to model the desired behaviour of a sequential system
+        the designer must develop a finite state model of the system behaviour, and develop a circuit to implement it
+    an FSM consists of several states. inputs into the machine are combined with the current state of the machine to determine the next state of the machine
+        inputs are based on just the state, or state and inputs
+
+    [wtf diagram]
+    x represents the range of possible input values (2^n)
+    y represents the range of possible output values (2^m)
+    q represents the range of possible states of the system (2^k)
+        transfer functions:
+            - f: x * q -> y
+            - g: x * q -> q
+                // ess., f calculates the output, g calculates the new state
+
+    FSM representation
+        [diagram]
+        FSM = (x, y, q, f, g)
+            if there is no state in the q range (q≡ø, the circuitry has no history)
+                - g: x * ø -> ø, there is no state transition function
+                - f: x * ø -> y, becomes f: x -> y
+
+                in this case, the FSM is equivalent to a CLC
+                    - FSM| _{q≡ø} = CLC = (x, y, f)
+
+    synchronous vs. asynchronous
+        - async FSM
+            the next state becomes the present state after the delays through the delay elements
+        - sync FSM
+            obtained by replacing the delay elements d_i with memory elements (registers)
+                the w_i bits of the next state will be written in the registers only on the clock (edge or level)
+        [diagram]
+
+        sync FSM with immediate outputs
+            [diagram]
+            the outputs, after they have been calculated, are used immediately (of course, in the stable period of the state interval), is called an immediate state machine
+
+        sync FSM with delayed outputs
+            [diagram]
+            the next state is assigned as the present state on the next clock interval, and the outputs are made available similarly. each bit of the output is passed through a memory element
+
+            [timing diagram]
+            transient interval: the longest propagation path through the CLC

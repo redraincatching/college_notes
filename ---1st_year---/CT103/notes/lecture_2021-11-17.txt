@@ -1,0 +1,32 @@
+variable scope
+    the region of a program where a variable is visible
+    can be either local or global
+
+    local variables
+        >declared< inside a function or code block (like i in a for loop)
+        two local variables with the same name, but declared in two different places, will have different addresses in memory
+
+    global variables
+        declared outside of a function
+        can be accessed by any function
+            // remember, main() is still a function
+
+    global scope
+        macros have global scope
+
+strings and functions
+    strings, as usual in c, are weird and fucky
+    so, if we want to return a string as a function value, we have to declare it like this
+
+        const char* string_func() {
+
+        }
+
+    what this actually does is returns a pointer (*) to the first element of a string
+        // note: %p or %X can be used to access pointers
+
+    if we want to pass a string as a value to a function, we have to use char* again, this time as an argument in the prototype
+
+        void string_func(char* string) {
+
+        }

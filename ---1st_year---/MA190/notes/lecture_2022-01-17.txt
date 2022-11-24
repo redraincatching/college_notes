@@ -1,0 +1,58 @@
+variations of p → q
+
+    q → p is the converse of p → q
+    ¬p → ¬q is the inverse of p → q
+    ¬q → ¬p is the contrapositive of p → q
+
+        /*
+        note:
+            p → q ≡ ¬q → ¬p
+            converse ≡ inverse
+            an implication is not equivalent to its converse; hence is not equivalent to its inverse
+        */
+
+
+predicates
+    set theory
+        a set is a collection of elements (we assume no other structure)
+        let S be a set.
+            if x is an element of S, we write x ∈ S
+            if not, we write x ∉ S
+        each set is specified entirely by its elements
+        thus, two sets A and B are equal (A = B) if and only if a ∈ A implies a ∈ B, and b ∈ B implies b ∈ A
+            // A = B ↔ (a∈A → a∈B)*(b∈B → b∈A)
+
+        standard notation expresses the elements that define the set in some explicit way, usually in braces, e.g.
+            S = {x, y, z}; {a ∈ Z | a is divisible by two}; ∅
+
+        a set is finite if it has a finite number of elements
+
+        a predicate is a type of function, P(x) that becomes a proposition (i.e. has a boolean value) when x is replaced by a value in its domain
+            e.g.
+                let E(n) be the predicate “n is even”, where n ∈ Z.
+                -> E(14) ≡ 1; E(13) ≡ 0
+
+            predicates may have more than one variable
+
+    predicates may also be turned into propositions by quantification
+        universal quantification
+            "∀x ∈ S, P(x)"
+            this states "for all elements x of S, P(x) has value T"
+        existential quantification
+            "∃x ∈ S, P(x)"
+            this states "there exists an element x of S, for which the proposition P(x) has value T"
+
+        note:
+        - ∃x ∈ S, P(x) ≡ P(x_0) + P(x_1) + P(x_2) + …
+        - ∀x ∈ S, P(x) ≡ P(x_0) * P(x_1) * P(x_2) * …
+
+        negations of quantifiers
+            a universal quantifier negates to an existential one, and vice versa
+                ¬(∀x ∈ S, P(x)) ≡ ∃x ∈ S, ¬P(x).
+                ¬(∃x ∈ S, P(x)) ≡ ∀x ∈ S, ¬P(x).
+
+            for example:
+                "not all martians are green" ≡ "there are martians who are not green"
+                "it's not true that some martians are green" ≡ "no martians are green"
+
+            ess. an extended use of de morgan's laws

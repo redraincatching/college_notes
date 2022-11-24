@@ -1,0 +1,28 @@
+html tag - <input type="text">
+    text input field
+    specify default text with "value" attribute
+        can specify size with "style" attribute
+
+<textarea> ... <textarea>
+    accepts multiple lines of text
+    can define the size with "rows" and "cols" attributes
+    e.g.
+    <textarea rows="20" cols="40" id="text_area" value="default text goes here"></textarea>
+
+js strings
+    a string is a group of characters
+    a string literal is a group of characters enclosed in quotes
+    a string variable is a variable that holds a string
+        // js is loosely typed, so any variable can be any type, but once it has a type, that sticks
+
+    the operator + is used to concatenate strings
+
+    string handling methods
+        <var>.length
+            returns the length in characters of a string
+        <var>.indexOf("<character>")
+            returns the first position that character is found in a string
+            0-based index
+            // indexOf("<character>", <n>) will start looking at position n
+        <var>.substr(<m>, <n>)
+            returns a portion of the string, starting at position m, and returns n characters

@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+	char make[20];
+	char model[20];
+	int year;
+}car;
+
+car garage[10];
+void read_cars(char file_path[], int num_cars);		// read car data from csv file, and store in garage
+void display_garage(int num_cars);
+int check_year(int num_cars, int year);
+// changed each to underscores, not camel case, hope that doesn't matter too much
+
+void main() {
+	char file_path[] = "C:\\Users\\eidhn\\Downloads\\carsYear.csv";
+	read_cars(file_path, 10);
+	display_garage(10);
+	int ans = check_year(10, 2016);
+	printf("There are %d cars with year %d in the garage.\n", ans, 2016);
+}
+
+void read_cars(char file_path[], int num_cars) {
+	FILE* fptr;
+	fopen_s(&fptr, file_path, "r");
+
+	if (fptr != NULL) {
+		char line[100];
+		char* next;
+		char* first;
+
+		for (int i = 0; i < num_cars; i++) {
+			next = NULL;
+			fgets(line, 100, fptr);					// get the line
+			first = strtok_s(line, " ", &next);		// first two fields are space separated
+			strcpy_s(garage[i].make, 20, first);	// and strcpy them into the struct
+			first = strtok_s(NULL, ",", &next);		// then the last one is an int
+			strcpy_s(garage[i].model, 20, first);
+			first = strtok_s(NULL, "\n", &next);
+			garage[i].year = atoi(first);
+		}
+	}
+}
+
+void display_garage(int num_cars) {
+	for (int i = 0; i < num_cars; i++) {
+		((i+1) > 9) ? printf("car %2d:\n", i+1) : printf("car 0%d:\n", i+1);	// for aligning purposes
+		printf("%20s\t%20s\t%4s\n", "make", "model", "year");
+		printf("%20s\t%20s\t%4d\n\n", garage[i].make, garage[i].model, garage[i].year);
+	}
+}
+
+int check_year(int num_cars, int year) {
+	int count = 0;
+	for (int i = 0; i < num_cars; i++) {
+		((garage[i].year) == year) ? count++ : "";	// ternary operators are fun
+	}
+	return count;
+}

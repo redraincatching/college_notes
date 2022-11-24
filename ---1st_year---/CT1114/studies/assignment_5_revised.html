@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> text area thing (but with regex) </title>
+        <script>
+            "use strict";
+
+            function count_words (el) {
+                var text = el.value;  // makes it count the whole text every time
+                var no_words = (text.match(/ \S+/gm) || []).length;
+                    //  matches words, stores in an array, length of array is no. of words
+                if(text.length > 0)
+                    no_words += 1; // cause it doesn't count the first word for some reason
+                document.getElementById("output_div").innerHTML = `${no_words} words.<br>${text.length} characters.`;
+                // note: backticks allow inserting variables with ${}, instead of concatenating
+            }
+
+        </script>
+    </head>
+    <body>
+        <textarea id="text_here" placeholder="enter text here..." rows="8" cols="80" onkeyup="count_words(this);"></textarea>
+        <!--- use this, like, absolutely use "this" --->
+        <br> <br>
+        <div id="output_div"> 0 words.<br>0 characters. </div>
+    </body>
+</html>

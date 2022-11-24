@@ -1,0 +1,187 @@
+# data and information security
+for as long as there have been secrets, there's been data security
+involves defending data from unauthorised:
+- use
+- access
+- disclosure
+- disruption
+- modification
+- inspection
+- recording
+- destruction
+
+information security threat - hacking
+any action that exploits a weakness in a system, often spreading malware as a result
+
+examples of security breaches
+- surveillance
+- masquerading
+- tampering
+- replaying
+- infiltrating
+- decoding
+
+## malware
+- virus
+-> software that copies itself onto the host system and replicates
+- worm
+-> specific virus that spreads using flaws in the OS, often degrading performance in some way, e.g. the morris worm
+- bots
+-> an advanced form of a worm designed to interact over the internet with no human action
+- trojan horse
+-> usually an email attachment which looks legitimate, but is actually an .exe file
+- ransomware
+-> program encrypts files when it runs, only decrypting it on receiving payment
+- spyware
+-> secretly logs and reports information on user actions, e.g. pegasus. can be used as a part of trgeted advertising (adware)
+- scareware
+-> masquerades as useful software, but will infect or destroy a system if installed
+- rootkits
+-> designed to gain root or admin access
+- ddos (distributed denial of service)
+-> seeks to overload the bandwidth and resources of a system by bombarding it with simultaneous connections (from multiple distributed locations) to cause servers to crash
+
+---
+## data provacy
+protecting data is a business, legal, and ethical requirement
+private data must be kept secure:
+- at rest (stored) and when being transmitted
+- when being processed
+- when being disposed of, or when the device it is stored on is disposed of
+
+#### data stored should be (by law)
+- factually correct
+- only available to those who should have it
+- only used for stated purpose
+
+#### gdpr data protection
+- highest-possible privacy settings by default
+- data should not be publicly available without explicit, informed consent
+- cannot be used to identify a subject without other data
+- no personal data should be processed without regulation or explicit consent
+- subject has the right to revoke consent at any time
+
+##### CIA triad
+confidentiality, integrity, availability
+information security needs a culture of continual improvement
+
+###### confidentiality
+information that is secret should stay secret
+- only people authorised to access the data may do so
+- encryption and access controls to protect confidentiality
+
+###### integrity
+relates to trustworthiness, origin, completeness, and correctness of information
+data should not be modified in an unauthorised or undetected manner
+to protect integrity
+- prevent unauthorised modification of information
+- detect unauthorised modifications
+
+###### availability
+relates to ensuring that authorised users can access and use systems if they want to
+threats to availability
+- natural/human disasters
+- malicious attacks (ddos, etc.)
+
+high availability system - aim to remain available at all times, e.g. gmail
+
+---
+## security approaches
+1) identify, authenticate, authorise sequence
+2) accountability
+3) policies/code of conduct
+specification of the security properties a system should have and how people should treat data
+4) encryption
+transforming data into something that cannot be understood - cryptography
+
+=="the weakest link"==
+the strength of a system is no greater than that of its weakest link
+if different security mechanisms are enforced for each component of an information system, there is "defence in depth"
+research and experience has shown that the most vulnerable point in most systems is the human element - social engineering
+
+### approach 1
+#### identification
+- identifying who or what
+- usually some unique username or code
+-> must be locally unique, and possibly globally (e.g. email address)
+
+#### authentication
+three methods
+- what you know (e.g. password)
+- what you have (e.g. key)
+- what you are (e.g. facial rec)
+
+##### problems with passwords
+often too short
+often too simple (hunter2)
+same password used across multiple systems
+an insecure version of the password exists (written or in a breach)
+prone to phishing
+
+useful: password management
+
+##### multi-factor authentication
+###### mfa/2fa
+multiple different authentication vectors checked
+
+###### 2fa
+common nowadays
+supplements a password with "what you have" - a smartphone, etc
+uses a TOTP - time-based one-time password
+-> sent by text or push notification
+recommended by National Institute of Standards and Technology to secure online accounts of any kind
+
+note: major issue with digital exclusion here for those without a smartphone or certain disabilities (can't scan a fingerprint if you have no hands)
+
+### approach 2
+#### accountability
+systems require logs and traces to check if usage is authorised
+
+### approach 3
+#### access control
+level of access control required specified by policies and code of conduct
+these involve
+- assigning a security classification to data
+- specifying an access control policy
+- specifying a handling rule
+
+![[security_classification.png]]
+
+#### traffic light protocol (tlp)
+- white: unlimited, distribute freely
+- green: community-wide distribution
+- amber: limited, need-to-know distribution
+- red: very restricted, named people only
+
+#### access control models
+DAC - discretionary access control
+individual users specify the security aspects of an object
+MAC - mandatory access control
+security is centrally controlled by a security policy administrator
+RBAC - role-based access control
+defined around roles and privileges in an organisation
+
+### approach 4
+levels of cryptography
+1) algorithms
+2) protocols - built on algorithms
+3) applications - built on protocols
+
+e.g.
+- ssl: secure socket layer
+- https: secure hypertext transfer protocol
+
+#### classes of cryptography systems
+##### symmetric
+one key used for encryption and decryption
+can be divided into stream or block ciphers
+stream cipher: each bit is encrypted individually
+block cipher: message units are grouped and encrypted
+
+##### asymmetric
+rsa encryption, public key encryption
+decryption cannot reasonably be derived from public key
+
+
+
+> #algorithms 

@@ -1,0 +1,42 @@
+arrays
+    a data structure consisting of a collection of elements, each identifiable
+    by an index
+
+    used to store a collection of data, like a lot of variables of the same
+    type
+
+defining an array
+    <type> <name>[<length>];
+        e.g.
+            int vals[3];
+            char initials[12];
+
+    you can also initialise at the same time
+        e.g.
+            int vals[3] = {14, 5, 7};    // 14, 5, and 7 are the elements
+                                         // 0, 1, and 2 are their index
+
+        initialising
+            int ages[5] = {1, 2, 3, 4, 5}; // correct
+            int ages[]; // incorrect
+            int ages[] = {1, 2, 3, 4, 5} // correct
+
+    // arrays start at zero.
+
+storing an element in an array
+    <array_name>[<index>] = <value_to_store>;
+    e.g.
+        characters[5] = H;
+
+using data in arrays
+    <array_name>[<index>];
+    e.g.
+        printf("at index 2 in this array is %d", array[1]);
+        // note, the placeholder character used is related to the type of array
+
+arrays and loops
+    when accessing arrays, variables are valid arguments (well, integers)
+    e.g.
+        for (int i = 0; i < 5; i++) {
+            printf("%f ", grades[i]);
+        }

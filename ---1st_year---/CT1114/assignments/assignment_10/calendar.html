@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> calendar </title>
+        <link rel="stylesheet" href="calendar.css">
+        <script src="calendar.js" charset="utf-8"></script>
+    </head>
+    <body>
+        Enter a year: <input type="text" id="year">
+        <br>
+        Select a month:
+        <select class="month" name="month" id="month">
+            <option value="1"> january </option>
+            <option value="2"> february </option>
+            <option value="3"> march </option>
+            <option value="4"> april </option>
+            <option value="5"> may </option>
+            <option value="6"> june </option>
+            <option value="7"> july </option>
+            <option value="8"> august </option>
+            <option value="9"> september </option>
+            <option value="10"> october </option>
+            <option value="11"> november </option>
+            <option value="12"> december </option>
+        </select>
+        <br> <br> <br>
+        <button type="button" onclick="make_calendar();"> generate the calendar </button>
+        <br> <br>
+        <div id="table_div"></div>
+        <center>
+        <h1 id="title"> </h1>
+        </center>
+    </body>
+</html>

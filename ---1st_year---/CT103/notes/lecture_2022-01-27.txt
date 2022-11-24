@@ -1,0 +1,58 @@
+updating a file
+    updating records "in place" (i.e. reading/writing to them in their original position without destroying other records) is not something that you can do with only sequential access
+
+    fseek()
+        moves the file pointer to allow reading/writing at different locations
+        function structure
+            fseek(<FILE* fptr>, <long int offset>, <origin>);
+
+                - fptr is a file pointer
+                - offset is a long int that specifies the _number of bytes_ to skip forwards or backwards from the origin position
+                - origin tells fseek where to start searching
+
+                origin
+                    // actually a macro defined by stdio.h
+                    - SEEK_SET
+                        beginning of file
+                    - SEEK_CUR
+                        current position in file
+                    - SEEK_END
+                        end of file
+            example
+                fseek(fptr, 7, SEEK_SET);
+
+        if you reposition the file pointer over existing data, and start writing, you will overwrite the existing data
+
+    ftell()
+        get the current file position of the stream
+        function structure
+            long int ftell(FILE* fptr);
+
+            usage example
+                fseek(fptr, 0, SEEK_END);
+                int len = ftell(fptr);
+                printf("size of file: %d bytes", len);
+
+file read issues
+    using fseek is useful with simple file structure that you know, however, most individual fields in records vary in length
+
+    problems reading data
+        1) fields of unpredictable length/content
+            multi word fields make %s useless
+        2) choosing an appropriate data structure
+        3) items with the same name, or one item in multiple places?
+        4) non-standard formats
+        5) missing/corrupt data, illegal characters
+        6) delimiters
+        7) date format
+        8) overall formatting rules
+
+
+parsing
+    analysing a string or text into logical syntactic components
+    [see "fruits_basket_parsing.c" for an example]
+
+    atof()
+        converts a string to a float
+        usage
+            atof(&<string>);

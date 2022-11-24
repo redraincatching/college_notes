@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function do_maffs() {
+                var i = 0, j = 10000;
+                while (i < j) {
+                    i++;
+                    j /= 1.4;
+                }
+                alert(i);
+
+            }
+
+        </script>
+    </head>
+
+    <body>
+        <!--- could've also done <body onload="do_maffs();"> --->
+
+        <button onclick="do_maffs();"> here </button>
+
+    </body>
+</html>

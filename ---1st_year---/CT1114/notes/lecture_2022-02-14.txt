@@ -1,0 +1,89 @@
+html forms
+    forms provide a standard set of input controls: text fields, buttons, check boxes, lists, etc.
+    the user's choices are entered into the controls
+    the contents of the controls can be manipulated and processed on the client (with js) before being posted to the server, or after being posted, with a different language (e.g. node.js)
+
+    to post a form to the server, use either <input type="submit"> or the .submit() method
+
+    <form>
+        attributes
+            - ACTION
+                defines the URL that the data will be sent to
+            - METHOD
+                defines how the data is sent
+                "post" - the form element names and values are sent as a request object to the server
+                "get" - the form element names and values are sent as part of the url using query strings
+
+        form controls
+            <textarea>
+                defines a field in which the user can type multiple lines of text
+            <select>
+                enables the user to choose among a number of options in the list
+            <option>
+                items in the select list
+            <input>
+                provide other options such as checkboxes, radio buttons, single lines of text
+            <button>
+                pushbuttons
+
+            form layout
+                <form method="post" action="script.php">
+                    <!-- form elements such as text fields are added here -->
+                </form>
+
+            radio buttons
+                <input type="radio" name="grouplabel" value="1"> option 1
+                <br><br>
+                <input type="radio" name="grouplabel" value="2"> option 2
+                    // note: no </input>
+                    // users can only select one option from each group (defined by name)
+
+            check boxes
+                <input type="checkbox" name="label" checked="checked"> option 1
+                <br><br>
+                <input type="checkbox" name="label2"> option 2
+                    // the "checked" sets the item to be selected by default
+
+            dropdown lists
+                <select name="listlabel" id="listid">
+                <option value="1"> item 1 </option>
+                <option value="2" selected="selected"> item 2 </option>
+                <option value="3"> item 3 </option>
+                </select>
+
+                // "selected" attribute here denotes default
+                /*
+                to find the index of the item in the list at runtime, use
+                var idx = document.getElementById("listid").selectedIndex;
+                */
+
+
+email check
+    /*  function rules
+    return 1 if email is valid, return 0 if not
+    using a pretty complex validity check, so
+    4 parts to email:
+        - recipient name
+        - @ symbol
+        - domain name
+        - top-level domain
+
+    name:
+        - max 64 characters
+        - can consist of
+            - a-z, A-Z
+            - 0-9
+            - special characters !#$%&'*+-/=?^_`{|}~
+            - dot (.) provided that is not the first or last character, or consecutive (unless quoted)
+        note: if quoted the local part of the email can contain spaces, hzl tab, any ascii graphic except backslash, quote, and a quoted pair consisting of backslash followed by hzl tab, space, or any ascii graphic
+        can also have a comment in parentheses, as long as it is the start or end of the name
+
+    domain:
+        may consist of
+            - letters
+            - digits, provided that the top-level domain name is not all numeric
+            - a hyphen (provided that it is not at the end)
+
+        this is known as the ldh rule (letters, digits, hyphen)
+        the domain can also be an ip literal, as long as it is enclosed in square brackets []
+    */

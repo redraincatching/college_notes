@@ -1,0 +1,90 @@
+binary complement tips and tricks
+    - positive numbers are always represented by themselves
+    - small negative numbers have representations starting with lots of 1s
+    - you can get a rough idea of the value of a negative number just by flipping the bits
+
+overflow and carry conditions
+    overflow
+        occurs when the result of the calculation doesn't fit into the fixed number of bits available for the result
+            in complementary notation, occurs whenever the result overflows into the sign bit
+                -> the sign of the result is different from that of both operands
+
+    carry flag
+        necessary when breaking up a number that is too large for a system, and a carry or borrow is necessary
+            (e.g. subtracting two 64 bit numbers in a 32 bit system)
+
+    overflow occurs when you can't represent the result as a signed value
+    carry occurs when you can't represent the result as an unsigned value
+
+    examples
+        4-bit 2's complement
+
+            0100 + 0010 = 0010
+            (4) + (2) = (6)     // no carry, no overflow, result is correct
+
+            1100 + 1110 = 11010
+            (-4) + (-2) = (-6)  // no overflow, ignoring the carry, result is correct
+                                    // 1010 is -6
+
+            0100 + 0110 = 1010
+            (4) + (6) = (-6)    // overflow, no carry, result is incorrect
+
+            1100 + 1010 = 10110
+            (-4) + (-6) = (6)   // overflow, carry, and ignoring the carry, result is incorrect
+
+exponential notation
+    e.g.
+        -0.3579 x 10^-6
+    four components needed to define a number in this notation
+        - sign of main number
+        - magnitude of main number (known as the mantissa)
+        - sign of exponent
+        - magnitude of exponent
+
+    two additional pieces of information are required to complete the representation
+        - base of exponent
+        - location of (binary/decimal) point
+            // this is set at a particular location so that is doesn't need to be stored, such as at the beginning or the end of the mantissa
+
+    floating point format
+        typical representation in 8 digits
+            SEEMMMMM
+                s - one digit for sign of mantissa
+                e - two digits for exponent
+                m - the mantissa representation
+
+        there's no provision for the sign of the exponent, so we need to use a method that includes it
+            one method is complementary notation
+            another is offset representation (excess-n notation)
+                - pick a middle value to be zero (e.g. 50)
+                - a value greater than that is positive, and has a magnitude of the difference
+                - a value lower is the negative, and also has a magnitude of the difference
+
+                this is simpler than complementary for exponents, and allows for calculations
+                in base 10, allows us to store an exponential range of -50 to 49
+                    e.g.
+                        0.00001 * 10^-50 <= n <= 0.99999 * 10^49
+
+    floating point exceptions
+        overflow
+            using a number of a magnitude too large to be stored
+        underflow
+            where the number has a magnitude too small to be stored
+
+
+    normalising and formatting
+        number of digits determined by desired precision
+            therefore, stored with no leading zeroes (normalisation)
+
+            example
+                SEEMMMMM in base 10 - 0.MMMMM * 10^EE
+                    excess-50
+                    decimal at start of mantissa
+                    sign is represented by 5 if +ve, 0 if -ve (arbitrary in decimal)
+
+        steps for normalising
+            e.g. 246.8035
+            1) provide an exponent of 0 if not specified (246.8035*10^0)
+            2) shift decimal point by adjusting the exponent value until in correct position (.2468035*10^3)
+            3) correct precision by adding or removing digits as necessary (.24680*10^3)
+            4) formatting - place into standard exponential form (0 53 24680)

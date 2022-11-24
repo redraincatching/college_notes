@@ -1,0 +1,59 @@
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> email checker </title>
+        <link rel="stylesheet" href="email_checker.css">
+        <script src="email_checker.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td class="title">
+                    question category
+                </td>
+                <td>
+                    <select class="boxes" id="q_cat" name="q_cat">
+                        <option value="1"> goods for sale </option>
+                        <option value="2"> complaints </option>
+                        <option value="3"> support </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    question
+                </td>
+                <td>
+                    <textarea id="q_text" name="name" rows="8" cols="80"> enter your question </textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    name
+                </td>
+                <td>
+                    <input id="name" class="boxes" type="text" name="name">
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    email
+                </td>
+                <td>
+                    <input id="email" class="boxes" type="text" name="email">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <button type="button" name="submit" onclick="check_form();"> submit </button>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+```
+#web_dev #html #email_checker

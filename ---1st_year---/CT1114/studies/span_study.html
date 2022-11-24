@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <title> span click example</title>
+        <script>
+            var times_clicked = 0;  // initialised on load
+            function change_span() {
+                times_clicked++;
+                var msg = "has been clicked " + times_clicked + " time";
+                if (times_clicked)
+                    msg += "s";
+                document.getElementById('the_span').innerHTML = msg;
+
+            }
+        </script>
+    </head>
+    <body>
+        this page has a span whose content <span id='the_span' style='color:purple;' onclick='change_span();'> may be changed by clicking it </span>
+    </body>
+</html>

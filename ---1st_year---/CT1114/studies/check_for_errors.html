@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8"/>
+    <head>
+        <script>
+            function numbers() {
+                var sHTML = "<p>";  // starts a paragraph
+                for (var i=1; i<=20; i++) {
+                    sHTML += Math.random() + "<br>";    // adds a random number & line break
+                }
+                sHTML += "</p>";    // ends paragraph
+                document.getElementById("clientSideContent").innerHTML = sHTML; // there was an ms word double quote at the end (the innerhtml was white, not red)
+                console.log("Final HTML generated in loop: "+sHTML);
+                //output to console
+            }
+        </script>
+</head>
+<body>
+    <a href='javascript:numbers();'>Show Some Random Numbers</a> <!--- basically the same as javascript --->
+    <br>
+    <div id='clientSideContent'>Something here</div>
+</body>
+</html>

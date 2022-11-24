@@ -1,0 +1,149 @@
+searching
+    a fundamental operation in computing
+    most programming languages have built-in searching functions
+
+    linear search - outline
+        problem:
+            in a linear data structure, find the position of a given item, returning the position the item is found or else value -1 if item is not found
+        input:
+            array arr_a[] with (distinct) values; size of array (size);
+        output:
+            one integer value indicating the position the item was found at, or -1
+        algorithm idea:
+            start at index 0, for each position until end of array, check if value at current position is the item required, and output result once finished searching
+
+        code fragment:
+            int i;
+            int out_pos = -1;
+
+            for (i = 0; i < size; i++) {    // could also decrement, (i = size; i >=0; i--)
+                if (arr_a[i] == item) {
+                    position = i;
+                }
+            }
+
+        issue with this code: when found, continues searching
+            possible solutions
+                - break statement
+                - change loop check to (i < size && out_pos == -1)
+                    note: every loop, there are two checks, so slightly slower, but not significant compared to time saved
+
+    ordered (sorted) arrays
+        an array is ordered if the values are in either ascending or descending order
+        can make searching much more efficient
+
+        code fragment:
+            int i;
+            int found = 0;
+            int greater = 0;
+            int position = 0;
+
+            // TODO: finish this
+
+        faster approach: binary search
+            problem:
+                in a linear data structure, sorted, no duplicates, find the position of a given item, returning the position found or else val -1 if not found
+            input:
+                array arr_a[] with data values in sorted order; size of array (size); item to find (item)
+            output:
+                one integer value indicating not found (-1) or the position item was found at
+            assumptions:
+                integers in array, sorted ascending
+            [diagram]
+            search idea:
+                - start at middle index of array
+                - check if == item
+                    if yes, stop and return
+                    if no, check whether value is greater than or less than item. hence, check [0, mid) or (mid, size-1]
+
+            code fragment:
+                int mid;
+                int begin_sect = 0;
+                int end_sect = size - 1;
+
+                int mid = int((begin_sect + end_sect)/ 2);  // typecasting to int deals with floats
+
+                // compare item to mid
+                while (begin_sect <= end_sect && arr_a[mid] != item) {
+		              if (item > arrA[mid]) {
+			              begin_sect = mid + 1;
+		              }
+		              else if (item < arrA[mid]) {
+			              end_sect = mid - 1;
+		              }
+
+		              mid = int ((begin_sect + end_sect) / 2);
+	            }
+
+	            if (arr_a[mid] == item) {   // don't know if it exited with empty or found
+		            location = mid;
+	            }
+
+	            return (location);
+
+            assumption: data is sorted
+                - how do we check to see if the array is sorted and in the right order?
+                - if not sorted, how do we sort it
+
+    advanced searching: pathfinding algorithms
+        a particularly important type of non-linear searching is called pathfinding, which involves finding the shortest route between two points
+        // see knight's tour
+
+        general approach:
+            need to keep track of
+                - nodes already visited
+                - neighbours that it is possible to visit (if multiple options, remember the rest for later attempts)
+
+algorithmic analysis
+    focus: the analysis and comparison respect to resources used, specifically
+        - space (memory)
+        - time (to run)
+
+    standardisation
+        - both programs in the same language
+        - same compiler
+        - same hardware
+        - identical data sets with many edge/corner cases
+
+    3 approaches
+        - actual time: code and run
+        - estimate time: count "steps" in code
+        - estimate rate of growth of time used: O notation for large input sizes
+
+        actual time
+            get actual values of time and space
+            often focus on key operations as well as overall time to run
+            generally in practice, this is a preemptive check
+                we want an idea of the time and space efficiency before we fully code a solution
+
+            c approach using time.h
+                clock_t time = clock();
+                double time_taken;
+
+                // run code
+
+                // check time elapsed
+                time_taken = clock() - time;
+                // convert to seconds
+                printf("time taken: %lf seconds", time_taken/CLOCKS_PER_SEC);
+
+        counting time steps
+            estimate the amount of time by summing up time steps
+            the result is a function, f, which represents these steps, which is usually dependent of the size of the data set, referred to by a constant, e.g. N, and the function is then represented with f(N)
+
+            what counts as a time step?
+                - each "simple" statement = 1 step
+                    declarations, initialisations, if statements, function calls
+                - each memory access = 1 step
+                - loops, function execution, built in libraries are not simple statements
+                    loops:
+                        in a simple case, any statement in a loop is multiplied by the number of iterations
+                        the condition can be taken as 1 step
+                        in for loops, can count everything in a loop guard separately or as one (usual method)
+
+        types of analysis
+            worst case: maximum number of steps in any instance of size n
+            best case: minimum number of steps in any instance of size n
+            average case: average number of steps in any instance of size n, with random input
+
+            worst case is often the best to calculate, as it is easiest, it happens, and we know nothing will be worse

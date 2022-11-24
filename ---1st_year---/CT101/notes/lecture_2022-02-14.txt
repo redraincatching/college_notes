@@ -1,0 +1,65 @@
+general purpose register architecture (gpr)
+    the instructions read their operands and write to random access register file
+    the gpr file allows the access of any register in any order by specifying the number (register id) of the register
+    the main difference between the stack and gpr is that repeatedly reading the a regiser will produce the same result, and not alter the file
+        popping an item from the stack will change the contents of the stack
+
+    many gpr architectures assign special values to some registers to make programming easier
+        e.g., sometimes register 0 is hardcoded with the value 0
+
+    instructions in gpr architecture
+        gpr instructions need to specify the register that hold their input operands, and the register that will hold the result
+        the most common format is the three operands instruction format
+            add r1, r2, r3 instructs the processor to read the contents of r2 and r3, add them together, and store the result in r1
+
+        a significant difference between gpr architecture and stack-based architecture is that programs can choose which values should be stored in the register file at any given time, allowing them to cache most accessed data
+            gpr architectures therefore have better performance, but require more storage space
+
+        sample instruction set
+            ST (ra), rb         (ra) <- rb
+            LD ra, (rb)         ra <- (rb)
+            ADD ra, rb, rc      ra <- rb +rc
+            SUB ra, rb, rc      ra <- rb -rc
+            AND ra, rb, rc      ra <- rb & rc
+            OR ra, rb, rc       ra <- rb | rc
+            MOV ra, rb          ra <- rb
+            MOV ra, #constant   ra <- constant
+
+    programming a gpr architecture
+        less structured than programming a stack-based one
+        fewer restrictions on the order in which operations can be carried out
+            on stack-based architecture, instructions should execute in the order that would leave the operands for the next operation on top of the stack
+            on gpr, operands need only place operands in a register before they are called
+
+        gpr program example
+            2 + (7 & 3)
+
+            mov r1, 7
+            mov r2, 3
+            and r3, r1, r2
+            mov r4, 2
+            add r4, r3, r4      ;result is in r4
+
+comparing gpr and stack
+    stack
+        - instructions take fewer bits to encode
+        - reduced memory taken up by programs
+        - manages use of register automatically (no need for programmer intervention)
+        - instruction set does not change if size of register file changes
+
+    gpr
+        - with evolution of technology, the amount of space taken up by a program is less important
+        - compilers for gpr architecture achieve better performance with a given number of registers than a stack-based architecture with the same number
+        - used by modern pcs
+
+using stacks to implement procedure calls
+    programs need a way to pass inputs to the procedures that they call to and receive outputs back from them
+    procedures need to be able to allocate space in memory for local variables, without overriding any data used by their calling program
+    it is impossible to determine which registers can be safely used, so a mechanism to save/restore registers of calling programs have to be in place
+    procedures need a way to figure out where they were called from, so that the execution can return to the calling program when the procedure completes - they need to restore the program counter
+
+    [diagram]
+    when a procedure is called, a block of memory in the stack is allocated
+        this is called a stack frame
+    the top of the stack pointer is incremented by the number of locations in the stack frame
+    

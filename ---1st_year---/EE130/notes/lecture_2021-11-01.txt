@@ -1,0 +1,32 @@
+kirchoff's current law
+    sum i in = sum i out
+    number of linearly independent kcl equations is one less than the total number of nodes
+
+current divider rule
+    i (at node x) = ( r total in parallel / r(x) ) i total
+
+resistance of two parallel resistors
+    r_t = (r1.r2)/(r1 + r2)
+
+series-parallel circuits
+    equivalent circuits
+        a circuit with electrical characteristics that are the same as another circuit, but is simpler
+
+loaded voltage divider
+    voltage divider where another resistor (the load resistor) is added in parallel with a resistor in the voltage divider (the bleeder resistor)
+        this changes the voltage ratio in the voltage divider
+
+    stiff voltage divider
+        provides a load voltage that is nearly equal to its no-load output voltage
+            this is achieved by having a load resistor that is > 10*r_b.
+                // current wants to take the path of least resistance, so to keep the voltage similar to the no-load, we make sure that the added load resistance is massive
+
+    voltmeter loading effect
+        occurs whenever we measure a voltage, as a voltmeter has an internal resistance, causing a loading effect, resulting in the measurement being slightly off
+
+            example formula
+                v_vm = ((r_1 || r_vm) / r_total) * v_total
+
+    wheatstone bridge
+        four resistive arms forming two voltage dividers
+            galvanometer in between them

@@ -1,0 +1,70 @@
+user preferences
+    content-based recommendation
+        recommends items based on the similarity to previous items this user has interacted with
+        essentially, matching user profile attributes with content object attributes
+
+        the attributes used are domain-specific, and ideally well defined (i.e. structured using tags) so meaningful queries can be performed on them
+            in the absence of this structure, the main descriptive terms can be matched more generally
+
+            in either case, more recent attributes are weighted higher
+
+        advantages + disadvantages
+            - no cold start problem (similarity to other items, no user info necessary)
+            - no popularity bias
+            - attributes can be weighted differently for specificity (sci-fi < dystopia)
+            - can provide an explanation (because you watched this...)
+            - item content must be machine readable
+            - "stereotyping" possible; only similar to your previous preferences
+            - serendipity difficult
+
+        content based approaches are good at exploitation (good at using the data they have) but not at exploration (finding new data)
+
+    collaborative-based recommendation
+        the preferences of other users with whom user a shares preferences with
+        doesn't use content data
+        tries to mimic "word of mouth"
+
+        advantages over content filtering
+            - support for recommendations where content attributes are abstract
+            - easier to support issues of taste
+            - serendipitous recommendations possible
+
+        matrix data representation
+            matrix sparsity - in real data, the vast majority (~99%) of values in these datasets are 0
+                this can make it difficult to find similarity between users
+
+        collaborative filtering approaches
+            modern approaches use machine learning
+            a common technique is a statistical user-user or item-item comparison
+                -> neighbour-based approaches which find groups of similar users or items
+                // it is more practical to store item groups
+
+            pearson correlation
+                weighted average of deviations from neighbours' mean
+                steps:
+                    1) calculate user-user or item-item similarity
+                    2) select neighbourhood
+                    3) give recommendations
+
+                1)
+                    // finds average of ratings a user gives, as "like" is different for different people -> generally just calculated once and stored
+                    // result will be in the range [-1, 1]
+                    [diagram]
+
+                2)
+                    some approaches:
+                        - correlation threshold
+                            users with similarity above a certain threshold are selected
+                            this threshold is usually slightly over 0
+
+                        - best-n correlations
+                            where the n neighbours who have the highest similarity are chosen
+                3)
+                    for some active user
+                        make recommendations on items neighbours have rated but this user has not
+                        // often the weighted average of these ratings is used
+
+    hybrid recommender approaches
+        combines multiple approaches
+        depend on available data
+        usually combine popularity, content, and collaborative approaches

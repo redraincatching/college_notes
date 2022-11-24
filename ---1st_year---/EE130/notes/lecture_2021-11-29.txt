@@ -1,0 +1,15 @@
+programmable logic
+    AND array
+        contains a number of and gates that are connected to components via "programmable" links
+        this is done by identifying the desired input connections to each and gate and removing the others electronically
+
+        [diagram]
+
+    SRAM technology
+        uses cell outputs to turn transistors (links) on or off
+        a 1 in a cell turns the corresponding link on, and vice versa
+        [diagram]
+        this is volatile
+
+combinational logic circuits
+    in sum-of-products form (sop), basic combinatorial circuits can be implemented with and-or combinations

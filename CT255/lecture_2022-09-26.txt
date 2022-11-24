@@ -1,0 +1,118 @@
+cryptography
+    generalised caesar cipher
+        - use any shift from 1 to 25, and replace any letter with a letter that fixed displacement away
+        - therefore you have 26 ciphers you can try on any encoded text
+            - only one key will be useful, however there are only 25 other ciphers, so this is trivial to bruteforce
+
+    simple substitution cipher
+        - using a context alphabet, perform the same substitution as a caesar cipher
+            -> the "one letter at a time" method is what makes it simple
+        
+        context alphabet
+            placing the letters of a keyword at the start of the alphabet rather than shifting
+            e.g.
+                zebrascdfghijklmnopqtuvwxy
+        
+        cryptanalysis via letter frequency
+            - human languages are redundant
+            - some letters or groups of letters are used more often than others
+
+            [[diagram]]
+            tables like this are available for one-, two-, and three-letter groups in various languages
+
+            sample c program for frequency analysis
+                #include <stdio.h>
+                #include <string.h>
+                #include <ctype.h>
+
+                int main(int argc, char *argv[])
+                {
+                    FILE *fp;
+                    int data[26];
+                    char c;
+                    int i;
+                    memset(data, 0, sizeof(data));  
+                    // memset copies the character 'c' to the first n characters of the given pointer
+
+                    if (argc != 2) {
+                        return(-1);
+                    }
+                    if ((fp = fopen(argv[1], "r")) == NULL) {
+                        return(-2);
+                    }
+
+                    while (!feof(fp))
+                    {
+                        c = toupper(fgetc(fp));
+                        if ((c >= 'A') && (c <= 'Z')) {
+                            data[c - 65]++;
+                            // ascii encoding of A is 65
+                        }
+                    }
+                    for (i = 0; i < 26; i++) {
+                        printf("%c: %i\n", i + 65, data[i]);
+                    }
+                   
+                    fclose(fp);
+                    return(1);
+                }
+
+    known plaintext attacks (kpa)
+        an attack model where the attacker has both
+            - a sample of the plaintext, known as a crib
+            - the ciphertext including the encoded crib
+
+    not even the large number of keys in a monoalphabetic cipher provide security
+        monoalphabetic - cipher with single letter mapping
+        one approach is multiple-letter encryption
+
+    playfair cipher (1854)
+        - create a 5x5 matrix using a key at the start
+            [[diagram]]
+            -> i = j
+        - letters encrypted in pairs
+            -> repeats have a x inserted as an extra letter between them
+        - letters in the same row are both shifted once to thr right
+        - letters in the same column are shifted down
+        - otherwise, letters are replaced by the letter in its row using 
+
+        example:
+            key: prunejuice
+            plaintext: kensentmex
+
+            p r u n e
+            j c a b d
+            f g h k l
+            m o q s t
+            v w x y z
+
+            ln by pe mo uz
+            
+            ciphertext: lnbypemouz
+
+        security was much stronger than that of a monoalphabetic cipher, as there were 26^2, or 676 combinations
+        however, this could still be broken using 2-letter frequency analysis
+
+    vigenère cipher (1553)
+        - blaise de vigenère was known as the creator of polyalphabetic ciphers, or ciphers using multiple susbstitution alphabets
+        - more alphabets = more security
+        - uses a key to select which alphabet to use
+        - i^th letter of key = i^th alphabet
+
+        - write the plaintext out
+        - write the key out repeated below it
+        - encrypt the corresponding plaintext letter
+        
+            plaintext:  hereismyplaintextlmao
+            key:        ciphercipherciphercip
+
+            h encrypted using alphabet c, e encrypted using alphabet i, etc.
+
+        cracking the vigenère
+            - search for repeated strings, the longer the better
+            - for each repeated string, count how many letters between the first letters in both repetition, plus one
+            - factor the number
+            - repeat this process
+            - the most common factor is probably the length of the keyword
+
+        

@@ -1,0 +1,25 @@
+arguments
+    an argument is a list of statements, ending in a conclusion
+    more formally, a logical argument is a list of statements (p_0, p_1, p_2, …, p_n), ∴ c, where p_1, …, p_n are the premises, and c is the conclusion
+
+    an argument is valid if the conclusion follows necessarily from the premises
+
+    logical forms of arguments
+        there is a subtle difference between "logically valid" and a "valid argument", but that requires a greater understanding of maths than i currently have
+
+        an argument can be expressed as a boolean function
+            // propositional calculus
+        an argument is "logically valid" if, when expressed as a function, it _always_ outputs 1
+        for example:
+            "if i get a bonus, i will buy a bike. if i sell my old car, i will buy a bike. i will sell my car or get a bonus. therefore, i will buy a bike"
+
+            p: i buy a bike
+            q: i get a bonus
+            r: i sell my car
+
+            // the argument itself
+            {(q → p) ^ (r → q) ^ (q ∨ r)} → q
+
+            by using a truth table, we can see that this expression will always evaluate to 1, therefore it is logically valid
+
+    

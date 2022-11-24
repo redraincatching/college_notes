@@ -1,0 +1,91 @@
+git remote add <name> <link>
+     specifies the name and link of the remote repository
+git checkout <branch-name> 
+     moves to the specified branch
+     -b will create a branch if it does not exit
+git add <files>
+     stages files to be committed
+git status
+     view status of changed files
+git log
+     view commits and hashes
+     oneline allows you to see commits more concisely
+git commit 
+     adds a commit, basically a save of stages files
+     -m"message goes here"
+     --amend allows you to combine small staged changes with the last commit -> doesn't make a new commit
+git reset
+     basically "deletes" a commit, useful on local
+     --merge reverts last merge
+git revert
+     makes a new commit that is identical to a previous one, useful on remote
+git push 
+     push to remote
+git pull
+     take files from remote and merges
+git fetch
+     take files from remote repository
+git cherry-pick <list of commits>
+     copy specified commits below head
+git rebase -i <scope>
+     interactive rebase
+     relative refs are useful in the scope
+git tag <name> <commit>
+     fairly permanent "name" on a commit
+     commit is optional, head is default
+git describe <ref>
+     where the reference is anything git can resolve into a commit, defaults to head
+     describe where you are relative to the nearest tag
+     output: <tag>_<no_commits>_g<hash>
+
+commits are basically a list of changes (a _delta_), which is why cherry-pick and rebase can work
+see also: https:learngitbranching.js.org/
+
+relative referencing
+    ~<num> number of steps to move up
+    ^<num> which parent to follow
+
+
+/* remote shit */
+
+concepts
+    remote branches
+        reflect the state of remote repositories
+        on the local
+        named <remote>/<branch>
+    tracking
+        by default, when you clone a repository, main tracks origin/main 
+        you can set any branch to track a remote branch with git checkout (-b) <branch> <to_be_tracked>
+        git branch -u <to_be_tracked> <branch> also works
+
+commands
+    git clone
+        creates a local copy of a repository 
+    git fetch
+        download commits from remote, and updates remote branch to reflect
+        doesn't change local files, just downloads, so would change origin/main, but not main
+        // once fetched, things like cherry-pick, rebase, and merge work on these commits
+        // git pull fetches and merges together
+    git push
+        pushes changes to remote
+        doesn't allow a push if current commit is based on obsolete commits
+        fetch-rebase is one option to resolve this, fetch-merge is another
+        // basically the resolution is update code first, then push
+    git pull
+        fetches down commits from remote and merges
+        --rebase changes it to a rebase instead
+    
+
+    arguments
+        push <remote> <place>
+            // go to <place>, find all commit, then go to <remote> and add them there
+            if only one is specified, it finds the matching branch, so main will push to main
+            however, we can use <source>:<destination> to specify (called a colon refspec)
+                // this can also push to a branch that doesn't exist yet
+            can use relative references here too, e.g. 
+                git push origin main~1:main
+
+
+
+ todo:
+    git bisect ?

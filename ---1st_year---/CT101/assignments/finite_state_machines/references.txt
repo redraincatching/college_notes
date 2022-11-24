@@ -1,0 +1,14 @@
+[1] Wang, Jiacun (2019). Formal Methods in Computer Science. CRC Press. p. 34. ISBN 978-1-4987-7532-8.
+[2] A Logical Calculus of Ideas Immanent in Nervous Activity. W. Mcculloch, and W. Pitts. Bulletin of Mathematical Biophysics (1943)
+[3]  Mealy, George H. (September 1955). "A Method for Synthesizing Sequential Circuits". Bell System Technical Journal.
+[4] Moore, Edward F (1956). "Gedanken-experiments on Sequential Machines". Automata Studies, Annals of Mathematical Studies. Princeton, N.J.: Princeton University Press (34): 129–153.
+[5] https://cs.stanford.edu/people/eroberts/courses/soco/projects/2004-05/automata-theory/basics.html
+[6] Rudin, Walter (1976), Principles Of Mathematical Analysis (3rd ed.), New York: McGraw-Hill, ISBN 0-07-054235-X
+[7] https://xkcd.com/285/
+[8] Aho, Alfred V.; Sethi, Ravi; Ullman, Jeffrey D. (1986). Compilers: Principles, Techniques, and Tools (1st ed.). Addison-Wesley. ISBN 978-0-201-10088-4.
+
+[...] https://www.microsoft.com/en-us/research/wp-content/uploads/2002/07/issta02.pdf - Generating Finite State Machines from Abstract State Machines
+[...] computability and logic - boolos, george
+[...] computation: finite and infinite machines - minsky, marvin lee
+[...] www.lucidchart.com
+[...] https://www.charlie-coleman.com/experiments/kmap/

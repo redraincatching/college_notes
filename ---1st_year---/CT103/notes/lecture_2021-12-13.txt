@@ -1,0 +1,17 @@
+bubble sort
+    first element, check if larger than second, if so, swap
+    next element, check if larger than following, if so, swap
+    continue until reach last element
+        repeat, starting at one, and ending at penultimate spot
+
+    structure
+        outer for loop for loops
+            inner for loop for size comparisons
+        array to iterate through
+
+    pseudocode (or python, not much difference)
+        1. initialise array, indices
+        2. for p = 0 up to array length
+        3. for i = 0 up to array length - p-1
+        4. if (item at position i > item at position i+1)
+        5. swap

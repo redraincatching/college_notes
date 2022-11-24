@@ -1,0 +1,18 @@
+kinematics + dynamics
+    kinematics
+        a branch of classical mechanics which describes the motion of objects without consideration of the circumstances leading to the motion, i.e., without reference to forces
+
+    dynamics
+        motion in one direction
+
+    displacement
+        (unit: metre, m)
+        vector that specifies the position of a particle in reference to a previous position
+        formula: \sqrt{\delta x^2 + \delta y^2}
+        not always equivalent to distance travelled
+
+    speed
+        scalar quantity, time derivative of distance
+
+    velocity
+        vector quantity, time derivative of displacement

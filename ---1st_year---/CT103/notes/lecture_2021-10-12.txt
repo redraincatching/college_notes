@@ -1,0 +1,27 @@
+loops
+    useful for repeating tasks
+
+while loop
+    - repeats a task while a condition is true
+
+    // syntax
+    while (condition) {
+        // do thing
+    }
+
+    // note, if using a variable as a counter, you can use [variable]++;
+    // counter has to be initialised before the loop begins, i think
+        -> check this
+    // to increase it at the end of a loop
+        // this is used to avoid infinite loops
+
+do while loop
+    - variant on while loops
+
+    // syntax
+    do {
+        // do thing
+    } while (condition);
+
+    // when you want to cause the action first, then enter the loop
+        // ensures that the block of code is executed at least once

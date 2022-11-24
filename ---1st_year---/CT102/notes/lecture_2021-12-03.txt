@@ -1,0 +1,104 @@
+arithmetic encoding
+    encodes a stream of symbols (rather than a single symbol) as a floating point in the range [0,1)
+    text, so must be lossless
+
+    approach
+        input:
+            message, symbols, their frequencies
+        general approach:
+            work with intervals and sub-intervals where each interval represents a proportion relative to the probability of the occurrence of the message
+        output:
+            real number in range [0,1)
+
+    algorithm
+        - begin with interval [0, 1)
+        - get all symbols and probabilities of occurrence
+        - order symbols (smallest first, alphabetically if equal)
+        - place ordered symbols in queue
+        - while symbols left in queue{
+            - for current interval, divide the interval according to the probabilities of all symbols occurring, and the order of these, starting at the lowest range of interval
+            - let current interval = symbol at top of queue
+            - find in which interval current message symbol lies, this becomes the new interval, divide as before
+            - get next symbol
+            }
+
+        note: size of interval is limited by computer's capability
+
+    example
+        inputs:
+            - symbols are: a c r
+            - probabilities are: p(r) = 0.2, p(a) = 0.4, p(c) = 0.4
+            - message = car
+
+        approach:
+        order symbols according to probabilities first, alphabetically second:
+            - r a c
+        first iteration of loop:
+            - assign each symbol to the an interval in range:
+                - r -> [0.0, 0.2)
+                - a-> [0.2, 0.6)
+                - c->[0.6, 1.0)
+            - first symbol of message is c, so new interval is [0.6, 1.0)
+
+        [diagram 1]
+        we take the current symbol (c) and use that interval in the next step
+        [diagram 2]
+        [diagram 3]
+        therefore, the interval with "car" is [0.68,0.712)
+            // note: the length of the message then has to be specified
+            // fixed length message units can be used to keep this low
+
+        in reality, rather than transmitting the full interval, we just send a real number (binary representation)
+
+    practical concerns:
+    the longer the text stream (sequences/message) encode the more precise the interval to encode it becomes but machines have finite precision
+        fixed length message units help with this
+
+    decoding
+        input: binary number and symbol length
+            (assuming symbols, their order and frequencies known)
+
+        general approach:
+            get real number, follow the same approach as for encoding, but at each stage consider next current digit to find correct interval
+            stop when at sub-interval of the correct length
+
+        output:
+            symbols from message
+
+social network
+    a social network has:
+    - nodes
+        representing actors/people/entities. often represented as points.
+        data is associated with nodes
+        may be _one mode_ (nodes are all of the same type) or _two mode_ (nodes represent two different things)
+
+    - edges (or ties)
+        representing the links or social ties between nodes. represented as a line
+        may be different types of edges
+        may have weight
+        can be directed or undirected
+
+    data representation
+        two  main approaches
+        1) adjacency matrix (sociomatrix)
+        2) edge list
+
+        adjacency matrix
+            equal number of rows and columns (the number of actors)
+            elements in the matrix represent a relation between actors (often binary)
+            conventionally, relationship is read by row -> column
+            main diagonal is blank
+
+        edge list
+            if binary connections exist:
+            used to store connections between nodes in pairs (id_1, id_2)
+            can also store as list of connections for each id
+            if undirected, relationship is not stored in both directions
+            if directed, convention is to read from first entry to second entry
+            if weighted, store a triple
+            // may need to supplement with a list of nodes if some have no connections
+
+    software for operations on networks
+        pajek is pretty good
+
+    

@@ -1,0 +1,64 @@
+generating system outputs
+    for both mealy and moore machines, we follow the same design procedure to develop their output logic
+    two approaches to generating it
+        - rom lookup table
+        - combinatorial logic gates
+
+    we begin by creating a truth table
+        - for a mealy machine:
+            the inputs will be the system inputs and the present state, and the outputs will be the system outputs
+        - for a moore machine:
+            only the state bits will be inputs, and the system output is the table output
+
+        [buncha diagrams of implementation and truth tables]
+
+        lookup rom implementation
+            inputs:
+                of the rom are present states and system inputs
+            outputs:
+                system outputs
+            the same rom can be used to generate the next state and system outputs
+            [diagram]
+
+alternate fsm designs
+    - counter/decoder design
+        using a counter to store the current state, and a decoder to generate signals corresponding to each state
+        the counter can be cleared, incremented, decremented, or loaded with another value to go from one state to another
+            // therefore, to stay in the same state, the machine just has to not change the counter
+        [diagram]
+        - the counter plays the role of the register in the mealy and moore designs, as well as a portion of the next state logic
+        - the state value is input into the decoder; each output of the decoder represents one state
+        - the decoder outputs and system inputs are input into the logic block that generates the system outputs, nd the information necessary to generate the next state value
+
+        -> if the system inputs are used to generate both the next state and the outputs, this design can be used to implement a mealy machine, and similarly if the state values only generate the system outputs, a moore machine has been implemented
+        [diagram]
+
+
+unused states
+    what happens if the fsm loads up into an unused/unknown/undefined state, or reaches it by some flaw in the machine?
+        // in our mod 6 counter, 110 and 111 are both undefined
+    [2 diagrams]
+    [dummy state diagram]
+    - create dummy state for all unused states
+    - each would go to a known state on the next cycle of the clock (usually a reset state)
+    - by convention, the value of 1 on the arcs indicate that the action is always taken
+    [diagram]
+
+string checker - specification
+    inputs a string of bits, one per cycle
+    when the previous bits match the pattern 110, sets output m=1, otherwise m=0
+    the pattern is checked continuously throughout the stream
+        -> checks bits 123, then 234, then 345, and so on
+    [diagram]
+    previous three bits represented by the state
+    bits are received from left to right
+    each state goes to one of two possible values, depending on the next bit being read in, I
+    [diagram]
+    [diagram] - moore machine
+    output logic is straightforward - when state is 6, the input is 110, so can implement M as p_2p_1'p_0, which is equal to 1
+    [diagram]
+    this can be implemented far more simply
+        - s_0: no bits match
+        - s_1: one bit matches
+        - s_2: two bits match
+        - s_3: three bits match, m=1

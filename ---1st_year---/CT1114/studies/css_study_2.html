@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>css exercise</title>
+
+    <script>
+        "use strict";
+
+        function colour_change (el) {
+            const els = document.getElementsByClassName("par"); // gets an array of those objects
+            for (var i=0; i < els.length; i++) {
+                document.getElementsByClassName("par")[i].style.color = "#00ff00";
+            }
+            el.style.color = "#ff0000";
+        }
+    </script>
+
+</head>
+<body>
+    <h2>kubla khan</h2>
+    <p class="par" onclick="colour_change(this);" style="color:#ff0000;">
+    in xanadu did kubla khan<br>
+    a stately pleasure-dome decree:<br>
+    where alph, the sacred river, ran<br>
+    through caverns measureless to man<br>
+    down to a sunless sea.
+    </p>
+    <p class="par" onclick="colour_change(this);" style="color:#00ff00;">
+    so twice five miles of fertile ground<br>
+    with walls and towers were girdled round;<br>
+    and there were gardens bright with sinuous rills,<br>
+    where blossomed many an incense-bearing tree;<br>
+    and here were forests ancient as the hills,<br>
+    enfolding sunny spots of greenery.
+    </p>
+    <p class="par" onclick="colour_change(this);" style="color:#00ff00;">
+    but oh! that deep romantic chasm which slanted<br>
+    down the green hill athwart a cedarn cover!<br>
+    a savage place! as holy and enchanted<br>
+    as e'er beneath a waning moon was haunted<br>
+    by woman wailing for her demon-lover!<br>
+    and from this chasm, with ceaseless turmoil seething,<br>
+    as if this earth in fast thick pants were breathing.
+    </p>
+</body>
+</html>

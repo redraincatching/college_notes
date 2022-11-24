@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> study of loops</title>
+
+        <script>
+            "use strict";
+            function handleclick() {
+
+                var biggest = 0;
+                var smallest = 10001; // one more than max
+                var sum = 0;
+
+                for (var i=0; i<20; i++) {
+                    var num = Math.floor(Math.random()*1000);    // random gets a decimal, floor makes it an integer
+                    alert("this is number " + (i+1) + ", its value is " + num)
+                    if (num > biggest)
+                        biggest = num;
+                    if (num < smallest)
+                        smallest = num;
+                    sum += num;
+                }
+
+                // instead of displaying one at  time, could've just made a string and concatenated every number into a list
+
+                var res = "of the 20 numbers,<br>" + biggest + " was the biggest,<br>" + smallest + " was the smallest,<br>" + "and " + sum + " was the total sum.";
+
+                var p = document.getElementById('for_result');
+                p.innerHTML = res;
+
+            }
+
+        </script>
+    </head>
+
+
+    <body>
+        <p id='for_result'>
+            results will display here
+        </p>
+
+        <button onclick="handleclick();"> test </button>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+logic circuits
+    comparison function
+        and, or, and not functions can be combined to form various functions
+        the comparison function indicates whether a binary value is greater than, equal to, or less than another
+            performed by a comparator
+
+    arithmetic functions
+    [finish later]
+
+boolean variables
+    literal - a variable or its complement
+    complement of a variable - its inverse, denoted by a bar above i
+
+    boolean addition
+        equivalent to the or operation
+        the sum term is 1 if one or more literals is 1, otherwise 0
+
+    boolean multiplication
+        equivalent to the and operation
+        the product term is 1 if all literals are 1
+
+        // commutative, distributive, and associative laws apply to both of these
+        [distributive law diagram]
+
+inverter
+    performs the boolean not operation
+    gives the complement of the number
+    [not example waveform]

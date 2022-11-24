@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> text area study </title>
+
+        <script>
+            "use strict";
+
+            function is_vowel (c) {
+                var d = c.toLowerCase();
+                if (d == 'a' || d == 'e' || d == 'i' || d == 'o' || d == 'u' )
+                    return 1;
+                else
+                    return 0;
+            }
+
+            function backwards() {
+                var input = document.getElementById("input").value;
+                var output_area = document.getElementById("output");
+                var vowels_and_sum_output = document.getElementById("vowels_and_sum_output");
+                var text_output = "";
+                var sum = 0;
+                var no_vowels = 0;
+
+                var text_len = input.length;
+
+                for (var i = 0; i < text_len; i++) {
+                    curr_letter = input.substr(i,1);
+                    text_output = curr_letter + "<br>" + text_output;
+                    if (is_vowel(curr_letter))
+                        no_vowels++;
+                    else if (curr_letter >= "0" && curr_letter <= "9")
+                        sum += parseInt(curr_letter);
+                    var curr_letter = "";
+                }
+                output.innerHTML = text_output;
+                vowels_and_sum_output.innerHTML = "there are " + no_vowels + " vowels in this text<br>the sum of numbers in this text is " + sum;
+            }
+        </script>
+    </head>
+    <body>
+        <div id="vowels_and_sum_output"></div>
+        <br>
+        <textarea id="input" onkeyup="backwards();" placeholder="enter text here..." rows="8" cols="80" ></textarea>
+        <div id="output"> </div>
+
+    </body>
+</html>

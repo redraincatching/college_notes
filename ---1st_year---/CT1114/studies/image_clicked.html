@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> clicks </title>
+
+        <script>
+            "use strict";
+            var cl = 0;
+            var dcl = 0;
+            var msov = 0;
+            var msot = 0;
+
+            function update() {
+                document.getElementById("output").innerHTML = `clicks: ${cl}<br>doubleclicks: ${dcl}<br>mouseovers: ${msov}<br>mouseouts: ${msot}`
+            }
+
+            function do_things(s) {
+                switch (s) {
+                    case 1:
+                        cl++;
+                        break;
+                    case 2:
+                        dcl++;
+                        break;
+                    case 3:
+                        msov++;
+                        break;
+                    case 4:
+                        msot++;
+                        break;
+                    default:
+                        break;
+                }
+                update();
+            }
+
+        </script>
+    </head>
+    <body>
+        <img src="images_for_studies/sad_shinji.png" height="150px" width="150px" onclick="do_things(1);" ondblclick="do_things(2);" onmouseover="do_things(3);" onmouseout="do_things(4);">
+        <br>
+        <p id="output">
+        </p>
+    </body>
+</html>

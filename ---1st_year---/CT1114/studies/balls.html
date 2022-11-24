@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            "use strict";
+
+
+            function animate() {
+                let ball = document.getElementById("the_ball");
+                let x = 200;
+                let y = 200;
+                let dx = 1;        // hzl movement
+                let dy = 1;       // vtl movement
+                let ball_size = 40;
+
+
+                while (true) {
+                    if (x >= 600-ball_size || x <= 0)
+                        dx = -dx;
+                    if (y >= 600-ball_size || y <= 0)
+                        dy = -dy;
+                    ball.style.left = (x + dx) + "px";
+                    ball.style.top = (y + dy) + "px";
+                    window.setTimeout(animate, 20);
+                }
+
+            }
+        </script>
+    </head>
+    <body onload="animate();">
+        <div style='position:absolute; left:0px; top:0px; width:600px; height:600px; background:#00FF00;'>
+            <div style='position:absolute; left:200px; top:200px;' id='the_ball'>
+                <img src='images_for_studies/ball.png'>
+            </div>
+        </div>
+    </body>
+</html>

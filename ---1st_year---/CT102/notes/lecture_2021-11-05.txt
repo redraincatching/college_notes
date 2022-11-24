@@ -1,0 +1,165 @@
+databases
+    a database system is an information system that stores and retrieves data
+    defn.
+        one or more tables where a table is an ordered collection of records, consisting of data
+
+    database approach
+        a single repository of data that is maintained, defined once and then accessed by various users/programs through a DBMS
+            DBMS
+                a collection of programs the facilitates the process of defining, constructing, and manipulating databases
+
+    distributed database approach
+        defined once, then stored across multiple sites
+            however, users have the impression of a single repository of data
+
+    types of database systems
+        relational databases - oracle, sybase
+        non-relational databases - mongodb, apache cassandra
+        xml databases - basex, sedna
+        blockchain databases
+
+    relational databases
+        based on mathematical theory of relations (codd, ibm, 1970)
+        can be seen as "tables, and only tables"
+            tables are 2-d arrays, and are natural representations of relations
+
+    relation tables
+        the theory refers to relations, the implementation refers to tables
+        each relation has a name
+        the top row contains headings called attributes
+            each attribute corresponds to a column
+        every other row is an instance of the relation, and is defined by a tuple, with components corresponding to those attributes
+
+        no duplicates: no two tuples can be exactly the same in every attribute
+            to ensure this completely, one or more special attributes are chosen or added, that are called primary keys, which have unique values for that tuple
+                // by convention, primary keys are underlined in writing
+
+    DBMS
+        relational dbms usually have
+            - design/structure view
+                where the structure of the tables are visible
+            - datasheet/browse view
+                where you can see the database instance (the data in the tables)
+            - usually a results window
+            - usually an sql editor
+
+    primary keys
+        very important that the primary key is unique and unambiguous, and remains so even when new, as yet unseen data is added to the table
+        repetition in a primary key is ruled out theoretically
+        often, considerable effort is involved in choosing a primary key
+
+        e.g. id numbers, unique identifiers
+
+        choosing a primary key
+            simplest possible, generally
+            not too long
+            not too complex a data type (ideally int)
+            chosen from existing attributes rather than adding one
+            not too many attributes
+
+            -> some existing attribute may be unique, and can be chosen, or some combination of attributes
+            some new "artificial" data type may be chosen
+
+    one or more tables?
+        a large relational database could consist of just one large table
+            this would, however, lead to a great deal of redundancy, and also just be very impractical
+
+    redundancy
+        unnecessary duplication of data in a table, as a result of data not being split into multiple tables
+
+        duplication
+            if an attribute in a table has multiple identical values, data may be duplicated but not redundant
+                this is the case when restructuring into multiple tables results in loss of data
+        consequences
+            loss of data integrity
+            wasted space
+            difficult to maintain/update
+
+    normalisation
+        all tables in a databases must satisfy several desirable properties
+        a hierarchy of “normal forms” exist that impose increasing restrictions on tables
+        these normal forms use "functional dependencies"
+            these forms are called
+                - 1st, 2nd, and 3rd normal forms
+                - boyce-codd normal form (bcnf)
+                - 4th and 5th normal form
+
+    functional dependency
+        x is functionally dependent on y if knowing y can uniquely determine x
+        // reverse is not necessarily true
+
+
+sql
+    the programming language for relational databases is sql - structured query language
+    declarative language
+        this means you can specify the results you require, not the order of operations to retrieve those results
+        not an imperative language like c
+            -> can't do low level operations, such as assigning a value to a variable
+
+    allows for specification of queries
+        queries represent information needs, and can be run to produce results
+        results might be
+            - output to user
+            - modification of data in database
+            - crud operations: create read update delete
+
+    sql SELECT statement
+        specifications provided by clauses
+            SELECT [DISTINCT] <attribute list>
+            FROM <table list>
+            WHERE <condition>
+        ; comes at the end of a statement
+
+            e.g.
+                SELECT fullname, phone_no FROM address_book WHERE county = 'galway';
+
+    querying across multiple tables
+        a number of different approaches can be used
+        the query becomes more complex
+            one approach is to use an outer query, and a subquery
+                -> these queries can be connected with a mathematical operator, if the output is a single number
+                -> similarly, string comparator operators (=, !=) can also be used
+
+            e.g.
+            /*
+            find from tables
+            patient(pid, pname, birthyear)
+            consultant(cid, cname, room, speciality)
+            appointments(id, pid, cid, aptdate)
+            what room ali byrne should attend for the appointment on 23/11/2021
+            */
+
+            SELECT room
+            FROM consultant
+            WHERE cid IN
+                (SELECT cid
+                FROM appointment
+                WHERE aptdate = #23/11/2021# AND pid =
+                    (SELECT pid
+                    FROM patient
+                    WHERE pname = 'ali byrne')
+                );
+
+            e.g.
+            /*
+            find in the school table the names of all students who recieved an a in maths
+            */
+
+            SELECT sname FROM school WHERE grade = 'A' AND modname 'maths';
+
+    using aggregate functions
+        sql supports several aggregate functions which can be used in the SELECT clause
+            e.g.
+                - SUM, AVG, MIN, MAX applied to numerical fields
+                - COUNT returns the amount of tuples that fulfill the conditions
+
+            example:
+            /*
+            using the appointments table (and a subquery), find the youngest person with an appointment
+            */
+
+            SELECT patientname
+            FROM appointments
+            WHERE birthyear =
+                (SELECT MAX(birthyear)
+                FROM appointments);

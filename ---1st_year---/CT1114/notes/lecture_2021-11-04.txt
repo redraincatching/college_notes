@@ -1,0 +1,36 @@
+window.confirm()
+    modal dialog box with ok or cancel options
+        returns a boolean value based on the option picked
+    syntax
+        confirm("<message>");
+            // returns true or false
+
+// document.body.style.background - changes background style, sort of nested objects
+
+parse functions
+    parseInt(<string>);
+        converts a string to an int
+    parseFloat(<string>);
+        converts to string to a float
+
+    - string arguments must not be empty
+    - must start with a valid number
+        parseInt("123abc456"); will output the integer 123
+
+    inNaN(<argument>);
+        returns true if not a number, false if it is a number
+            // NaN is actually a value in javascript
+
+debugging tools
+    live document object model (dom)
+        basically can see the live html content
+    debugger
+        // note: doesn't show up unless syntax errors fixed through console
+        can insert breakpoints and step through line by line
+            breakpoints pause the code
+        stepover
+            do next line
+        stepin
+            descend into any method calls on the current line
+        stepout
+            proceed to the next return

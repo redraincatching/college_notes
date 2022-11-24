@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> calculator </title>
+        <script>
+            "use strict";
+
+            function maths (c) {
+                var result = 0;
+                var one = parseInt(document.getElementById("box_1").value);
+                var two = parseInt(document.getElementById("box_2").value);
+                var output = document.getElementById("output");
+                if (!isNaN(one) && !isNaN(two)) {
+                    switch (c) {
+                        case '+':
+                                result = one + two;
+                            break;
+                        case '-':
+                                result = one - two;
+                            break;
+                        case '*':
+                                result = one * two;
+                            break;
+                        case '/':
+                                result = one / two;
+                            break;
+                        default:
+                            break;
+                    }
+                    output.innerHTML = one + c + two + " = " + result;
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+        <center>
+        <h1> calkulatore </h1>
+        <input type="text" id="box_1" style="width:200">
+        <input type="text" id="box_2" style="width:200">
+        <br>
+        <button id="+" onclick="maths('+');">+</button>
+        <button id="-" onclick="maths('-');">-</button>
+        <button id="*" onclick="maths('*');">*</button>
+        <button id="/" onclick="maths('/');">/</button>
+        <br>
+        <div id="output"></div>
+        </center>
+    </body>
+</html>

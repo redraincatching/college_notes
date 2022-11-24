@@ -1,0 +1,78 @@
+lecture 4: spans, hyperlinks, and images
+
+tags
+    <> - tags denote markup elements
+    tags normally appear in pairs, <opening> and </closing> tags
+    NOT case sensitive
+    text between the tags is the element content, or innerHTML
+    js can modify innerHTML
+
+    html tags have attributes
+        provide extra information to the browser
+        consist of name="value" pairs
+        always added to the opening tag
+            e.g.
+                <body bgcolor="red">
+        multiple attributes can be provided
+            e.g.
+                <body bgcolor='red' onload='alert("loaded!");'>
+                    // note the alternating single and double quotes to avoid ambiguity
+
+        some useful tags
+            <p> - paragraph
+            <br> - line break
+            <hr> - horizontal rule
+            <!--- text ---> - comment
+            <h1> ... </h1> - heading // 1-6 available
+
+        // not a tag, but &nbsp; is useful, stands for non-breaking space
+            // browsers will cut lots of whitespace down to one
+
+    lists
+        <ul> - unordered list
+            <ul>
+                <li> ... </li>  // each list item (li) shows up bulleted
+            </ul>
+        <ol> - ordered list
+            bullets replaced by number/letter
+                defined by type= attribute
+
+<span>
+    used to define a section of content without a line break
+        e.g.
+            some normal text and some <span style='color:red;’>red</span> text
+    spans are useful for reading/writing innerHTML with js
+
+images
+    <img src="url of image">
+    known as an "empty" tag
+        -> it has no innerHTML or closing tag
+    // filenames are case sensitive on linux or mac servers
+
+hyperlink anchors
+    <a> ... </a>
+        used to make clickable hyperlink
+    use href attribute to define content to link to
+
+    if content is on a different website
+        href is full address, with http and stuff
+    if content is on the same website (in the same folder), just
+        page_name.html
+    if content is on the same page
+        define anchor
+            <a name="faq1"> faq #1 </a>
+            <a href="#faq1"> click here to go to faq #1 </a>
+
+url
+    the path to a reference
+    uses http - hypertext transfer protocol
+    can be given as an absolute or relative reference
+
+    absolute
+        complete globally unique path
+        uses full url, including protocol (http) and path
+
+    relative
+        path to the resource relative to the page
+        just filename if in same folder
+        folder/filname if in a subfolder

@@ -1,0 +1,31 @@
+table {
+    table-layout: fixed;
+    text-align: center;
+    border-style: solid;
+    border-width: 2px;
+    margin: auto;
+    font-size: 14px;
+    height: 10px;
+    width: 50%;
+}
+
+td {
+    width: 30px;
+}
+.headers {
+    font-weight:bold;
+    background-color: #110066;
+    color: #ffffff;
+}
+
+.blank {
+    background-color: #aaaaaa;
+}
+
+.day {
+    background-color: #cccccc;
+}
+
+h1 {
+    margin:auto;
+}

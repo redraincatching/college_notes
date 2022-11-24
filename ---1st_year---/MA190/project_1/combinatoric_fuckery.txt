@@ -1,0 +1,51 @@
+so, 52! ways to order a deck of cards, but what we care about is getting the cards that we need. now, we all know that the only sensible way to do this is to cheat, however, not everyone is a skilled cardsharp, so the rest of us have to make do with luck.
+
+as mathematicians, we approach this by finding the probability of any given outcome, but that starts to get weird, because depending on how you define a problem, you can come up with a vastly different probability.
+
+for example;
+you're playing a game with a standard 52-card deck, and you've been dealt a hand of 2 cards. to win, you need to have two aces in your hand. you already know what one of the cards is.
+let's look at two scenarios:
+
+1) what's the probability that you have two aces, given that your first card is an ace?
+2) what's the probability that you have two aces, given that your first card is the ace of spades?
+
+
+firstly, let's look at scenario 1.
+
+we want to find the probability P of having two aces, given that we have at least one ace. (for simplicity, we can assume that the order of the cards doesn't matter)
+we can write that as $ P(both aces | have ace) $
+
+since these two probabilities are clearly not independent (you have to have at least one ace to have both aces), we can use this formula:
+\Large
+\[ P(A|B) = \frac{P(A \cap B)}{P(B)} \]
+writing it as
+\Large
+\[ \frac{P(both aces \cap have an ace)}{P(have an ace)} \]
+
+now, since having two aces means you have at least one ace, the intersection above is redundant (i.e. two aces is a subset of at least one ace). so that gives us
+\Large
+\[ \frac{P(both aces)}{P(have an ace)} \]
+
+so, how do we write this out in numbers? well, numerator, $ P(both aces) $ can be written as
+\Large
+\[ \frac{{4 \choose 2}}{{52 \choose 2}} \]
+as it's the number of possible combinations of aces over the number of total possible combinations of cards, and the denominator we could write as the complement of having at least one ace; in other words, the probability that neither card is an ace. that would look something like this:
+\Large
+\[ 1 - \frac{{48 \choose 2}}{{52 \choose 2}} \]
+
+so our final equation for scenario 1 looks like this
+\Large
+\[ \frac{\frac{{4 \choose 2}}{{52 \choose 2}}}{1 - \frac{{48 \choose 2}}{{52 \choose 2}}} = \frac{1}{33} \]
+
+so, our second scenario is, logically, the same. it should have the same answer, right? well, let's see.
+
+\[ P(both aces | ace of spades) \]
+now, we could do something similar to scenario 1, and compute the probability using the formula from above, or we could think about it in a much simpler way.
+
+so, in our hand we have two cards, the ace of spades, and something else, some mystery card.
+\includegraphics{cards.png}
+
+now, this mystery card could be anything, and is \textit{equally likely to be any card}, other than the ace of spades. therefore, we can just write the answer down straight away:
+
+\[ \frac{3}{51} = \frac{1}{17} \]
+that's about twice as likely as in the first scenario, just by specifying what suit we have. that's a great example of the subtlety of conditional probability. in this example, the discrepancy comes from the difference between "at least one" ace, and \textit{one} ace of spades.

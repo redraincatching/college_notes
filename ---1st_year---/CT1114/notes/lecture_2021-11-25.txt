@@ -1,0 +1,30 @@
+misc
+    continue;
+    used similar to break, but instead of exiting a loop, continues to next iteration
+
+html tables
+    arranged in rows of data and columns of cells
+    can contain any html data
+    cells can span multiple rows or columns, via the rowspan or colspan attributes
+    created with <table> </table> tags
+
+    rows
+        defined with <tr> </tr> tags
+        can have multiple columns
+        each column heading created with table heading (<th> </th>) tags
+        each cell created with table data (<td> </td>) tags
+        // each row should have the same number of columns
+
+    formatting
+        borders can be added with the border attribute
+            // borders can also be 0, or invis
+            // useful for layout purposes
+        cellpadding sets the padding surrounding cell contents
+        cellspacing sets space between cell walls
+        can align centre, left, or right with align attribute
+        can align top, middle, or bottom with valign
+        can use width or height to force dimensions
+            // automatically as small as possible
+            // resolutions are a bitch
+
+        all sizes can be set with px, em, or % of available with

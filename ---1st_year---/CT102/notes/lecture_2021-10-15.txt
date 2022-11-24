@@ -1,0 +1,160 @@
+web search indexing
+    - pre-processing and weighting terms
+
+how to represent/index www organic data?
+    need to extract some abstract representation to support complex matching
+    and speed up querying
+
+    typically automatic, and involves choosing a subset of words from the
+    webpage, and giving them a specific "weight", that indicates their relative
+    importance
+
+indexing
+    associates a webpage with one or more terms
+
+    automatic indexing begins with no predefined set of index terms
+        crawler picks index terms from sites visited
+
+    these indexes are dynamic, as the crawlers are constantly
+    gaining information
+        even the weight is dynamic
+
+indexing a text
+    what is it about?
+        -> what words are telling us what this is about?
+            -> most frequent words?
+                obtained by a "tokeniser", finds words from whitespace gaps
+            -> is each type of word equally important?
+                what's going into the index?
+                can discount stuff like "and", "in"
+
+
+    other language issues
+        - synonyms
+        - words with multiple meanings
+
+    what counts as an important word?
+        is each unique word important?
+            no, usually just verbs & nouns
+        are upper and lowercase words different in terms of meaning?
+            only in the case of proper nouns
+        plural and tenses?
+            ignore
+        punctuation?
+            ignore
+        synonyms?
+            online thesaurus
+        multiple meanings?
+            disambiguation can be done from context, so these words can be
+            indexed together
+
+automatic indexing - terms
+    the word "term" is used to encompass many words
+        e.g.
+            term = "rain";
+            related words = "raining", "rained", "pleuvoir";
+
+pre-processing
+    a number of steps are carried out on each page/fragment
+        case folding
+            changes everything to lowercase (exception for proper nouns)
+            mostly for practical reasons, due to string matching
+
+        punctuation removed
+            e.g. she's -> she
+                 they'll -> they    // no real extra meaning, index-wise
+
+        dealing with proper nouns
+            just normal words - just store as written, or tagged specially
+                 can be distinguished through punctuation or position in a
+                 sentence
+
+            abbreviations
+                 e.g. U.S.A/US, SCUBA
+                     usually stored as the whole string, as the punctuation or
+                     cases would cause confusion if removed -> "us" is already
+                     a word
+
+        "stop word" removal
+            common words in the language that provide no extra semantic meaning
+            very common, and removed to save on storage space
+            language dependent
+                // these days, stop word lists are small, and the "removal"
+                // is done through weighting
+
+            stop word lists are based, as they remove gender (pronouns)
+
+            approach for stop word removal
+                when the document is originally processed, each word is checked
+                against a stop list, then if not found, the word is written out
+                to a new version of the document
+                    (this is very resource-heavy)
+                improved approach
+                    remove short (1-, 2-letter) words without even checking
+
+        stemming
+            tries to find the "stem" or root of the word
+                looks at suffixes, and checks to see if there is a more
+                conceptual word that captures the meaning in a broader sense,
+                and collects several words together under that stem
+
+            // stemming algorithms don't look for real words
+
+            stemming doesn't work in every language (e.g. chinese)
+
+            stemming algorithms
+                porter's stemming algorithm
+                snowball (porter 2) stemmer
+                lancaster stemming algorithm
+                    // links on blackboard to download and check these out
+
+        lemmatisation
+            a lemma is a base form (core), i.e. the form found in a dictionary
+            lemmatisation is more difficult (automatically) than stemming
+                e.g.
+                    goose + geese
+                    stemmer
+                        goos x1
+                        gees x1
+                    lemmatiser
+                        goose x2
+
+calculating the weights of terms
+    the abstraction is represented using terms, and a weight for each term
+        a weight is a real number, the higher the weight, the higher the
+        importance
+
+    tf: term frequency
+        if a term appears often in a document, it is an important term in
+        relation to it
+    idf: inverse document frequency
+        however, if a term appears many times across all of the documents being
+        searched, it is less useful in terms of distinguishing a document
+    df: document frequency
+        the amount of documents in which a term appears
+
+    // stop words have a very high tf, but a very low idf
+
+    calculating tf
+        to not penalise short documents, normalise by dividing the raw count of
+        the number of times the term occurs by the total number of terms in the
+        document (after pre-processing, this is ratio of terms to be indexed)
+
+    calculating idf
+        for a term t and N documents with t occurring in df(_t) documents the
+        idf of t is defined as
+
+            idf(_t) = log(_10)(1+N/df(_t))
+
+        // log(_10) of 1 = 0, so if the 1 wasn't added in the brackets, and
+        // df(_t) was N, then the idf would be very low for a very common term
+
+    weight of a term:
+        tf*idf;
+
+after this stage we can easily access
+    <term, weight> for each url
+    <doc, weight> for each document in the collection
+
+    usually stored in complex structures, 0s are not stored, to save space +
+    computing power

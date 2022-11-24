@@ -1,0 +1,68 @@
+numbering systems
+
+first slide
+    overview of numbering systems
+        - know the different numbering systems
+        - describe positional notation
+        - convert other bases to base 10
+        - describe the relationship between bases 2, 8, and 16
+        - deal with fractions in other bases
+        - negative number representation
+            - (sign bit vs. complementary notation)
+
+second slide
+        number categories - natural, negative, irrational, etc.
+        definition of a number as relates to computer science
+            unit belonging to an abstract mathematical system subject to
+            specified laws of succession, addition, and multiplication
+
+third slide
+    concept of a base
+        the number of digits used in a numbering system
+        we use decimal, base 10, in our everyday lives
+            base 10 = 10 digits
+                (0, 1, 2, [...], 9)
+            base <anything>
+                (0, 1, 2, [...], <anything - 1>)
+        subscript indicates base
+        base is also what dictates positional value
+
+fourth slide
+    decimal vs. binary vs. octal vs. hexadecimal
+        e.g. (1, 2, 3, 4, 5, 6, 7, 10, 11...)
+
+fifth slide
+    positional value
+        each position has a place value, starting at 0 on the right
+        [diagram of dec. number, showing place value of each digit + breakdown]
+
+        positional value determined by base ^ place value
+
+sixth slide
+    positional value (cont.)
+        e.g. 139,728 in decimal
+        -> 1*10^5 + 3*10^4 + 9*10^3 + 7*10^2 + 2*10^1 + 8*10^0 = 139,728 in decimal
+        however: 139,728 in hexadecimal
+        -> 1*16^5 + 3*16^4 + 9*16^3 + 7*16^2 + 2*16^1 + 8*16^0 = 1,283,880 in decimal
+        (note: show simplified to addition as well)
+
+seventh + eighth slides
+    conversions - binary
+        decimal:
+        work out positional value, two examples
+        two more examples, use shorthand method
+        hex + octal, do the same, but one example for each method
+
+next 4 slides, same again, but converting octal, and then hex to the
+other three
+
+thirteenth slide
+    binary addition
+        show table
+fourteenth slide
+    binary addition examples
+
+fifteenth slide
+    binary subtraction - rules
+sixteenth slide
+    examples

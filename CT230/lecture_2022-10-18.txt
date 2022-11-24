@@ -1,0 +1,84 @@
+explicit vs implicit joins
+    the join condition can be specified implicitly or explicitly
+    
+    explicit
+        specified in the FROM clause where tables to be joined are listed
+        uses INNER JOIN keyword
+        join condition listed using ON
+
+    implicit
+        specified in WHERE without using ON
+        tables listed in FROM using commas
+
+        no additional syntax to learn
+        all tables involved must be listed in FROM
+        conditions concatenated using AND
+        inner join only - all rows from both tables will be returned whenever there is a match between attributes in the join condition
+
+    explicit join syntax
+        SELECT [DISTINCT] <attribute_list>
+        FROM <table>
+            [INNER/LEFT/RIGHT] JOIN <table>
+            ON <join_condition>
+        WHERE <condition>
+
+        /* for three tables, FROM looks like
+            FROM (<table>
+                [INNER/LEFT/RIGHT] JOIN <table>
+                ON <join_condition>)
+                [INNER/LEFT/RIGHT] JOIN <table>
+                ON <join_condition>
+        two joined tables become a new table */
+
+    implicit join syntax
+        SELECT [DISTINCT] <attribute_list>
+        FROM <tables>
+        WHERE <join_condition> AND 
+            <condition>
+
+
+    example using company database - explicit
+        "for every project located in stafford, list the project number, the controlling department name, and the department manager’s surname, address and birth date."
+
+        SELECT pnumber, dname, lname, address, bdate
+        FROM (project INNER JOIN department
+            ON project.dnum = department.dnumber)
+            INNER JOIN employee
+            ON department.mgrssn = employee.ssn
+        WHERE plocation = 'stafford';
+
+    example - implicit
+        SELECT  pnumber, dname, lname, address, bdate
+        FROM    project, department, employee
+        WHERE   project.dnum = department.dnumber
+                AND department.mgrssn = employee.ssn
+                AND plocation = 'stafford';
+
+types of joins
+    INNER JOIN
+        includes the tuples from the first (left) _only_ when they satisfy the join condition, and the second (right) _only_ when they satisfy it also
+    LEFT JOIN
+        "outer join"
+        all tuples from the left are included, tuples on the right are only included when they satisfy the join condition
+    RIGHT JOIN
+        also an outer join
+        the same as left, just the right are included
+
+    other variations
+        [[diagram]]
+        // not all supported in mysql
+
+
+self-joins and aliases
+    a normal sql join that joins a table to itself
+    for recursive relationships
+        e.g. the manager is an employee
+    accomplished using the keyword AS to give each instance of the database a different name
+        -> the alias
+
+    e.g. name of employees and name of their supervisors
+        SELECT CONCAT(e.fname, ' ', e.minit, ' ', e.lname) AS emp_name, CONCAT(s.fname, ' ', s.minit, ' ', s.lname) AS sup_name
+            FROM employee AS e LEFT JOIN employee AS s
+            ON e.superssn = s.ssn;
+
+// broken, fix

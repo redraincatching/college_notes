@@ -1,0 +1,12 @@
+spherical mirror sign conventions
+    focal length
+        +ve concave mirror
+        -ve convex mirror
+    u
+        +ve for object in front of mirror
+    v
+        +ve for real image
+        -ve for virtual image
+    m
+        +ve for upright
+        -ve for inverted

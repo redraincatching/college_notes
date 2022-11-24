@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> text area thing </title>
+        <script>
+            "use strict";
+
+            function isalpha(c) { // wrote an isalpha cause easier
+                return ((c.toLowerCase() >= 'a') && (c.toLowerCase() <= 'z'));
+            }
+
+            function count_words () {
+                var no_words = 0;
+                var no_chars = 0;
+                var output_div = document.getElementById("output_div");
+                var text = document.getElementById("text_here").value;  // makes it count the whole text every time
+                var text_len = text.length;
+
+                for (var i = 0; i < text_len; i++) {
+                    var curr_char = text.substr(i,1);
+                    no_chars++;         // char up no matter what
+                    if (curr_char == " ") {     // check for space
+                        if(isalpha(text.substr(i-1,1))) {   // go back, check for word
+                            no_words++;
+                        }
+                    }
+                }
+
+                if(curr_char.length > 0 && curr_char != " ")
+                    no_words++;         // deal with trailing words
+
+                output_div.innerHTML = no_words + " words.<br>" + no_chars + " characters.";
+            }
+
+        </script>
+    </head>
+    <body>
+        <textarea id="text_here" placeholder="enter text here..." rows="8" cols="80" onkeyup="count_words()"></textarea>
+        <br> <br>
+        <div id="output_div"> 0 words.<br>0 characters. </div>
+    </body>
+</html>

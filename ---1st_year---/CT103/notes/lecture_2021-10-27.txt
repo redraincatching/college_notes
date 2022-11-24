@@ -1,0 +1,51 @@
+arrays in memory
+    an array is normally stored in sequential blocks of memory (ram)
+    block size depends on the number of bytes required to store that type of variable
+
+    each block of memory has an address (hex), and functions like scanf need those addresses
+        that's why we pass it their addresses with &
+
+2d arrays
+    syntax
+        <type> <name>[<row length>][<column length>]
+
+        e.g.
+            int var[2][2] = {{11, 12} {21, 22}};
+
+    changing elements is similar
+        int var[0][5] = 14;
+
+    looping over a 2d array
+        you need 2 loops: an outer loop for the rows, an inner loop for the columns
+
+            e.g.
+                int x[5][5];
+                int r, c, val = 0;
+
+                // set array values
+                for (r = 0; r < 4; r++) {
+                    for (c = 0; c < 4; c++) {
+                        x[r][c] = val;
+                        val++;
+                    }
+                }
+
+                // output values
+                for (r = 0; r < 4; r++) {
+                    for (c = 0; c < 4; c++) {
+                        printf("%d\t", x[r][c]);    // using \t to space out entries with tabs
+                    }
+                    printf("\n");
+                }
+
+    2d array from user input
+
+        int x[3][3];
+        int r, c;
+
+        for (r = 0; r < 3; r++) {
+            for (c = 0; c < 3; c++) {
+                printf("enter x[%d][%d]: ", r, c);
+                scanf_s("%d", &x[r][c]);
+            }
+        }

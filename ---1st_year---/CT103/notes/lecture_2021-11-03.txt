@@ -1,0 +1,51 @@
+how long is a (piece of) string?
+    the length of a string is the number of characters up to (but not including) the string terminator
+        e.g. "august 10\0" - length of 9, not 11
+    the size of a string, however, is that length plus one
+
+    find the length of a string
+        option 1: just count with a loop
+
+            char string[100] = "this is some random text";
+            int len = 0;
+            while (string[len] != '\0') {
+                len++;
+            }
+            printf("length of string = %d\n", len);
+
+        option 2:
+            strlen() function, part of the string.h library
+                // needs to be #included
+
+data into strings
+    to reassign a string, you can't just type
+        this_string = "hi";
+    you need to use the strcpy_s() function from the string.h library, as before
+        syntax
+            strcpy_s(<string_name>, <length>, <new_string>);
+            e.g.
+                strcpy_s(str_name, 50, "my name is margo");
+
+common string functions
+    strcpy_s() - copy one string to another
+        strncpy_s() - copy n characters from one string to another
+    strcat_s() - concatenate two strings
+        strncat_s() - concatenate n characters from two strings
+    strcmp() - compare two strings  // RETURNS 0 IF STRINGS MATCH
+        strncmp() - compare n characters from two strings
+
+
+        strncpy_s()
+            syntax
+                strncpy_s(<string_name>, <length>, <new_string>, <n>);
+
+        strcat_s()
+            syntax
+                strcat_s(<string_name>, <length>, <to_cat>);
+                    // strncat_s is the same syntax, with n as the last argument
+
+        strcmp()
+            returns 0 if both strings are the same
+            syntax
+                strcmp(<str_name>, <string_to_compare>);
+                // strncmp adds an n argument, and returns 0 if the n characters match

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> is prime? </title>
+
+        <script>
+            "use strict";
+
+            function is_prime(num) {
+                for (let i = 2; i < Math.round(num / 2); i++) {
+                    if ((num % i) == 0)
+                        return false;
+                }
+                return true;
+            }
+
+            function send_input(txt) {
+                let output = document.getElementById("output");
+                let num = parseInt(txt);
+                let prime = false;
+                let output_txt = `primes less than or equal to ${num} are: `;
+
+                if (isNaN(num))
+                    output.innerHTML = "please enter a number";
+                else {
+                    for(let i = 2; i <= num; i++) {
+                        prime = is_prime(i);
+                        if (prime) {
+                            output_txt += `${i} `;
+                        }
+                    }
+                    output.innerHTML = output_txt;
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+        <input type="text" onkeyup="send_input(this.value)">
+        <br>
+        <div id="output">
+
+        </div>
+    </body>
+</html>

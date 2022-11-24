@@ -1,0 +1,12 @@
+telescope array
+    inputs:
+        direction of motion
+        incoming infrared light
+    outputs:
+        recording light
+        moving
+
+    essentially;
+        - if not pointed at star? move
+        - if pointed at star? record wavelength
+        - once wavelengths recorded: move

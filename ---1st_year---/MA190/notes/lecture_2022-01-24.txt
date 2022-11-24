@@ -1,0 +1,35 @@
+common logical fallacies
+    both of these are provably false, by truth table
+
+    converse fallacy
+        p → q, q, ∴ p
+
+    inverse fallacy
+        p → q, ¬p,  ∴ ¬q
+
+
+set theory
+    a set is completely determined by the elements it contains
+    a set B is a subset of set A if each element of B is also an element of A
+    in this case, we write B ⊆ A
+    thus, A = B iff A ⊆ B && B ⊆ A
+
+    all sets are assumed to be subsets of U, the universal set
+    a set is finite if it has a finite number of elements
+        // the size, or cardinality, of a finite set is the number of elements it contains
+
+    let A, B ⊆ U
+        - the union of A and B
+            A ∪ B := {x ∈ U | x ∈ A or x ∈ B}       // logical OR
+        - the intersection of A and B
+            A ∩ B := {x ∈ U | x ∈ A and x ∈ B}      // logical AND
+        - the set difference of A and B
+            A\B := {x ∈ U | x ∈ A and x ∉ B}        // and B\A is the reverse
+        - the complement of A
+            A' := {x ∈ U | x ∉ A}                   // logical NOT
+
+    various identities
+        - A ∩ A' = ∅
+        - A ∪ A' = U
+        - U' = ∅
+        - ∅' = U

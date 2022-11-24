@@ -1,0 +1,4 @@
+rules for determining what years are leap years
+    - divisible by 4
+    - not divisible by 100
+    - however, it is if it's divisible by 400

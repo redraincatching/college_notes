@@ -1,0 +1,13 @@
+math.h functions
+    pow()   - raise a number to the power of another
+    sqrt()  - square root
+    sin()   - sine of an angle
+    cos()   - cosine of an angle    // all in radians
+    tan()   - tangent of an angle
+    exp()   - returns the exponent on a value
+    log()   - returns the natural log of a number
+
+function-like macros
+    declared similarly to object-like macros
+    syntax
+        #define <name> (<arguments>) (<function_itself>)

@@ -1,0 +1,8 @@
+case folding, stopwords2.txt
+ethics Artificial Intelligence branch ethics technology specific artificially intelligent systems. sometimes divided into concern moral behaviour humans design, make, use treat, artificially intelligent systems, concern behaviour machines, machine ethics.
+
+snowball, case folding, punctuation
+ethic artifici intellig branch ethic technolog specif artifici intellig system sometim divid into concern moral behaviour human design make use treat artifici intellig system concern behaviour machin machin ethic
+
+220 in collection, ethic in 50
+ans = 0.6454222693

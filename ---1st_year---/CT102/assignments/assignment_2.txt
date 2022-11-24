@@ -1,0 +1,44 @@
+q1
+    // number of values in common
+    // let m = size_a, n = size_b
+
+    line | steps
+    ------------
+    24 | 1
+    25 | 1
+    27 | worst case, m = n, so n + 1
+    28-32 | 2n  // both are checked, neither is executed (worst case)
+    34-37 | 4n
+    40 | 1
+
+    a) 7n + 4
+    b) O(n)
+
+q2
+    bool check (int* arr_a, int size) {
+        int i;
+        bool sorted = true;
+        for (i = 0; i < size - 1 && sorted; i++) {
+            if (arr_a[i] > arr_a[i+1]) {
+                sorted = false;
+            }
+        }
+        return sorted;
+    }
+
+    // sample arrays of size 10
+    arr_a[10] = {0, 1, 2, 3, 4, 5, 6, 7, 9, 8};     // worst case
+    arr_b[10] = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};     // best case
+
+    arr_b is the best-case scenario, as the loop will end after the very first iteration, resulting in just 7 steps.
+    arr_a is the worst-case, as it is already almost sorted - therefore the loop will run out to the maximum amount of iterations (n), and the memory assignment will also be executed in the final iteration, adding one extra timestep (not a difference, really, but still technically worse than a sorted array). this results in a total of 25 timesteps, significantly more than the best case.
+
+q3
+    [see picture]
+    each function has advantages and disadvantages
+        - bubble sort, the slowest and least efficient algorithm, is the simplest to implement
+        - insertion sort is quicker than selection, however it makes more swaps, therefore more calls to memory
+        - selection is nearly as fast as insertion, and uses far less data moves
+
+    for the sorted arrays
+        - 

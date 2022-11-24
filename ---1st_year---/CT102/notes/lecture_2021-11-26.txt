@@ -1,0 +1,83 @@
+compression
+    reducing the space a file occupies
+    specifically: encoding information using fewer bits than the original representation
+
+    why?
+        - to save space when storing
+        - to save time/bandwidth when transmitting
+
+    how?
+        most techniques are based on the fact that most files have redundancy
+
+    two components:
+        - encoding
+        - decoding
+    goal:
+        - the encoded message has fewer bits than the original
+        - the decoded message is approximately the same
+
+    downsides
+        to be used, the message must undergo the opposite process of decompression
+        example of _space-time complexity tradeoff_ in computing
+
+    high level categorisation of compression algorithms
+        - lossy
+        - lossless
+        - hybrid
+
+[skip to slide 30 from 7]
+
+huffman encoding
+    lossless data compression technique
+    produces optimal data prefix codes which are generated from a set of probabilities based on frequency of occurrence
+    guarantees prefix property - no code is a prefix of another code
+    used as backend of gzip, jpeg, etc
+    if good letter probabilities are available and not too costly to obtain, huffman is good, and can obtain an average of 2.23 bits per symbol
+
+    obtaining letter probabilities
+        - can use generic ones derived from english language domain
+        - can use actual frequencies found in text (requires a frequency table to be stored with message)
+
+    prefix code representation
+        the "trick" with huffman encoding is to represent the prefix codes using a binary tree where
+            - each symbol is a leaf node
+            - the code for each symbol is given by following a path from root to leaf, and appending (by convention) a 0 when left-hand branch is taken, and a 1 when right-hand branch is taken
+
+            [diagram]
+
+    definition - binary tree
+        consists of a set of non-linear nodes such that there is
+            - one distinct root node
+            - all other nodes are arranged such that each parent node has at most two child nodes
+
+    code trees (weighted binary trees)
+        each leaf node represents a symbol
+        each branch has a binary weight
+            // lhb are 0, rhb are 1
+
+    huffman compression algorithm
+        input: symbols and their frequencies
+        1) create a trivial tree (node) for each letter
+        2) assign a weight to each node (initially its frequncy)
+        3) order trees by weight (priority queue), smallest to largest
+        4) decide on rule for ties - will not affect code length but must be consistent for encoding and decoding stages
+            if there is a tie for single-node trees, order alphabetically
+            if otherwise, order by tree size
+        5)
+        while (len_queue > 0) {
+            merge the two trees at the top of the priority queue (those with the smallest weights) to create a new tree such that:
+                - root of tree has, as its weight, the summation of the weight of the sub-trees
+                - tree at the top of the queue is a left sub-child of the root, the next tree is a right sub-child
+            re-sort new tree in queue
+        }
+        6) label edges of final tree
+        output: huffman code tree for all input symbols
+
+        example:
+        [take scan of diagram]
+
+    huffman decompression algorithm
+        input: symbols, their frequencies, sequence of binary codes
+        1) build huffman tree exactly the same as compression
+        2) for each encoded sequence, follow tree to a leaf node
+        output: original message

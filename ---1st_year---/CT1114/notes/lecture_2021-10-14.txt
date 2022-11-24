@@ -1,0 +1,50 @@
+expressions, operators, and loops in javascript
+
+expressions
+    a statement that evaluates to a value
+        -> can be a number, a string, or a boolean
+
+boolean value
+    either true or false
+    a boolean expression is one that evaluates to either true or false
+        often produced by relational or logical operators
+
+relational operators
+    take two values, compare then, output a boolean variable
+    (c-like)
+
+logical operators
+    && - AND
+        equates to true if both boolean values are true
+    || - OR
+        equates to true if one or both values are true
+    ! -  NOT
+        negates the value of a boolean variable
+
+conditional statements
+    if... else if... else
+    switch statements
+        all c-like, use {braces} to denote code blocks
+
+loops
+    repeat {blocks of code} as long as  condition is true
+
+    for loops
+        repeat code a specified amount of times
+
+        // javascript syntax
+        for (var i=0; i<10; i=i+1) {
+            // execute this code
+        }
+
+        // three inner statements: (initialisation, test, loop statement)
+
+    while loops
+        repeat code an undetermined amount of times, while a condition is true
+
+        // js syntax
+        var i = 0, j = 10;
+        while (i<j) {
+            // do a thing
+            i++;    // counter
+        }

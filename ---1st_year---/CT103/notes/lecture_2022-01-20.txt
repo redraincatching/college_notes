@@ -1,0 +1,59 @@
+file input
+    how do we access files?
+        - sequential access:
+            start at the beginning, and read in data as a continuous stream
+        - random access
+            jump around, reading and writing at different points
+
+        in order to read files, we need file pointers
+            a pointer used to manage and keep track of the files being accessed
+            a program needs a physical address to read/write from, and this is held by the file pointer
+            we open the file to set the pointer, and close it when we're finished
+
+            in c
+                FILE* fptr;
+
+            opening and printing the file, char by char
+                void main() {
+                    FILE* fptr;
+                    fopen_s(&fptr, "<address>", "r");
+                    // note: backslashes in the address need to be escaped
+
+                    if (fptr == NULL) {
+                        printf("error opening file, exiting\n");
+                        return;
+                    }
+                    else {
+                        char c = fgetc(fptr);
+                        while (c != EOF) {      // EOF is end of file
+                            printf("%c", c);
+                            c = fgetc(fptr);
+                        }
+                    }
+                    fclose(fptr);
+
+                }
+
+        writing to a file
+            the fopen_s function has a flag as the last argument, which tells it in what manner to access the file
+                - r : opens for reading. the file must exist
+                - w : creates an empty file for writing. if the file exists, it is erased
+                - a : appends to file. creates a new file if it doesn't exist
+                - r+: opens for reading and writing. file must exist
+                - w+: creates an empty file for reading and writing
+                - a+: opens a file for reading and appending
+
+            actually writing to the file
+                most i/o functions have a corresponding file function, e.g. fprintf, however they take an extra argument - the file pointer
+
+            reading from the file
+                - fgetc: reads one character at a time
+                - fgets: reads one array at a time, as a string. stops reading on a \n character
+
+                fgets syntax
+                    fgets(<name_of_array>, <size_of_array>, <fptr>);
+
+                // the line being read is visible in the debugger
+
+            feof
+                returns true if fptr is EOF

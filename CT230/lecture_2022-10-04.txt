@@ -1,0 +1,46 @@
+designing tables with er models
+    
+    data models
+        concepts to describe the structure of a database
+        they comprise
+            - high-level or logical models
+            - representational/implementation data models
+            - physical data models
+
+        they allow for database abstraction
+
+    entity relationship models
+        - provide a way to model the data that will be stored in the system
+        
+        top-down approach to database design
+            used to identify:
+                1) important data, entities
+                2) relationship between entities
+                3) attributes of entities
+                4) the constraints of relationships and entities
+
+        notations
+            chen notation
+                - entity
+                    a rectangle
+                - weak entity
+                    an entity dependent on another to be identified
+                    rectangle with offset
+                - attribute
+                    an oval
+                    can be subdivided into more ovals, e.g. "name" -> fname, minit, lname
+                - entity-attribute links
+                    straight line
+                - strong relationship
+                    diamond
+                - weak relationship
+                    offset diamond
+
+                cardinality
+                    one-to-one - 1:1
+                    many-to-one - 1:N, N:1
+                    many-to-many - M:N
+
+            other notations
+                - crow's foot
+                - uml

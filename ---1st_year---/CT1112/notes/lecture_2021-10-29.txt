@@ -1,0 +1,167 @@
+latex (cont.)
+
+equations
+    two modes: inline maths or display maths
+    many maths commands require the {amsmath} package in the preamble
+
+    inline maths
+        used to insert equations without a paragraph break
+
+        any of these delimiters can be used to denote maths
+            \( ... \)
+            $ ... $
+            \begin(math) ... \end(math)
+
+    display maths
+        used for equations that are not part of a paragraph, and so are put on separate lines
+        two versions: numbered and unnumbered
+
+        delimiters
+            \[ ... \]
+            \begin(displaymath) ... \end(displaymath)
+                // unnumbered
+            \begin(equation) ... \end(equation)
+                // numbered
+
+    maths symbols
+        greek letters
+            \alpha
+            \beta
+            \gamma
+            \delta
+            \sigma
+            \rho
+            \epsilon
+        binary operators
+            \times
+            \otimes
+            \oplus
+            \cup
+            \cap
+        relational operators
+            <
+            >
+            \subset
+            \supset
+        others
+            \int
+            \oint
+            \times
+            \prod
+            \infty
+
+        subscript
+            _
+        superscript
+            ^
+
+        brackets + parentheses
+            (see pdf)
+
+    fractions
+        \frac{numerator}{denominator}
+
+    long equations
+        multiline equations
+            \begin{multiline*}
+                whatever equation\\
+                next part of equation
+            \end{multiline*}
+        splitting and aligning
+            \begin{align*}
+                equation 1 \\
+                equation 2 \\
+                ...        \\
+                equation n \\
+            \end{align*
+            }
+
+    operators
+        [see image]
+
+verbatim
+    prints out monospace text (useful for code)
+        \begin{verbatim} ... \end{verbatim}
+
+tables
+    displays a table, simple concept, weird execution
+        \begin{table}[h!]
+        \centering                  % centre the table on the page
+        \begin{tabular}{|c r l|}    % c = cjt column, l = ljt column, etc.
+        \hline                      % insert a horizontal line
+        col1 & col2 & col2 \\
+        \hline
+        a1 & b1 & c1 \\             % a1, a2, etc. are data
+        a2 & b2 & c2 \\
+        a3 & b3 & c3 \\
+        \hline
+        \end{tabular}
+        \caption{table caption}
+        \label{table:example}
+        \end{table}
+    tables can be organised using the online tool www.tablesgenerator.com
+
+figures
+    can be included, automatically numbered sequentially, and centre-justified
+    figures are stored outside the main .tex file
+    should be .pdf, .jpeg, .png, or .gif
+    requires the {graphicx} package
+
+    e.g.
+        insert the figure here:
+        \begin{figure}[h]                      % insert the figure about here
+        \centering                             % this centres the image
+        \includegraphics[scale=2]{the_figure}
+        \caption{image caption}
+        \label{fig:the_figure}                 % figures to be referred to in the text
+        \end{figure}
+
+    figures are cited in the text as follows
+        refer to figure \ref{fig:figure_name} on page \pageref{fig:figure_name}
+
+    if figures are in a subfolder, their path should be specified with {folder/fig:figure_name}
+
+    there are several options for scaling
+        \includegraphics[scale=<scalefactor>]{figure_name}  // scales by a given factor
+                        [width=\linewidth]                  // scales to line width
+                        [width=\textwidth]                  // scales to text width
+                        [width=0.5\textwidth]               // scales to 0.5*text width
+
+algorithms/pseudocode
+    high-level abstraction of a computer program
+    requires the {algorithm} and {algpseudocode} packages
+
+    e.g.
+
+        \begin{algorithm}
+        \caption{an algorithm with caption}\label{alg:cap}
+        \begin{algorithmic}
+        \Require $n \geq 0$
+        \Ensure $y = x^n$
+        \State $y \gets 1$
+        \State $X \gets x$
+        \State $N \gets n$
+        \While{$N \neq 0$}
+        \If{$N$ is even}
+            \State $X \gets X \times X$
+            \State $N \gets \frac{N}{2}$ \Comment{this is a comment}
+        \ElsIf{$N$ is odd}
+            \State $y \gets y \times X$
+            \State $N \gets N - 1$
+        \EndIf
+        \EndWhile
+        \end{algorithmic}
+        \end{algorithm}
+
+    details of various algorithm styles are available on https://www.overleaf.com/learn/latex/algorithms
+
+bibliography
+    references are included using the bibliography management programs {bibtex}, {bibliatex}, and {natbib}
+        the package {cite} is also necessary
+
+    to cite a piece of work in an article, you can use \cite{articlename}
+    before the \end{document} command, call \filename{bibliography.bib}
+
+    in the .bib file, you include the details of the bibliography. depending on the package used, this can be done differently, so honestly just google it
+
+    can be copied and pasted from google scholar, i think? wasn't really paying attention, should check that

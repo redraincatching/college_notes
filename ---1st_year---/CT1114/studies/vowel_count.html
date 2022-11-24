@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> vowel count </title>
+
+        <script>
+            "use strict";
+
+            function count(txt) {
+                document.getElementById("output").innerHTML = `there are ${(txt.match(/[aeiou]/gi) || []).length} vowels in this phrase`;
+            }
+
+        </script>
+    </head>
+    <body>
+        <input onkeyup="count(this.value)" type="text">
+        <br>
+        <div id="output"> </div>
+    </body>
+</html>

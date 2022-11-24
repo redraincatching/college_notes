@@ -1,0 +1,131 @@
+{
+  "main": {
+    "id": "a831887c8e4053f1",
+    "type": "split",
+    "children": [
+      {
+        "id": "a8ec08924b77e35b",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "CT2106/class_relationships.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      },
+      {
+        "id": "057dd1ef5f2c540b",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "~example_code/fruits_basket_parsing.c.md",
+            "mode": "source",
+            "source": true
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "328454e8f06d0d7d",
+    "type": "split",
+    "children": [
+      {
+        "id": "a31aff29b25095ba",
+        "type": "tabs",
+        "dimension": 56.482670089858786,
+        "children": [
+          {
+            "id": "51db502dda5565f1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "9cf9332ef6b51898",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "stack",
+                "matchingCase": true,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "ceae43fcdea40c9c",
+        "type": "tabs",
+        "dimension": 43.51732991014121,
+        "children": [
+          {
+            "id": "10fdda4ec7dfa98d",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 337
+  },
+  "right": {
+    "id": "e0856ed43de8a0a4",
+    "type": "split",
+    "children": [
+      {
+        "id": "2a0d190537614690",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b964e933c8559664",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "~example_code/fruits_basket_parsing.c.md",
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 264,
+    "collapsed": true
+  },
+  "active": "057dd1ef5f2c540b",
+  "lastOpenFiles": [
+    "CT2106/class_relationships.md",
+    "CT2106/encapsulation.md",
+    "CT2106/classes_and_methods.md",
+    "CT2106/java_intro.md",
+    "CT216/xtreme_programming.md",
+    "CT216/agile_devleopment.md",
+    "CT216/cloud_computing.md",
+    "CT213/system_software_and_os.md",
+    "CT213/programming_models.md",
+    "CT213/computer_systems.md"
+  ]
+}

@@ -1,0 +1,66 @@
+strings
+    a collection of characters
+        in c, specifically an array of characters.
+    syntax
+        char name[] = "scooby doo";
+            // there is no variable type "string"
+            // and yes, that's so dumb
+
+    printing strings
+
+        #include <stdio.h>
+        void main() {
+            char string_example[] = "hello";
+            for (int i = 0; i < 5; i++) {
+                printf("%c", string[i]);
+            }
+            printf("\n\n");
+        }
+
+        // this would work, but it sucks
+
+    strings vs character arrays
+        strings are terminated by the special character \0
+            -> this lets the compiler know that it's the end of the string
+            so in our array string_example above, printf("%c", string_example[5]); would output "\0"
+
+    quicker string print
+
+        int i = 0;
+        while (string_example[i] != '\0') {
+            printf("%c", string_example[i]);
+            i++;
+            }
+
+        // sucks less, but still sucks
+        // this is better
+
+        printf("%s", string_example);
+            // yeah, that's literally it
+
+    scanning strings
+        normally, while scanning in a variable, you need the & symbol
+        this is not the case with strings
+            the reason is a bit technical:
+                char array names decay to pointers in c, and the string name already points to the first element of the string, so no & necessary
+
+        scanning syntax for strings
+
+            char <stringname>[<length_of_array>];
+            scanf_s("%s", <stringname>, <length_of_array>);
+                // you need to specify the length of the array
+
+            note: scanf_s is limited to only one word by default, and will stop reading in after a space.
+                // this is only an issue with scanf_s, you can initialise strings with spaces with no issue
+
+            scanning multiple words
+                option 1:
+                    create multiple strings, read in at separate times
+                option 2:
+                    regex
+                        scanf_s("%[^\n]%*c", string_example, 10);
+
+                            the [^\n] flag sets scanf_s to keep reading in characters until it reads the newline character, not the default space
+                                // can be used for any character
+
+                            the %*c removes the newline from the input buffer

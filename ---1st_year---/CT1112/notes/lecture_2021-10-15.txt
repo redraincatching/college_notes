@@ -1,0 +1,56 @@
+latex introduction
+    documentation preparation system for high quality typesetting
+        used in scientific or technical writing, but can be used for any
+        purpose
+
+    mechanism of latex
+        [see notepad]
+
+    usage
+        MiKTeX - offline editor
+        overleaf - cloud-based editor
+
+    // templates can be found on github, but this is a premium feature
+    // overleaf has a search function for templates
+
+format of a document
+    preamble
+        document class
+        packages
+    front matter
+        title
+        author
+    body
+        contents
+    back matter
+        bibliography
+
+                // can be simplified to just preamble and body
+
+latex syntax
+    all keyword commands begin with a backslash \
+    all parameters and arguments are passed with braces {}
+    comments can be added using the % character
+
+    // sample text
+        \documentclass{article}
+        \usepackage[utf8]{inputenc}        %preamble section
+        [do this later]
+
+    reserved characters
+        some characters need an escape character, as they have another function
+        in latex
+            generally, \ works as an escape character
+
+            e.g. $ opens math mode
+                 \$ prints a $
+
+    shortcuts
+        ctrl + space - autocomplete reference (inside a \cite block)
+        ctrl + enter - recompile
+
+    after you make any changes, you need to recompile to see changes on the pdf
+
+    packages
+        mhchem: chemical molecular formulas and equations
+        tikz: visualisation tool

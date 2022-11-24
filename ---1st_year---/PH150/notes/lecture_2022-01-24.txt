@@ -1,0 +1,3 @@
+concepts of force and mass
+    contact forces - from physical contact
+    action-at-a-distance force - doesn't require contact

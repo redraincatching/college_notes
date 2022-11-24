@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> clock </title>
+        <script>
+            "use strict";
+
+            function update_clock() {
+                var disp = document.getElementById('clock');
+                var time = new Date();
+                var h = less_than_ten(time.getHours());
+                var m = less_than_ten(time.getMinutes());
+                var s = less_than_ten(time.getSeconds());
+                disp.innerHTML = `${h}:${m}:${s}`;
+                window.setTimeout(update_clock, 1000);
+            }
+
+            function less_than_ten(num) {
+                return (num > 9) ? num : `0${num}`;
+            }
+        </script>
+    </head>
+    <body onload="update_clock();">
+        <center>
+        <h1 id="clock" style="font-size:120px;">
+            00:00:00
+        </h1>
+        </center>
+    </body>
+</html>

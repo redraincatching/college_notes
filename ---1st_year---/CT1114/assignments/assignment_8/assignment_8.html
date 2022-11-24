@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> random array </title>
+
+        <script>
+            function init() {
+                var nums = [ ];
+                var max = 0;
+                var sum = 0;
+                var min = 1000;
+                for (var i = 0; i < 99; i++) {
+                    var curr = Math.floor(Math.random() * 999) + 1;
+                    nums.push(curr);
+                    sum += curr;
+                    if (curr > max)
+                        max = curr;
+                    if (curr < min)
+                        min = curr;
+                }
+
+                document.getElementById("summary_stats").innerHTML = `summary stats:<br>sum: ${sum}<br>average: ${sum/100}<br>largest: ${max}<br>smallest: ${min}`;
+
+                var all = document.getElementById("all");
+
+                for (var i = 0; i < 98; i++) {
+                    all.innerHTML += `${nums[i]}, `;
+                }
+                all.innerHTML += `${nums[i]}`;
+            }
+
+        </script>
+    </head>
+    <body onload="init();">
+        <p id="summary_stats"> </p>
+        <br>
+        <p id="all"> </p>
+    </body>
+</html>

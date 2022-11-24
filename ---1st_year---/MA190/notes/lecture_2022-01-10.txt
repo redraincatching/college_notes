@@ -1,0 +1,13 @@
+logic
+    the study of methods to reason validly, obtaining justified conclusions from assumed premises
+    the atoms of logic are called propositions - statements that can have only one binary truth value - a boolean value
+
+    connectives
+        ∧ - and (*, &)
+        ∨ - or  (+, ||)
+        ¬ - not (!)
+        → - implies (if … then …)
+
+        * and + are binary operators, ! is unary
+        * is commutative
+        + is commutative and associative

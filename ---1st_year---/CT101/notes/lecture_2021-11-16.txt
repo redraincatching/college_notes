@@ -1,0 +1,126 @@
+multiplication of floating point numbers
+    xy = (m_x * m_y) * 2^(e_x + e_y)
+
+computing systems
+    instruction set architecture (isa) provides a good understanding of what a microprocessor can do, but provides no information on how to use the processor in a bigger system.
+        in order to design a computing system, more information is required
+
+    computer system subsets
+        - cpu
+        - buses
+        - memory
+        - input/output
+
+        [computing systems organisation diagram]
+        // note address bus is single direction
+
+    system buses
+        set of wires that interconnect all of the components (subsystems) of a computer
+            - a source component sources out data onto the bus
+            - a destination bus
+
+        i/o buses
+
+        address buses
+            cpu reads/writes data from the memory by addressing a unique location, and the memory uses the data based on this address
+            each i/o device has its own unique address, and with act according to instructions addressed to it
+                /*
+                the cpu never reads the address bus, only points to the location, and other subsystems deal with that
+                */
+
+        data bus
+            when the cpu fetches data from memory, it first outputs the address
+
+        control bus
+            address and data buses consist of n lines, which combine to transmit one n bit value, whereas the control bus is a collection of individual control signals
+                these signals indicate whether data is being read or written
+
+    cpu
+        chip that acts as the control centre for all operations.
+            it executes instructions which are contained in the system memory
+        basic operations include
+            - transfer of data between itself and the memory section
+            - manipulation of data in the memory section, or stored internally
+            - the transfer of data between itself and i/o devices
+        the cpu provides all timing and control signals necessary to transfer data from one point to another in the system
+        made of the control and logic units
+            // control unit does the above, the logic unit performs operations
+
+    programs: instructions and operands
+        a program - a number of cpu instructions
+            instruction components
+                - an instruction coe (or OPCODE)
+                - one or more operands (data which the instruction manipulates)
+            instructions specify to the cpu what to do, where the data is located, and where to put the output, if any
+
+            instructions are held in the memory, and are transferred one at a time to the cpu. instructions follow one another in successive memory locations, and the cpu keeps track of the instruction that it is executing by using an internal counter known as the program counter (or instruction pointer)
+
+    computer memory architectures
+        von neumann
+            allows data and instructions to be mixed and stored in the same memory module
+            more flexible and easier to implement
+            suitable for most general purpose processors
+
+        harvard
+            uses separate memory modules for data and instructions
+                means that multiple instructions can be executed simultaneously
+                however, the instructions become read-only
+            easier to pipeline, and there are no alignment issues
+            higher memory throughout
+            suitable for dsp (digital signal processors)
+
+
+        address locations
+            memory consists of a sequential number of locations, each of which are a specific number of bits wide
+            memory contains instructions for the processor to execute or data it operates on
+                - 8-bit (pc-8088), which is a byte wide
+                - 16-bit (xt-8086, at-80286)
+                - 32-bit (386dx, 486sx, 486dx)
+                - 64-bit (modern systems, pentium and up)
+            generally expressed in hexadecimal
+            size is number of locations times the total number of bits
+                32 bit limited to 2^32, or about 4GB of main memory
+            the processor selects a specific address by placing that address on an address bus
+
+            the total number of locations that can be accessed by a processor is its physical address space
+                determined by the size of an address bus
+                16 bit bus -> 65kb (65535 locations)
+                32 bit bus -> 4gb
+
+            access times
+                refers to how long it takes the processor to read or write to a specific location in the chip
+
+            volatility
+                whether or not memory is lost when the computer is switched off
+
+            [memory read/write operations diagram]
+            a) read
+            b) write
+
+    i/o devices
+        peripheral devices that allow input and output to occur
+        i/o read/write are similar to memory read/write
+            a processor may use
+                memory mapped i/o - the address of the device is stored in the direct memory space, and the cpu accesses it the same way that it would access memory
+                isolated i/o - the processor is similar, but the i/o addresses are stored in a different location, and so an extra control bus signal must be sent for the addresses to be called
+
+    cpu function - instruction cycle
+        procedure of processing an instruction by the microprocessor
+            - FETCHES the instruction from the memory
+            - DECODES the instruction, determining what is to be executed
+            - EXECUTES the instruction
+                -> fetch-decode-execute cycle
+
+            fetch phase
+                in the first phase, the processor generates the necessary timing signal to fetch the next instruction
+                the instruction is then transferred from memory to an internal location inside the processor (the instruction register)
+            [fetch cycle diagram]
+                in this diagram, the processor is ready to begin the fetch cycle
+
+                [all of these need to be filled]
+            decode phase
+                the processor transfers the instruction from the instruction register to the decode unit
+                it compares the instruction to an internal table, and when a match is found, the table contains the list of macro instructions required to perform the instruction
+
+            execute phase
+                the instruction is carried out, and then the instruction pointer is incremented to point to the next instruction

@@ -1,0 +1,68 @@
+combinatorial circuits
+    - buffers
+    - multiplexers
+    - encoders/decoders
+    - comparators
+
+    buffers
+        a digital (or voltage) buffer is an electronic circuit element that is used to boost power without changing the voltage waveform
+        used to isolate the input from the output, providing either no voltage, or the same as the input voltage
+
+        regular buffer
+            passes the input to the output
+            purpose is to boost the signal of the input to a higher level (i.e. maintain 1 or 0 values)
+            [diagram]
+
+        tri-state buffer
+            (curse you perry the platypus)
+            has a data input, and also an ENABLE/CONTROLLER input
+                - if ENB=1, the buffer is enabled, and the input is passed to the output
+                - if ENB=0, the buffer is disabled, and the output will be in the high impedance state z
+            [diagram]
+
+    multiplexer (mux)
+        a combinational circuit that selects binary information from one of the input lines, and directs it to the output line - functions as a selector
+        [diagram]
+        multiplexers can be cascaded to select from a large number of inputs
+
+    encoder
+        a circuit that changes a set of signals into codes
+        an encoder receives 2^n inputs, and outputs an n-bit value corresponding to the one input that has a value of 1
+        a 4-to-2 encoder is represented below
+        [diagram]
+        input: 4 data lines
+            each input line has a corresponding binary number, and the output of the encoder is that signal (in our example, S_1 S_0 are our output bits)
+            a decoder will take that output signal, and read the input signal from there
+
+    priority encoder
+        the same, but whenever one or more input is active, the output is set to correspond to the highest active input
+
+    comparators
+        compare two input values or voltages
+        compares two n-bit binary values to determine which is greater, or if they are equal (reference voltage vs detected voltage)
+        [diagram]
+
+    adder/half adder
+        (not a snake)
+        used to perform addition, subtraction, multiplication, and division
+        most basic: half adder
+            inputs two 1-bit values, x and y, and outputs their two-bit sum as bits C and S
+            C is the carry, S is the sum
+            [diagram]
+
+        full adder:
+            three inputs - one carry bit, two input bits
+            [diagram]
+            two outputs - one carry, one sum
+
+        memory circuits
+            group of circuits used to store data
+            not strictly combinatorial in design, but can be used as a combinatorial component
+
+            RAM
+                read/write memory that doesn't initially contain any data
+                the computing system that it is used in usually contains [...]
+
+combinational circuit design - l.e.d. display
+    7-segment decoder
+    [diagrams]

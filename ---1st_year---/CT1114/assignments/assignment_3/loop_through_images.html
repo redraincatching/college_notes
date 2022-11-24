@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>assignment 3</title>
+        <script>
+
+            "use strict";
+
+            var counter = 1;
+
+            function image_cycle() {
+                var img = document.getElementById("image_to_cycle");
+                if (counter < 6) {
+                    counter++;
+                    img.src="http://www.psychicsoftware.com/ct1113/banner-image-" + counter + ".png";
+                }
+                else {
+                    counter = 1;
+                    img.src="http://www.psychicsoftware.com/ct1113/banner-image-" + counter + ".png";
+                }
+            }
+
+
+        </script>
+    </head>
+    <body>
+
+        <img onclick="image_cycle();" id="image_to_cycle" src="http://www.psychicsoftware.com/ct1113/banner-image-1.png">
+
+    </body>
+</html>

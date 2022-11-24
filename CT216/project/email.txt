@@ -1,0 +1,11 @@
+Group members:
+    Liam Liddane - html/css, ui, ux
+    Liam Holland - db
+    Éidhne Kennedy - js (backend)
+    Fionn McArdle - js (frontend), ui, ux
+
+Team name:
+    I really like dogs
+
+Project:
+    music recommender

@@ -1,0 +1,131 @@
+operating systems
+    interface between user and hardware
+
+    functions
+        oversee computer operations
+        schedule + coordinate program execution
+        manage resources, establish ui, provide services for application software
+
+    evolution of shared computing
+        batch processing os
+            takes job, adds to job queue, executes them, produces results
+            jobs basically just get passed to the cpu
+            non-interactable, you can't change the operations of the cpu
+
+        multiprogramming os
+            users seeking services from the same machine at the same time
+            implemented with multiprogramming techniques, meaning the time is divided into multiple intervals, and the execution of a single task is limited to a single time interval (known as the time quantum)
+            each task is added to the queue of tasks to be completed, and the cpu executes each task in the order of the queue
+                if the task is not completed in the time quantum, it returns to the queue
+                this process repeats until each process is completed
+                multiple terminals can then be connected to the same machine
+                // only one task at a time, no matter what
+
+        multitasking os / timeshare
+            when multiprogramming is applied to a single-user environment
+
+        multiprocessing os
+            provide timesharing capabilities by assigning different tasks to different processors, as well as sharing the time of each processor
+            problems to solve
+                - load balancing: dynamically allocating tasks to processors for efficiency
+                - scaling: breaking tasks into sub-tasks
+
+        interactive / real-time os
+            two kinds: hard and soft
+                hard: processes must be executed at the exact time specified
+                    e.g. heart rate monitor, command control system
+                soft: processes must be executed witin the expected time
+                    e.g. traffic control
+
+        embedded os
+            can be found in handheld devices, cars, etc.
+            built for only one application
+                limited data storage and power conservation are the major issues
+            does not load and execute applications, they're built into the os
+
+        distributed os
+        multiuser os
+
+software
+    application software
+        performs specific tasks for users
+    system software
+        foundation for other software
+        not human readable
+        also known as the kernel
+
+    shell
+        graphical/text-based ui
+        interfaces between the user and the kernel
+    kernel
+        performs basic required function
+
+storage/hard disk management
+    role: coordinate the use of the machine's mass storage facilities
+
+    hierarchical organisation
+        directory (or folder)
+            a user-created bundle of files and other directories
+        directory path
+            a sequence of directories within directories
+
+        access/operations is provided by a file descriptor
+
+i/o device management
+    part of the os presented as a collection of device drivers (specialised software that communicates with and carry out operations on peripheral devices)
+    each driver is specifically designed for its type of device, and translates general requests into device-specific ones
+
+memory management
+    // main memory and ram
+    coordinates (allocates and deallocates space for) memory
+        when the total required memory space exceeds the physical available space, may create the illusion that the machine has more memory than it actually does (virtual memory) by playing a "shell game" in which blocks of data are shifted back and forth between "pages" in the ram and main memory
+
+process
+    the activity of executing a program
+    program - a static set of instructions
+
+process status
+    the current state of a process
+
+scheduler
+    the part of the kernel in charge of allocating or deallocating the cpu to each competing process
+    maintains a record of all processes in the os via a process table, introduces and removes processes as needed
+
+dispatcher
+    the component of a kernel that oversees the execution of scheduled processes
+
+    [timesharing process diagram]
+
+security
+    one role of the os is to provide security
+    attacks from the outside
+        e.g.
+            insecure passwords, sniffing software
+        countermeasures
+            auditing software
+    attacks from inside
+        security at the processor level: no process can interfere with another
+        securing the cpu to ensure that this does not occur
+
+handling competition for resources
+    semaphore: a control flag
+    critical region: a group of instructions that should be executed by only one process at a time
+    mutual exclusion: requirement for proper implementation of a critical region, so that only one process at a time can execute the instructions in a critical region
+
+    resource issue - deadlock
+        processes block each other from continuing
+        conditions required:
+            competition for non-shareable resources
+            resources requested on a partial basis
+            3) fill in later
+
+getting an os started - bootstrapping
+    booting
+        procedure that transfers os from mass storage (permanent) into main memory (volatile)
+    bootstrap
+        program in ROM (example of firmware)
+        run by CPU when power is turned on
+            // the PC starts at a predetermined address at this time
+        transfers os to main memory
+        executes jump to os
+        [diagram]

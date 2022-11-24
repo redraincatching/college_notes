@@ -1,0 +1,29 @@
+2021/10/12 - numbering systems
+overview:
+    - know the different base systems
+    - describe positional notation
+    - convert other bases to base 10
+    - describe the relationship between bases 2, 8, and 16
+    - fractions
+    - negative number representation (sign bit vs. complementary notation)
+
+number categories
+    natural, negative, irrational, etc.
+comp. definition of numbers
+    - unit belonging to an abstract mathematical system subject to specified
+    laws of succession, addition, and multiplication
+
+base - the number of digits used in a system
+    base n, digits are (0, 1, […], n-1)
+    // also determines what the positions mean
+    // subscripts can be used to indicate base
+
+positional notation
+    each position has a place value, and the total number is equal to the
+    sum of the digits * their place value
+    // place value is base^(position from right, starting at 0)
+
+    e.g. 954 in decimal
+        -> 9*10^2 + 5*10^1 + 4*10^0 = 954 in decimal
+         954 in hex
+        -> 9*16^2 + 5*16^1 + 4*16^0 = 2388 in decimal

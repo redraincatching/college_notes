@@ -1,0 +1,43 @@
+structures
+    can be used to hold data of different types
+    syntax
+        struct <name> {
+        <data>
+        <goes>
+        <here>
+        };
+        // this goes outside of main
+
+    creating a struct variable
+        struct <struct_name> <instance_name>;
+
+        this is a bit long-winded, and we can use the typedef keyword to create user-defined types.
+            typedef <type> <symbolic_name>
+            e.g.
+            typedef struct customer customer;
+
+            *better syntax*
+            typedef struct {
+            <data>
+            } <struct_name>;
+
+            or, if you want the call to be different to the name
+            typedef struct <struct_name> {
+            <data>
+            } <symbolic_name>;
+
+    referencing data in a struct
+        <instance_name>.<data>;
+
+
+    arrays of structs
+        e.g.
+            customer customers[0];
+        and just iterate through
+
+    structs and functions
+        pass them with their type, as normal
+        e.g.
+            void do_thing (customer customers[], int values) {
+            …
+            }

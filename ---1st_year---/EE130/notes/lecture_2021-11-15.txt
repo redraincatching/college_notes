@@ -1,0 +1,108 @@
+rectifiers
+    a circuit that converts ac to dc
+
+    half-wave rectifier
+        a circuit that eliminates either positive or negative alternations of an input signal
+        [insert circuit diagram]
+        a diode can be used here, to act as an open during the positive alternation, and as a closed one during the negative alternation
+
+    full-wave rectifier
+        a circuit that converts ac to dc by controlling the direction of the output current so that only positive or negative output alternations are produced
+
+    full-wave bridge rectifier
+        [circuit diagram]
+        based on the principle of switching current paths
+        involves an inductor i guess
+            wait, no, a transformer
+            (f in the diagram is a fuse)
+
+    power supply filters
+        filtering is the process of smoothing the ripple from the rectifier
+        usually, a capacitor input filter is used
+        [circuit diagram]
+
+        the variation in output voltage that occurs as the capacitor is discharging is called the ripple voltage
+            the longer the time period between capacitor discharge cycles, the greater the ripple voltage. this is why a filtered full-wave rectifier has less ripple than a comparable half-wave rectifier
+
+    ic regulators
+        an integrated chip (ic) is a complete, functional circuit on a silicon chip.
+        an ic regulator is one that maintains a constant output current or voltage despite changes in input, load, or temperature.
+            most have three terminals; an input, an output, and a reference (or adjust) terminal
+                these only require an external capacitor to regulate current - typically a large one before the regulator, and a small one afterwards
+                an example of these are the 78xx series regulators [see diagram]
+                    the xx is the output voltage
+
+    zener diodes
+        a silicon pn junction that differs from a rectifier diode in that it is designed to operate in the breakdown region [see diagram]
+
+    varactor diodes
+        a reverse-biased pn junction that utilises the inherent capacitance of the depletion region [see diagram]
+
+    l.e.d.s
+        they're l.e.d.s, what more do i say?
+
+    photodiode
+        one whose reverse current is controlled by light intensity at the exposed pn junction (proportional)
+
+transistors
+    field-effect transistors (FETs)
+        in an FET, a narrow conducting channel physically exists or is induced between two leads, called the source and the drain. this channel is either n-type or p-type
+        can be npn- or pnp-type
+
+        as the term field-effect implies, conduction in this channel is controlled by an electric field
+
+        JFETs (junction-gate FETs), MOSFETs (metal-oxide semiconductor FETs, also called insulated-gate or IGFETs)
+            two types of MOSFETs -> depletion or enhancement MOSFETs, D-MOSFETs or E-MOSFETs
+
+            E-MOSFET
+                only operates in the enhancement mode, has no physical channel
+                [see diagram]
+
+        MOSFETs are commonly used in digital logic circuits
+            these circuits are designed to work with signals that are made up of alternating dc voltage levels, called "logic levels"
+            these circuits are made of CMOS - complementary metal-oxide semiconductor - technology
+
+        CMOS inverter
+            (changes, by analogue, a 1 to a 0, or a 0 to a 1)
+            [see diagram]
+
+analogue quantities
+    most natural quantities are analogue, and vary continuously
+        digital systems can process this data more efficiently, but can only assign values to each point
+
+digital signals
+    a waveform that represents a sequence of discrete values (1s and 0s)
+        // also called bit streams
+
+digital modulation
+    provides a means of transmitting data from one type to another
+    one approach is to modulate the amplitude of a sine wave, called a carrier
+    [see diagram]
+
+    pulse-code modulation (pcm)
+        uses a sequence of digital codes to represent a sampled analogue signal
+        [see diagram]
+
+analogue and digital systems
+    many systems use a mix of analogue and digital circuits (e.g. cd player)
+
+binary digits and logic levels
+    digital electronics use circuits that have two states, represented by two voltage levels - high and low, representing binary numbers
+
+    digital waveforms change between these two levels
+
+        a positive-going pulse is one that goes from a normally low level to a high one, and then back again
+        a negative-going pulse is one that goes from a normally high level to a low one, and then back again
+
+        actual pulses are not ideal square waves, but are described by the rise time, fall time, amplitude, and other characteristics
+        [see diagram]
+
+    periodic pulse waveforms
+        composed of pulses that repeat in a fixed interval called a period
+        the rate that it repeats is the frequency (measured in hertz)
+            the clock, the repeating signal used to synchronise others, is a basic example of this
+
+    basic logic functions
+        AND - produces a high output only if all inputs are high, performed by an AND gate
+        OR - produces a high output if any input is high, performed by an OR gate
+        NOT - changes one logic level to another, performed by an inverter

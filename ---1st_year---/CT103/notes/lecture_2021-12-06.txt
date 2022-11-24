@@ -1,0 +1,57 @@
+enumeration
+    enumeration is a user-defined datatype in the c language, used to assign names to variables
+    used with the enum keyword
+
+    for example:
+        in an ordering system, the status of an order could be
+            - open
+            - closed
+            - delivered
+            - cancelled
+        in an alarm system, it could be
+            - read
+            - asleep
+            - maintenance
+
+        underlying those names would need to be values
+            e.g.
+            - open      = 101
+            - closed    = 102
+            - delivered = 103
+            - cancelled = 104
+
+    [diagram]
+    syntax
+        // declaration
+        enum <variable_name> {<names>, <of>, <states>}; // 0-based index, of course
+        // instantiation
+        enum <variable_name> <object_of_this_enum>
+            // e.g.
+            enum days_of_week day;
+        // operation
+        <obj_enum> = <state>;
+            // e.g.
+            day = wed;
+
+    enumeration using typedef
+        syntax
+            typedef enum {<states>} <name_of_enum>;
+
+        useful because then you can declare functions of that type, to return one of those states
+
+sorting algorithms
+    algorithms that put items in the correct order
+        most commonly, based on numeric value
+
+    many different types
+        - bubble sort
+        - merge sort
+        - insertion sort
+        - quick sort
+        - selection sort
+        - bogosort
+
+    bubble sort
+        comparing elements to make larger numbers move higher in the array
+        (they "float" up to the top)
+        not the most efficient, but that's okay

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>get shinji in the eva</title>
+
+        <script>
+            "use strict";
+
+            function runaway(el) {
+                var toppos = Math.floor(Math.random() * 600);
+                var leftpos = Math.floor(Math.random() * 1400);
+                el.style.left = `${leftpos}px`;
+                el.style.top = `${toppos}px`;
+            }
+        </script>
+    </head>
+    <body>
+        <div onclick="runaway(this);" style='position:absolute; left:700px; top:300px'>
+            <img height="100px" width="100px" src="sad_shinji.png"/>
+        </div>
+    </body>
+</html>

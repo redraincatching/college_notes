@@ -1,0 +1,152 @@
+latex (cont.)
+
+preamble
+    the part of the .tex file before the \begin{document}
+    here, you define the type of document that you are writing, the language, any extra packages
+    necessary, and set several parameters
+
+        example preamble
+            \documentclass[12pt, letterpaper]{article}
+            \usepackage[utf8]{inputenc}
+
+            \title{sample document}
+            \author{the author}
+            \thanks{funded by the iww}
+            \date{22nd October 2021}
+
+        explaining the above
+            letterpaper - size of sheet
+            article - type of document
+            \usepackage... - encoding the document with unicode transformation format 8 (utf8)
+            date - can also use the \today command to automatically update when document is compiled
+
+body of the document
+    the main content of the document
+
+            \begin{document}
+            \begin{titlepage}
+            \maketitle
+            \end{titlepage}
+            some words go here
+            \end{document}
+
+    the opening and closing tags declare an environment, a block of code with a specific behaviour
+        maketitle - prints the title, author, and the date
+
+    sections
+        the body consists of several sections and subsections, including special sections such as the
+        nomenclature, abstract, keywords etc., and normal sections such as introduction, related work
+        and so on
+                \section{First level section}
+                \subsection{Second level section}
+                \subsubsection{Third level section}
+                \section*{Unnumbered section}
+                \paragraph{...}
+                \subparagraph{...}
+
+        the sections show up in the table of contents
+            1. section
+            1.1 second level section
+            1.1.1 third level section
+
+        special sections
+
+            nomenclature
+                requires the nomencl package to be included at the start
+                allows you to display a table of the nomenclature, or symbols, used in the body of
+                work
+
+                    \makenomenclature
+                    \nomenclature{Variable \quad {Description}}
+                    \nomenclature[VR]{symbols}{\qquad names, 4 spaces over}
+                    \printnomenclature
+
+                \quad - used to insert a 4-space gap (1em)
+                \qquad - 8-space gap (2em)
+
+
+            abstract
+                creates an abstract, a summary of the piece
+
+                    \begin{abstract}
+                    [...]
+                    \end{abstract}
+
+            keywords
+                defined in their specific section
+
+                    \begin{IEEEkeywords}
+
+            footnote
+                    \footnote{text here}
+
+            page header
+                requires package fancyhdr
+
+                    \pagestyle{fancy}
+                    \fancyhf{}
+                    \rhead{\thepage}
+                    \lhead{title of book maybe, idk}
+
+    aligning text
+        \begin{center} % or flushleft, or flushright
+        full justifying requires ragged2e package
+            e.g.
+                \begin{flushleft}
+                \justifying
+                text...
+                \end{flushleft}
+
+        // with ragged2e, you can just use \RaggedRight or \RaggedLeft
+
+    paragraphs
+        to start a new paragraph, leave a blank line in between, or use \par and hit enter
+
+        paragraph indentation
+            in the preamble, use
+                \setlength{\parindent}{2em}
+            to set a paragraph indent
+
+        paragraph spacing
+            \setlength{\parskip}{1em}
+
+    spacing
+            \hspace{size}
+            \hfill
+            \vspace{size}
+            \vfill
+        size commands are fixed, fill commands vary to fill space provided
+
+    line break
+        \\ or \newline
+
+    page break
+        \newpage
+
+    lists
+        \begin{...} + \end{...}
+            itemize for unordered
+            enumerate for ordered
+        \item - for individual entries
+        \item {symbol} - to replace the bullet with that symbol
+
+        lists can also be nested
+            in ordered, nested lists become letters instead of numbers
+
+    comments
+        % - single-line comment
+        \begin{comment} - multi-line comment, requires package comment (why)
+
+    font effects
+        // note: coloured text requires package xcolor
+        // these can be nested to apply multiple efffects
+
+        \textit - italics
+            \emph - also italics
+        \textbf - bold
+        \textsf - sans serif
+        \textrm - roman words (?)
+        \underline - underline
+        {\color{red}text goes here} - red words
+        \uppercase - to uppercase
+        \lowercase - to lowercase

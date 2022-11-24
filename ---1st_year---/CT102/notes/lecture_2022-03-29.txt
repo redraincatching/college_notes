@@ -1,0 +1,50 @@
+// TODO: quicksort & countsort
+// NOTE: mcqs will be made available again
+
+exam topics (information systems):
+    - compression
+    - search engines
+    - page rank
+    - recommender systems
+    - structured data (not xml)
+
+    // calculator allowed, formulas not given (cosine, pearson, page rank, etc.)
+    // stop words/stemming rules should be general, no need to memorise specifics
+
+    compression
+        - huffman algorithm
+        - arithmetic encoding
+
+    search engines
+        - preprocessing
+            case folding, punctuation removal, stop word removal, stemming
+            // generally need examples of these
+        - weighting
+            tf*idf
+        - cosine similarity
+
+    database systems
+        - primary keys
+        - functional dependencies
+        - redundancy & normalisation
+        - sql (SELEFT, FROM, WHERE)
+
+    recommender systems
+        - explicit vs. implicit rating
+        - content vs. collaborative filtering
+        - nearest neighbour approach
+        // note: cosine similarity will not be asked here, but pearson correlation might
+            -> check which to use, zero/nonzero?
+        // note: pearson correlation is just cosine similarity but normalised by subtracting average ratings
+            // cosine sim. is already normalised by tf*idf weighting
+            // note: pearson correlation is in a range of -1 < x < 1
+        - recommendation generation formula
+            p_(a, i) = r_bar a + \frac{\sum (r_(u,i) - r_bar u)*w_(a,u)}{\sum w_(a,u)}
+
+    social network analysis
+        - representations
+            edge list, adjacency matrix, graph
+        - directed & undirected
+        - measures
+            degree, edge density, clustering coefficient, paths
+            // only count outward paths for clustering coefficient

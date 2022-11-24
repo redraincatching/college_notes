@@ -1,0 +1,8 @@
+United Kingdom	68000000
+Republic of Ireland	5000000
+United States of America	332000000
+Italy	59000000
+Spain	48000000
+Germany	83000000
+The Netherlands	18000000
+Estonia	1326535

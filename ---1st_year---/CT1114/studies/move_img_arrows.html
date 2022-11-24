@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script>
+            var left_pos = 700, top_pos = 100;
+
+            function init() {
+                animate();
+
+                window.onkeydown = function(e) {  // an "anonymous" function
+                    var s = e.keyCode;            // here, the onkeydown event recieves an argument - the event itself (e)
+                    switch (s) {
+                        case 37:            // keycodes: 37=L, 38=U, 39=R, 40=D
+                            left_pos -= 5;
+                            break;
+                        case 38:
+                            top_pos -= 5;       // could just have these as +/- 5, and add to left_pos as needed, reset to
+                            break;              // 0 onkeyup
+                        case 39:
+                            left_pos += 5;
+                            break;
+                        case 40:
+                            top_pos += 5;
+                            break;
+                        default:
+                            break;
+                    }
+                };
+            }
+            function animate() {
+                var anim = document.getElementById("div_shinji");
+                anim.style.left = left_pos + "px";
+                anim.style.top = top_pos + "px";
+                window.setTimeout(animate, 20);
+            }
+        </script>
+    </head>
+    <body onload="init();">
+        <div id='div_shinji' style='position:absolute; left:800px; top:100px'>
+            <img src='images_for_studies/sad_shinji.png' height="150px" width="150px">
+        </div>
+    </body>
+</html>

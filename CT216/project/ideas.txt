@@ -1,0 +1,55 @@
+fri 23rd sept, 17:00 - project group deadline
+    nominated group lead emails enda.barrett@nuigalway.ie with:
+        - team name
+        - names of members
+        - provisional idea
+
+separation of concerns
+    - frontend view and ui
+        look and feel, structuring content
+    - frontend dynamic content
+        GET/POST methods, handling/updating data
+    - backend server-side code, firebase functions
+        returning data, apis
+    - database component, firestore
+        schemas, queries
+
+basic app up and running by christmas
+
+resources
+    - https://everynoise.com/
+        genre map
+    - https://www.music-map.com/
+        similar genre site (sample this maybe?)
+    - https://www.gnod.com/
+        made music map
+    - http://boilthefrog.playlistmachinery.com/
+        similarity step playlist
+    - https://musicmachinery.com/
+        paul lamere's website, a recommender designer at spotify
+
+    recommender for everything
+        -> lettrbox
+        - recommendations of the day
+        - possibly friend system, recommend based on them, as well as based on all users
+
+links
+    -> band members/producers/any actual link as well as similarity
+    -> artist page: other connected projects
+        -> scrape wikipedia?
+            -> band members->career->other links
+
+pull artist bio from spotify?
+
+apis to look at
+    spotify, wikipedia
+
+least related artist
+
+user profile - allows you to bookmark any pages you like, for quick return
+
+four recommendation paths
+    - spotify (customised)
+    - friend similarity
+    - other projects the band were involved in
+    - just tell them to listen to weezer

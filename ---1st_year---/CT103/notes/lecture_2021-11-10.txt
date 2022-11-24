@@ -1,0 +1,34 @@
+testing characters
+    there are a number of tests that we can use to analyse characters
+    we first need to include the <ctype.h> library
+
+    useful tests
+        isalpha
+            checks if the character is alphabetical (i.e. a letter)
+        isalnum
+            checks if the character is alphanumeric (letter or number)
+        isdigit
+            checks if the character is a digit
+        isupper
+            checks if the character is uppercase
+        islower
+            checks if the character is lowercase
+        isspace
+            checks if the character is a space
+                // handy for splitting strings, like in a first and surname
+
+        syntax
+            <test>(<character>);
+
+character mapping
+    functions to convert character case
+
+    toupper
+        converts a character to uppercase
+    tolower
+        converts a character to lowercase
+
+arrays of strings
+    lists of strings, stored as a 2d array
+    each row is a different string
+    each column is a character

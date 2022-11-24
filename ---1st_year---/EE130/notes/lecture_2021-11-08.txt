@@ -1,0 +1,44 @@
+thévenin's theorem
+    any two-terminal, resistive circuit can be replaced with a simple equivalent circuit when viewed from two output terminals
+
+semiconductors
+    crystalline materials (Si, Ge, etc.) that are characterised by specific energy bands for electrons
+    betweeen these bands, there are gaps (atomic orbitals)
+    outermost energy band (ground state): valence band
+    the one above that: conduction band
+
+    at room temperature, some electrons have enough energy to jump to the conduction band, leaving behind a hole
+        in the conduction band, the electrons are free to drift, causing current to flow
+    recombination occurs when a conduction-band electron loses energy and "falls" back into a hole
+
+    the motion of these electrons and apparent motion of holes act as charge carriers, resulting in current moving in the conduction band due to electrons, and in the valence band due to holes
+
+    doping
+        by adding impurities such as Al, Ga, P, or Sb, we can increase or decrease the amount of free electrons and holes, to facilitate certain types of flow
+            adding boron would result in one more hole, and an n-type semiconductor
+                (trivalent impurity)
+            adding phosphorus would result in one less hole, and a p-type conductor
+                (pentavalent impurity)
+
+    pn junction
+        the region where an n-type and p-type semiconductor meet
+        the electrons in the n-type diffuse across the p-type junction, recombining with the holes
+            this creates a barrier voltage across this section, known as the depletion layer
+            (for a silicon diode, this is about 0.7V)
+                -> this means that for electrons to cross this junction, current must be applied
+
+diodes
+    a semiconductor with a single pn junction
+
+    when a diode is in forward bias, current (over the barrier voltage) is permitted to flow.
+        the bias voltage pushes the electrons across the depletion layer, where they can recombine with holes on the other side
+    when a diode is in reverse bias, the electrons are pushed away from the depletion layer, and current cannot flow
+        this causes the depletion layer to increase
+            /*
+            leakage current: some electrons still flow through, due to the large force of the voltage on the reverse bias side, but not much
+            breakdown voltage: when too much voltage is applied to a diode in reverse bias, the depletion layer breaks down, and current is able to flow. this ruins the diode
+            */
+    symbol
+                anode (A) -->|-- cathode (K)
+        panic - positive anode, negative is cathode
+            // i chimed in with a haven't you people ever heard of closing a goddamn door?

@@ -1,0 +1,105 @@
+basic html interaction
+    1) web server stores html files
+    2) client requests page through url
+    3) server sends html page to client
+    4) client browser displays page to user
+        /*
+        we haven't been using a server, we've been locally hosting files, so the protocol isn't http://, it's file://
+        */
+
+client-side scripting interaction
+    1) server stores html/script pages
+    2) client browser requests page through url
+    3) server sends html/script page
+    4) client browser runs script locally and updates html
+    5) client browser displays html page
+
+server-side scripting interaction
+    1) server stores html/script pages
+    2) client browser requests page through url
+    3) server script (e.g. nodejs or php) runs locally and updates html
+    4) server sends updated html page to client
+    5) client browser displays html page
+
+ajax - asynchronous javascript and xml
+    a key component of modern webapps
+    normal http interactions instruct the browser to request the entire webpage at once
+    ajax, however, instructs the browser to request small pieces of content
+        - typically smaller parts of the webpage, but can be any arbitrary data, not necessarily marked up as html
+        - asynchronous update -> no tangible "refresh" process for the user
+        - often updating individual elements, via their .innerHTML attribute
+
+    why not request the entire page?
+        a normal http request causes the whole page to be refreshed
+            -> all existing javascript is destroyed
+        ajax requests do not refresh the page
+            - only the appropriate elements are updated, by javascript manipulating the existing document
+                // e.g. google search suggestions
+        these requests are handled separately to html requests by the client, but the server treats them as normal
+
+XML - extensible markup language
+    designed to transport and store data in a human-readable yet structured format
+        - typically a simple .xml text file
+    like html, it's a semantic language made of tags
+    unlike html
+        - there are no standard tags
+        - the tags are self-descriptive
+    // note: xml is increasingly being superseded by json
+
+    XMLHttpRequest
+        browser feature that allows js to make an ajax request
+        an object, and must be created as such
+            e.g.
+                var requester = new XMLHttpRequest();
+
+        opening an ajax connection
+            created using .open() method
+            syntax
+                requester.open(<method>, <location>, <asynchronous>);
+            takes three arguments
+                - method: GET or POST
+                - location: url to access
+                - asynchronous: true or false?
+                    async - allows other scripts to execute while request is ongoing
+                    sync - freezes browser until request is complete
+            then sent with .send() method
+
+            GET vs. POST
+                either can be used to pass info to the php page
+                GET
+                    using GET, add name=value pairs to the end of the url
+                    e.g.
+                        requester.open("GET", "page.php?id=101&name=john", true);
+                POST
+                    using POST, add an extra header value before sending
+                    e.g.
+                        requester.open("POST", "page.php", true);
+                        requester.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        requester.send("id=101&name=john");
+
+            receiving the response
+                use an event handler to execute when the server has returned a response
+                monitor for changes in readyState property of XMLHttpRequest object
+                    property has 5 states
+                        - 0, uninitialised
+                        - 1, loading
+                        - 2, loaded
+                        - 3, interactive
+                        - 4, complete
+
+                the onreadystatechange event is triggered whenever this property changes
+                this event should be handled by a function
+                e.g.
+                    requester.onreadystatechange = function() {
+                        if (requester.readyState == 4 && requester.status = 200) {
+                            // this means the response has been received and is okay
+                            // process data here
+                        }
+                    }
+                // note: status 200 means the request is okay
+
+            handling the response
+                two properties
+                    - responseXML, for xml response
+                    - responseText, text/HTML response (mmore common)
+                    this text or xml can then be processed with js

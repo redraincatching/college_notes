@@ -1,0 +1,7 @@
+work-energy theorem
+    W = (\sumF)s = (ma)s
+
+    v^2 = v^2_0 + 2as
+    as = \frac{v^2 - v^2_0}{2}
+
+    W = KE - KE_0 
