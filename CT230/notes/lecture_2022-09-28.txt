@@ -41,4 +41,4 @@ GROUP BY ... HAVING
                     4       | 3
                     5       | 4
 
-            HAVING is just a condintinal addition to that
+            HAVING is just a conditional addition to that

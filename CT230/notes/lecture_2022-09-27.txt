@@ -2,7 +2,7 @@ modifying output
     AS
         rename or alias any tables found in SELECT or FROM
     CONCAT
-        `concatenate strings
+        concatenate strings
     CAST
         CAST(expression AS datatype(length))
     ORDER BY
