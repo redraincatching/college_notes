@@ -4,7 +4,7 @@ a database system is an information system that stores and retrieves data
 > one or more tables where a table is an ordered collection of records, consisting of data
 
 ## Database Approach
-a single repository of data that is maintained, defined once and then accessed by various users/programs through a DBMS
+a single repository of data that is maintained, defined once and then accessed by various users/programs through a [[intro_to_databases|DBMS]]
 &nbsp&nbsp&nbsp&nbsp_DBMS_
 &nbsp&nbsp&nbsp&nbsp->a collection of programs the facilitates the process of defining, constructing, and manipulating databases
 

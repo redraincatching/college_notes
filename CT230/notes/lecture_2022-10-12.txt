@@ -11,7 +11,7 @@ joins and union queries
             1) in sql we must specify all tables which are part of the join in the SELECT clause
                 // there are many types of joins, not all of which are supported, but we will use the inner join, which always is
             2) must then specify the join condition
-                for an inner join the condition is foreign_key = priary_key/candidate_key
+                for an inner join the condition is foreign_key = primary_key/candidate_key
             3) the join condition can be specified in the FROM or WHERE clause
 
         inner join
@@ -30,10 +30,10 @@ joins and union queries
                     SELECT dependent_name, dependent.bdate, address
                     FROM employee INNER JOIN dependent ON
                         ssn = essn
-                    WHERE relationship != ‘spouse’
-                        AND fname = 'Franklin’
-                        AND minit = 'T’
-                        AND lname = 'Wong’; 
+                    WHERE relationship != 'spouse'
+                        AND fname = 'Franklin'
+                        AND minit = 'T'
+                        AND lname = 'Wong'; 
 
                     // note the dependent.bdate, as bdate is an attribute in both tables
                     // can always be done, not usually useful

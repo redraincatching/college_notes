@@ -9,21 +9,9 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "CT2106/class_relationships.md",
+            "file": "normalisation.md",
             "mode": "source",
             "source": false
-          }
-        }
-      },
-      {
-        "id": "057dd1ef5f2c540b",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "~example_code/fruits_basket_parsing.c.md",
-            "mode": "source",
-            "source": true
           }
         }
       }
@@ -97,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "~example_code/fruits_basket_parsing.c.md",
+                "file": "normalisation.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,17 +103,17 @@
     "width": 264,
     "collapsed": true
   },
-  "active": "057dd1ef5f2c540b",
+  "active": "a8ec08924b77e35b",
   "lastOpenFiles": [
-    "CT2106/class_relationships.md",
-    "CT2106/encapsulation.md",
-    "CT2106/classes_and_methods.md",
-    "CT2106/java_intro.md",
-    "CT216/xtreme_programming.md",
-    "CT216/agile_devleopment.md",
-    "CT216/cloud_computing.md",
-    "CT213/system_software_and_os.md",
-    "CT213/programming_models.md",
-    "CT213/computer_systems.md"
+    "CT230/er_diagrams.md",
+    "CT230/linking_tables.md",
+    "CT230/aggregate_functions.md",
+    "CT230/sql_strings_and_pattern_matching.md",
+    "CT230/modifying_output.md",
+    "CT102/databases.md",
+    "CT230/data_manipulation_language.md",
+    "CT230/dbms_constraints.md",
+    "CT230/intro_to_sql.md",
+    "CT230/relational_database_model.md"
   ]
 }
