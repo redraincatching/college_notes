@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "normalisation.md",
+            "file": "CT230/er_diagrams.md",
             "mode": "source",
             "source": false
           }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "normalisation.md",
+                "file": "CT230/er_diagrams.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,17 +103,17 @@
     "width": 264,
     "collapsed": true
   },
-  "active": "a8ec08924b77e35b",
+  "active": "51db502dda5565f1",
   "lastOpenFiles": [
-    "CT230/er_diagrams.md",
-    "CT230/linking_tables.md",
     "CT230/aggregate_functions.md",
+    "CT230/er_diagrams.md",
+    "CT230/normalisation.md",
+    "CT230/linking_tables.md",
     "CT230/sql_strings_and_pattern_matching.md",
     "CT230/modifying_output.md",
     "CT102/databases.md",
     "CT230/data_manipulation_language.md",
     "CT230/dbms_constraints.md",
-    "CT230/intro_to_sql.md",
-    "CT230/relational_database_model.md"
+    "CT230/intro_to_sql.md"
   ]
 }
