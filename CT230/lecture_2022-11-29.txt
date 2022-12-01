@@ -107,4 +107,40 @@ query processing and relational algebra
             
             union
                 operator: U
-                
+                syntax: (R) U (S)
+                returns all tuples from tables R and S, no duplicates
+
+            intersection
+                operator: n
+                syntax: (R) n (s)
+                returns all tuples from R that are also in S
+
+            set difference
+                operator: -
+                syntax: (R) - (S)
+                returns tuples in R but not in S
+                // not commutative
+            
+            /*
+                union compatability
+                    for union, intersection, and minus, relations must be union compatible
+                    that is, schemas of both relations must match
+                    i.e. same number of attributes with corresponding domains
+            */
+
+            cartesian product
+                operator: x
+                syntax: (R) x (S)
+                returns tuples comprising the concatenation of every tuple in R with every tuple in S
+                [[diagram]]
+                [[diagram]]
+
+            join
+                operator: ⨝
+                syntax: (R) ⨝ <att1>=<att2> (S)
+                combination of cartesian product and select
+                tables are joined together based on the specified condition
+
+                equi and theta joins
+                    equi joins only use = in the join condition
+                    theta allows for comparisons such as >= 
