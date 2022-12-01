@@ -106,4 +106,8 @@ steps
 7) for each multivariate attribute, create a new table to represent that
 	this includes an attribute corresponding to the original table and that original table's primary key, and a ocmbinationof both will be the primary key
 
+<<<<<<< HEAD
 > #databases 
+=======
+> #databases #sql
+>>>>>>> b10663ae853b608f7cb3f402490b03140df2fcca
