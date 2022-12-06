@@ -9,13 +9,9 @@
         "state": {
           "type": "markdown",
           "state": {
-<<<<<<< HEAD
-            "file": "CT230/er_diagrams.md",
-=======
-            "file": "normalisation.md",
->>>>>>> b10663ae853b608f7cb3f402490b03140df2fcca
+            "file": "CT230/file_organisation.md",
             "mode": "source",
-            "source": false
+            "source": true
           }
         }
       }
@@ -89,11 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-<<<<<<< HEAD
-                "file": "CT230/er_diagrams.md",
-=======
-                "file": "normalisation.md",
->>>>>>> b10663ae853b608f7cb3f402490b03140df2fcca
+                "file": "CT230/file_organisation.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,30 +103,17 @@
     "width": 264,
     "collapsed": true
   },
-<<<<<<< HEAD
   "active": "51db502dda5565f1",
   "lastOpenFiles": [
-    "CT230/aggregate_functions.md",
-    "CT230/er_diagrams.md",
+    "CT230/query_trees_and_optimisation.md",
+    "CT230/file_organisation.md",
+    "CT230/query_processing_relational_algebra.md",
     "CT230/normalisation.md",
-    "CT230/linking_tables.md",
-=======
-  "active": "a8ec08924b77e35b",
-  "lastOpenFiles": [
+    "normalisation.md",
     "CT230/er_diagrams.md",
-    "CT230/linking_tables.md",
     "CT230/aggregate_functions.md",
->>>>>>> b10663ae853b608f7cb3f402490b03140df2fcca
+    "CT230/linking_tables.md",
     "CT230/sql_strings_and_pattern_matching.md",
-    "CT230/modifying_output.md",
-    "CT102/databases.md",
-    "CT230/data_manipulation_language.md",
-    "CT230/dbms_constraints.md",
-<<<<<<< HEAD
-    "CT230/intro_to_sql.md"
-=======
-    "CT230/intro_to_sql.md",
-    "CT230/relational_database_model.md"
->>>>>>> b10663ae853b608f7cb3f402490b03140df2fcca
+    "CT230/modifying_output.md"
   ]
 }
