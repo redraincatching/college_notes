@@ -22,7 +22,7 @@ cpu management - scheduling
         - the enqueuer creates the pointer to the process description, and places it in the ready list
         - the context switch is essentially copying the exact state from the cpu to the process description
             -> the contents of all the cpu registers are saved
-        - all agorithms essentially run in the dispatcher
+        - all algorithms essentially run in the dispatcher
 
     scheduler types
         cooperative scheduler / voluntary cpu sharing

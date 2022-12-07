@@ -60,4 +60,4 @@ main use - resource management
 -> runs in priveleged mode, and can stop and start user programs
 
 
-> #ct213 #computing_systems
+> #computing_systems

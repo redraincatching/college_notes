@@ -4,16 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "a8ec08924b77e35b",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "scheduling.md",
-            "mode": "source",
-            "source": true
+        "id": "918cf8b25114d771",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3057bd598272c2a1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CT213/device_management.md",
+                "mode": "preview",
+                "source": true
+              }
+            }
           }
-        }
+        ]
       }
     ],
     "direction": "vertical"
@@ -25,40 +31,43 @@
       {
         "id": "a31aff29b25095ba",
         "type": "tabs",
-        "dimension": 56.482670089858786,
+        "dimension": 68.31683168316832,
         "children": [
-          {
-            "id": "51db502dda5565f1",
-            "type": "leaf",
-            "state": {
-              "type": "file-explorer",
-              "state": {}
-            }
-          },
           {
             "id": "9cf9332ef6b51898",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "stack",
-                "matchingCase": true,
+                "query": "ct213",
+                "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
               }
             }
+          },
+          {
+            "id": "51db502dda5565f1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "byCreatedTimeReverse"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
-        "id": "ceae43fcdea40c9c",
+        "id": "5568f519f9971e03",
         "type": "tabs",
-        "dimension": 43.51732991014121,
+        "dimension": 31.683168316831683,
         "children": [
           {
-            "id": "10fdda4ec7dfa98d",
+            "id": "cd125ad056152b50",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -69,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 331.5
+    "width": 270.5
   },
   "right": {
     "id": "e0856ed43de8a0a4",
@@ -85,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "scheduling.md",
+                "file": "CT213/device_management.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,17 +112,17 @@
     "width": 264,
     "collapsed": true
   },
-  "active": "a8ec08924b77e35b",
+  "active": "3057bd598272c2a1",
   "lastOpenFiles": [
-    "CT213/threads.md",
-    "scheduling.md",
-    "CT213/programs_and_processes.md",
-    "CT213/system_software_and_os.md",
-    "CT101/cpu_programming_models.md",
-    "CT213/programming_models.md",
+    "CT213/memory_management.md",
+    "CT213/device_management.md",
     "CT230/file_organisation.md",
-    "CT230/query_trees_and_optimisation.md",
-    "CT230/query_processing_relational_algebra.md",
-    "CT230/normalisation.md"
+    "CT213/deadlocks.md",
+    "diagram.md",
+    "ct216.md",
+    "CT213/concurrent_programming.md",
+    "CT213/scheduling.md",
+    "CT213/system_software_and_os.md",
+    "CT213/programming_models.md"
   ]
 }

@@ -3,9 +3,7 @@
 we can generally assume that, for non-trivial databases, the whole database will not fit in ram
 one of the dbms' tasks is managing the physical organisation (storage and retrieval) of the tuples in each table of the database
 
-// note: newer database system architectures, such as sap hanna, manage their databases in virtual memory, and allow the os to manage the movement of physical data through os paging
-
-// TODO: link to os paging in [[ct213]]
+// note: newer database system architectures, such as sap hanna, manage their databases in virtual memory, and allow the os to manage the movement of physical data through [[memory_management#paged virtual memory|os paging]]
 
 ## definition: file organisation
 the way tuples are physically arranged in secondary storage to facilitate queries

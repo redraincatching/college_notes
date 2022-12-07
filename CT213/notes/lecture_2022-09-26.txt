@@ -2,7 +2,7 @@ programs and processes
     program
         a static entity made up of source code statements which define the behaviour fo a process
     process
-        a dynamic entity that executes a programon a particular set of data using resources allocated by the system
+        a dynamic entity that executes a program on a particular set of data using resources allocated by the system
         -> multiple processes can execute the same program
 
     a process is a program in execution
@@ -12,7 +12,7 @@ programs and processes
         - process control block, containing the state of the process
 
     execution of a process
-        a process needs an abstract mabhine environment in order to execute, to manage its use on resources
+        a process needs an abstract machine environment in order to execute, to manage its use on resources
         the process control block is required to map the environment state onto the physical machine state
         the os keeps a process descriptor for each process
         [[diagram]]
@@ -213,7 +213,7 @@ state process models
                 [[diagram]]
 
         queueing discipline
-            two queue now, ready and blocked
+            two queues now, ready and blocked
                 - when the process is admitted in the system, it is placed in the queue
                 - when a process is removed from the processor, it is either placed in ready or blocked
                 - when an event occurs, all the processes that are waiting on that event are moved into the ready queue

@@ -223,4 +223,4 @@ uses a send function to pass the message to a trusted process
 user waits for a message received result
 sent when kernel finishes processing the request
 
-> #ct213 #computing_systems 
+> #computing_systems 

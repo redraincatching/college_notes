@@ -132,7 +132,7 @@ device management
 
         [[diagram]]
 
-    each controler is specific to each device
+    each controller is specific to each device
 
     methods to detect device input
         polling

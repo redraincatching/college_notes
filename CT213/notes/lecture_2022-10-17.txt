@@ -41,7 +41,7 @@ locks, critical sections, and reliability
     
     developers must make sure critical sections are small always terminate
 
-beyond locks
+mad max - beyond locks
     locks only provide mutual exclusion
     we need higher level locking mechanisms for this
 

@@ -2,5 +2,8 @@
   "baseFontSize": 13,
   "translucency": false,
   "baseFontSizeAction": false,
-  "cssTheme": "Obsidian gruvbox"
+  "cssTheme": "Typewriter",
+  "theme": "system",
+  "accentColor": "",
+  "showViewHeader": true
 }
