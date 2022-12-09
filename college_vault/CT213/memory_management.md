@@ -206,10 +206,11 @@ processes could occupy huge amounts of memory
 e.g., in a 32 bit os with pages of size 4kb
 - 12 bit offset
 - 20 bits for page number
-this means $2^20$ entries could be in each page table
+
+this means $2^{20}$ entries could be in each page table
 // each entry is then 4 bytes, each table is 4mb -> too high
 solution: a two-level scheme
-root page table with $2^10$ entries, constantly residing in main memory
+root page table with $2^{10}$ entries, constantly residing in main memory
 pointing to user page tables that can reside in main or on the disk
 ![[paged_address_translation_1.png]]
 the first 10 bits of a virtual address are used to find a pte of the user page table
@@ -217,8 +218,9 @@ next 10 bits find the pte of the page referenced by the virtual address
 ![[paged_address_translation_2.png]]
 however:
 every virtual memory reference causes two physical accesses
-- one to find the appropraite user page table
+- one to find the appropriate user page table
 - one to find the desired page
+
 this is slow
 to combat this, we use:
 

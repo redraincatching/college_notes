@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "918cf8b25114d771",
+        "id": "ae1677b737224d17",
         "type": "tabs",
         "children": [
           {
-            "id": "3057bd598272c2a1",
+            "id": "97cae726652c2775",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CT213/device_management.md",
+                "file": "CT213/scheduling.md",
                 "mode": "preview",
                 "source": true
               }
@@ -31,7 +31,6 @@
       {
         "id": "a31aff29b25095ba",
         "type": "tabs",
-        "dimension": 68.31683168316832,
         "children": [
           {
             "id": "9cf9332ef6b51898",
@@ -39,7 +38,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "ct213",
+                "query": "tag:#databases",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -62,12 +61,11 @@
         "currentTab": 1
       },
       {
-        "id": "5568f519f9971e03",
+        "id": "0be410efcdcbd8d9",
         "type": "tabs",
-        "dimension": 31.683168316831683,
         "children": [
           {
-            "id": "cd125ad056152b50",
+            "id": "0ae63ff4709400be",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -94,7 +92,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CT213/device_management.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -112,17 +109,17 @@
     "width": 264,
     "collapsed": true
   },
-  "active": "3057bd598272c2a1",
+  "active": "0ae63ff4709400be",
   "lastOpenFiles": [
+    "CT213/scheduling.md",
+    "CT213/programs_and_processes.md",
+    "CT213/system_software_and_os.md",
+    "CT213/programming_models.md",
+    "CT213/computer_systems.md",
+    "CT213/threads.md",
     "CT213/memory_management.md",
     "CT213/device_management.md",
-    "CT230/file_organisation.md",
-    "CT213/deadlocks.md",
-    "diagram.md",
-    "ct216.md",
     "CT213/concurrent_programming.md",
-    "CT213/scheduling.md",
-    "CT213/system_software_and_os.md",
-    "CT213/programming_models.md"
+    "CT213/deadlocks.md"
   ]
 }

@@ -25,6 +25,7 @@ convenient and quick access
 >some semantics for file systems
 > - tuple = record
 > - attribute = field
+>
 >*/
 
 ---
@@ -55,7 +56,7 @@ blocks also have header information
 
 #### blocking factor
 the average number of records that fit in a block
-given block size B, in bytes, and record size r, in bytesm then with B >= R, a block can contain floor(B/R) records
+given block size B, in bytes, and record size r, in bytes then with B >= R, a block can contain floor(B/R) records
 // accounting for the size of headers, of course
 
 ##### spanned vs. unspanned organisation
