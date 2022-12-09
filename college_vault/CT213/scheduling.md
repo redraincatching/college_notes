@@ -123,7 +123,7 @@ multilevel queue with feedback
 - in the extreme case, where the system has little idle time, the longest process will never run
 
 ###### sjf example
-[[sjf_example.png]]
+![[sjf_example.png]]
 
 ##### srtn
 - similar to sjf, but preemptive

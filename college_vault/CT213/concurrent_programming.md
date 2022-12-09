@@ -77,13 +77,16 @@ idea:
 - critical sections should run with mutual exclusion
 -> only one process can execute that code at one time
 
+> **critical section definition**
+> the segment of code that tries to access or modify the value of the variables in a shared resource
+
 what is the critical section in our previous example?
 ```c
 int withdraw(account, amount) {
 	int balance = account.balance;      <--
 	balance = balance - amount;             this whole section
 	account.balance = balance;          <--
-
+	
 	return balance;
 }
 ```

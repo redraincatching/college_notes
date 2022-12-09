@@ -45,6 +45,7 @@ a resource is divided into distinct units that can be accessed independently
 e.g. memory, storage
 - time multiplex sharing
 a process is allocated exclusive control of a non-space-divisible resource for a short period of time
+e.g. cpu executing time
 
 ---
 ##  os organisation

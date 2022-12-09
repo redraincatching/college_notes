@@ -12,6 +12,12 @@ occur when dealing with [[concurrent_programming|concurrent programming]]
 
 // if only three hold, you can get starvation, but not deadlock
 
+> **conditions for mutex**
+> - no two process accessing a critical section of the same resource at the same one
+> - no assumptions made as to the speed of unstable processes
+> - no interference from programs outside the critical section
+> - finite access
+
 resolving this, we try to resolve circular wait problems
 the others can actually make the code more efficient or be really hard to resolve, so we should leave them
 
