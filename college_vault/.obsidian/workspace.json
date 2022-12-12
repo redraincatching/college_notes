@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CT2106/variables_and_types.md",
-                "mode": "source",
+                "file": "CT213/device_management.md",
+                "mode": "preview",
                 "source": true
               }
             }
@@ -38,7 +38,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "multiplex",
+                "query": "ct213",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -92,7 +92,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CT2106/variables_and_types.md",
+                "file": "CT213/device_management.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,17 +110,17 @@
     "width": 264,
     "collapsed": true
   },
-  "active": "51db502dda5565f1",
+  "active": "3057bd598272c2a1",
   "lastOpenFiles": [
-    "CT2106/static fields.md",
-    "CT2106/interfaces.md",
-    "CT2106/polymorphism.md",
-    "CT2106/abstractions.md",
-    "CT2106/arrays.md",
-    "CT2106/inheritance.md",
-    "CT2106/java.lang.Object.md",
-    "CT2106/arraylists.md",
-    "CT2106/oop_modelling.md",
-    "CT2106/variables_and_types.md"
+    "CT213/memory_management.md",
+    "CT213/device_management.md",
+    "CT230/file_organisation.md",
+    "CT213/deadlocks.md",
+    "diagram.md",
+    "ct216.md",
+    "CT213/concurrent_programming.md",
+    "CT213/scheduling.md",
+    "CT213/system_software_and_os.md",
+    "CT213/programming_models.md"
   ]
 }
