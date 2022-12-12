@@ -22,7 +22,7 @@ object equality
                     if (obj instanceof Bicycle) {
                         Bicycle bike = (Bicycle) obj;   // casts the passed in object to bicycle
 
-                        if (/*copare fields*/) {
+                        if (/*compare fields*/) {
                             return true;
                         }
                     }
@@ -81,6 +81,6 @@ inheritance
         however, they can still be used as reference variables
 
             Bird bird = new Bird();                 // error, it's abstract 
-            Bird canary - new Canary("tweety");     // works fine
+            Bird canary = new Canary("tweety");     // works fine
 
         useful for seeing at a glance that the classes are related

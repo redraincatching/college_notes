@@ -3,7 +3,7 @@ array lists
     zero-indexed, thank fuck
     the ArrayList variable itself is referencing the ArrayList object, that's why we need to instantiate with one
     // note: must be imported if used at the top of the class
-    // import java.util.ArryList;
+    // import java.util.ArrayList;
 
     syntax 
         declaration
@@ -18,7 +18,7 @@ array lists
         returning indices
             using sample code
                 public Student get_student(int index) {
-                    if (group.get(index != null)) {         
+                    if (group.get(index) != null) {         
                             // note: can't use NULL, in java all primitives are lowercase
                         return group.get(index);
                     }
