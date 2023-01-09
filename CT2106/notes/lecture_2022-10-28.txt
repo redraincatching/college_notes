@@ -17,8 +17,7 @@ interfaces
     // we won't worry about that for now
 
     comparable interface
-        built in
-        compareTo() method
+        built in compareTo() method
             compares two objects
 
     any class that wants to implement an interface needs to use the keyword implements in the class declaration
