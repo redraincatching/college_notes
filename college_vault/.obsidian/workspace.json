@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "c072de5d5db5d201",
+        "id": "32cdad0980cd6d32",
         "type": "tabs",
         "children": [
           {
-            "id": "f9cfbdbf3715074c",
+            "id": "35b1ee72f5068e51",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CT213/device_management.md",
+                "file": "CT102/compression.md",
                 "mode": "preview",
                 "source": true
               }
@@ -38,7 +38,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "ct213",
+                "query": "tag:#computing_systems",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -92,7 +92,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CT213/device_management.md",
+                "file": "CT102/compression.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,17 +110,17 @@
     "width": 264,
     "collapsed": true
   },
-  "active": "3057bd598272c2a1",
+  "active": "51db502dda5565f1",
   "lastOpenFiles": [
-    "CT213/memory_management.md",
+    "CT1114/js_date_object.md",
     "CT213/device_management.md",
+    "CT213/memory_management.md",
     "CT230/file_organisation.md",
     "CT213/deadlocks.md",
     "diagram.md",
     "ct216.md",
     "CT213/concurrent_programming.md",
     "CT213/scheduling.md",
-    "CT213/system_software_and_os.md",
-    "CT213/programming_models.md"
+    "CT213/system_software_and_os.md"
   ]
 }

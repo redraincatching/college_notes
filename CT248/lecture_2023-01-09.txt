@@ -1,0 +1,46 @@
+matlab
+    high-level language
+    MATrix LABoratory
+    designed to make matrix computations particularly easy
+    used for 
+        - numerical computation
+        - data analysis
+        - algorithm development and programming
+        - application development and deployment
+
+    variables
+        loosely typed
+        only letters, digits, and underscores
+        must start with a letter
+        case sensitive
+        the semi-colon at the end is actually optional, but it prevents the value from being displayed
+        syntax
+            <name> = <value>;
+
+    the matlab workspace
+        all the variables created during a session remain in the workspace until you clear them
+        the command who lists all the names in the workspace
+        the commands whos also lists the size of them
+        the ide holds a visual representation of this
+
+        // note: the function ans returns the last value evaluated and not assigned to a variable
+
+    statements
+        frequently of the form <variable> = <expression>
+        statements that are too long for a line can be extended by an ellipsis of at least three dots
+
+    i/o
+        name = input ('enter your name: ', 's');
+        fprintf("your name is %s\n", name);
+
+        // can also use disp()
+
+    general process - IPO
+        input -> process -> output
+
+    repetition
+        for loop syntax example
+
+        for i = 1:5
+            disp(i)
+        end
