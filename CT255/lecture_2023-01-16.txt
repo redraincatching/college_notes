@@ -1,0 +1,13 @@
+animation with threads
+    allow for concurrent tasks within a process
+    essentially another execution branch that operates independently
+
+    implementation in java
+        class implements Runnable, and provides an implementation of public void run();
+        to create and start a new thread from the application class, use 
+            Thread t = new Thread(this);
+            t.start();
+
+game object classes
+    encapsulate data and code associated with a given object
+    typically stored in a data structure such as an array, in order to iterate through them all and invoke any animate() or paint() methods

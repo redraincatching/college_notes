@@ -1,0 +1,5 @@
+functions in matlab
+    functions are in their own source files
+    differs from script files in that they can only communicate with specified inputs and outputs
+    functions can also be passed as parameters to other functions - callbacks
+    

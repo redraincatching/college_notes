@@ -1,0 +1,58 @@
+pep - professional experience program
+    placement officer - annette dolan
+    academic officer - karl mason
+
+    jan - aug '24
+    2-page cv ideally: add projects rather than relevant work experience if not applicable
+
+    must attend all interviews selected for, and cannot reject an offer
+
+    rules:
+        - attend interview
+        - must accept placements
+        - business attire
+        - cannot throw an interview
+        - must interview even if haven't applied for that company
+    
+    if you want to get an external placement, must secure that before roughly the first week of semester
+
+    generally, an employer spends about 6 seconds reading a cv
+
+    no personal pronouns on cvs
+
+    to include
+        - personal details
+            _name_
+            address
+            email & number
+            github
+            who you are, what you do, what you have to offer
+            unique selling points
+        - education and qualifications (grades per subject)
+            reverse chronological order
+            BSc (Honours) in CS and IT, UG
+            expected overall grade year 3, list modules
+            go down through year 2 and 1, and a line on leaving cert
+        - projects and practical work
+            talk about them and position in team
+            list some assignments and maybe link
+        - skills profile with evidence & achievements
+            all experience is good experience
+            quantify
+            adjectives like leader, etc.
+        - interests/hobbies/other activities/memberships
+            sports
+        - work experience: actions and results
+        - referees (get permission)
+
+    careerset
+        chatgpt for cvs
+
+interviews
+    know your cv
+    research the organisation
+    network - find contacts in the organisation
+
+if you secure your own placement
+    employer placement registration detaoils form
+    (send out those slides)
