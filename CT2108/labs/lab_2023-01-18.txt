@@ -9,7 +9,7 @@ note: basically all raw data sent is encrypted
 
 command line network management utility
     ping
-        cused to measure latency between user and another location on the internet
+        used to measure latency between user and another location on the internet
         uses icmp (internet control and management protocol)
         // ping actually sends the alphabet as a body
     tracert

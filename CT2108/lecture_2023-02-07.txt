@@ -1,0 +1,60 @@
+MAC sublayer
+    medium access control
+    part of the datalink layer, along wiht the logical link layer
+
+    channel allocation
+        in a broadcast network, a key issue is handling competition
+        static channel allocation
+            fdm or tdm allocation, however there's some wasted spectrum as not all access is continuous, so multiplexing in this way is not ideal for a large amount of asynchronous users
+        dynamic channel allocation
+            most situations call for this
+
+            CSMA protocol - carrier-sense multiple access
+                the stations listen for a carrier, or a transmission, and react accordingly
+                networks based on this protocol can achieve pretty good channel utilisation
+                variations on this protocol
+                    - 1 persistent csma
+                    - non persistent csma
+                    - p persistent csma
+                    - csma cd (collision detection)
+
+                    1 persistent
+                        when a station has data to send, it listens to the channel
+                            if busy, wait
+                            else, transmit the frame
+                        collisions can occur, as two stations can listen to the same idle channel and decide to send at the same time
+                            > propagation delay - time between reading and sending
+                            if collision, wait a random amount of time and try again
+                        called 1 persistent because on finding an idle channel, sends with probability 1
+
+                    non persistent
+                        when a station has data to send, it listens to the channel
+                            if idle, send
+                            else, wait and try later
+                                -> stops the busy waiting and just sleeps for a random amount of time
+                        fewer collisions, however longer delays than 1 persistent
+
+                    p persistent
+                        applies to slotted channels
+                            > slotted channel: access is divided into fixed timeslots
+                        if channel is idle, checks against probabilities p and q
+                            with p it sends during this frame
+                            with q it delays transmitting until the next frame, at which point it checks againt p and q again
+                        this is repeated until
+                            1) data is sent
+                            2) channel is no longer idle
+                                -> stations waits random amount of time and tries again
+                        can still get collisions, however drops with the value of p
+
+                    [[diagram]]
+
+                    csma cd
+                        causes stations to immediately end transmission on detecting a collision, as the data will be garbled and unusable
+                            saves time and bandwidth
+                            basis for ethernet lan
+                        
+                        [[diagram]]
+                        can be in one of three states:
+                            - transmission
+                            - contention
+                            - idle

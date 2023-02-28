@@ -1,0 +1,9 @@
+handling keyboard events
+    in gui-based languages such as java (with awt) the mouse and keyboard are handled as events
+    queued as they happen and awt dispatches then to waiting listeners upon cpu freeing up
+
+    handling keyboard input
+        - class that implements keylistener
+        - instance of that class
+        - add this instance as a key listener attached to the jframe that receives messages from the os
+            // simplest way is to make the class that extends jframe handle the events itself

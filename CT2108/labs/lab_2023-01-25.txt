@@ -1,0 +1,48 @@
+notes:
+    arp
+        allows the computer to find the mac addresses of other devices on the network
+        at minimum needs the router
+        displays and modifies the ip-to-physical adress lookup tables used by the address resolution protocol (arp)
+        -a
+            displays current tables/the arp cache
+        -d
+            deletes a specified host, and may be wildcarded
+            forces the computer to run an arp lookup
+    ipconfig
+        shows ip configuration
+        // note: works on powershell but not git bash
+    netstat
+        -r
+            shows the routing tables
+
+questions from pdf:
+    1) arp request message
+        source is device asking - Source: IntelCor_bf:1b:ac (f8:59:71:bf:1b:ac)
+        destination for a broadcast is all - Destination: Broadcast (ff:ff:ff:ff:ff:ff)
+
+    2) ethernet frame type field
+        type: ARP (0x0806)
+    
+    3) ping
+        Source Address: 140.203.130.45
+        Destination Address: 104.18.143.17
+
+        no ports because icmp doesn't use real ports
+
+    4) examine ping
+        icmp type 8 (ping)
+        code: 0
+
+    5) ping reply
+        icmp type 0 (ping reply)
+        code: 0
+
+    6&7) DNS
+        sent over udp
+        query destination port: 53
+        source response also 53
+        ip: Destination Address: 172.16.7.141
+
+        usually type a queries
+
+    8) 
