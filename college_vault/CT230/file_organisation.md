@@ -132,7 +132,7 @@ criteria for hash function
 - should anticipate file growth, so that only a fraction of each block is initially filled
 
 #### issues
-hash collisions // TODO: link to [[ct216]]
+hash collisions, see [[social_engineering#hash function|hash functions]]
 a workaround for this is **linear probing**
 -> if i is a collision, and full, check i+1, i+2 until space found
 -> can degrade to a linear scan if load function is high

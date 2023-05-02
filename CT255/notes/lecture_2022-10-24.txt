@@ -1,0 +1,83 @@
+rainbow tables (cont'd)
+    uses long pre-computed chains of hash values using a hash and reduction function
+    each chain starts with a given password and has a fixed length, e.g. 10,000 segments
+    the reduction function converts the output hash into an arbitrary string of the same length as the original input
+    we only store the starting and end points of the chain
+
+        assume we have a table with just two chains (2chainz)
+        assume arbitrary start and end values
+            -start-                                                            -end-
+            aaaaaa  →173bdfede2ee3ab3 |→… → 8995tg |→9fdde3a0027fbb36 →… |→    k3rtol
+            hfk39f  →856385934954950  |→… → delphi |→759858fde66e8aa8 →… |→    prp56e
+        where → is a hash function and |→ is a reduction function
+
+        and a hash value 759858fde66e8aa8 that we'd like to crack
+
+        we apply → and |→ consecutively until we either hit a known end value, or the desired hash
+            if we hit the hash, we repeat that chain up until we find the password that led to that hash
+
+        [[diagram]]
+
+        chain lookup pseudocode
+            - input: hash value H
+            - reduce H to plaintext P
+            - look for plaintext P in list of final plaintexts -> break if so
+            - if not there, calculate hash of P
+            - goto 2, unless you've reacched the maximum amount of iterations
+            - if p matches a final plaintext, walk through chain with corresponding final plaintext until you find the original plaintext that correlates to H
+
+    chain collisions
+        when two passwords have the same hash value
+        in this case, two chains would merge from that point on
+            as a result, there is no guarantee that your chains will ever cover all possible passwords
+        rainbow tables solve this problem by using a series of related reduction functions r_1 through r_k rather than one single reduction functions
+            in this way, the two passwords must hit the same value on the same iteration, which is unlikely
+
+    [[diagram]]
+        // take notes on the example rainbow table case study
+
+    defenses against rainbow tables
+        - longer passwords
+            enforce a min length on the user
+        - salting
+            algorithmic approach
+            a unique and random, but known, string is appended to each password before it is hashed
+            a potentially short password is then extended
+        - peppering
+            like salting, however it is not stored, often is hardcoded into source code
+        - multiple iterations of hashing
+            H(H(H(H(..(H(p))..)))),  often >1000 times
+        - combination methods
+            new_hash(password) = H(H(password) || salt)
+            new_hash(password) = H_1(H_2(password) || salt), with hash functions H1 and H2
+        
+social engineering
+    [[diagram]]
+    the use of deception to manipulate individuals into divulging confidential or personal information that may be used for fraudulent purposes
+
+    phishing
+        involves sending malicious emails from supposed trusted sources to as many people as possible
+        spear phishing
+            user is disgised as a trusted individual
+        whaling
+            phishing targeting one specific high-level target, e.g. a CEO
+        
+        smishing
+            sms phishing, usually a link to a trojan
+        vishing
+            voip phishing
+            sir DO NOT REDEEM
+            - https://www.youtube.com/watch?v=BEHl2lAuWCk
+            - https://www.youtube.com/watch?v=PWVN3Rq4gzw
+        
+        pretexting
+            presenting oneself as someone else in order to obtain private information
+            it is more than just creating a lie, in some cases it can be creating a whole new identity to manipulate the receipt of information
+
+        quid pro quo
+            promises a service or benefit based on the execution of a certain action
+            "greetings, i am the crown prince of nigeria..."
+
+        watering hole
+            injecting malicious code into public web pages of a site that the target visits
+            typically the site is decided based on the specific group that the attacker wishes to target, e.g. blackboard for students

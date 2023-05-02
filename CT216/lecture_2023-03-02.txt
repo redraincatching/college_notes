@@ -1,0 +1,16 @@
+firebase auth
+    - firebase console and turn it on, basically
+    - left with an authentication provider
+
+firebase client libraries
+    provides us with client js librarires that we can use to create accounts, log in, etc
+    -> should already be installed in the node_modules folder
+    -> must be imported to use
+
+    a register method must also be defined
+
+    next step is to add the client libraries to the register webpage, and the event handler for registration
+
+    instructions and docs here: https://firebase.google.com/docs/auth/web/start
+
+    

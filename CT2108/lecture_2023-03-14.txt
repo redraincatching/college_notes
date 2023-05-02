@@ -1,0 +1,248 @@
+internet transport protocols
+    [[diagram]]
+    the big picture
+
+    icmp - internet control and messaging protocol
+    igmp - internet group messaging protocol, used for multicasting
+
+    udp - user datagram protocol
+        simple transport layer described in rfc 768
+        ip datagram with a short header
+        provides a way to send raw ip datagrams without having to establish a protocol
+            - application writes datagram to a udp socket, and it is encapsulated in an ipv4 or v6 packet (again, unreliable)
+        each datagram has a specified length, which is passed to the receiver on arrival at the final destination
+
+        [[diagram]]
+        udp header
+
+        udp segments consist of 8 byte headers followed by data
+        the source and data ports contain the start and endpoints
+        the checksum is the 1's complement sum of header and data.
+            -> optional, can also just be all 0s
+            
+        udp functions
+            does NOT
+                - flow control
+                - error control
+                - retransmission on receipt of bad segment
+            provides an interface to ip, and demultiplexes multiple processes using the ports
+            useful in client-server applications where req and rep are short
+                dns uses udp
+                    - dns is used to lookup host name: dns sends hostname in a udp packet to dns server, server replies with ip
+            used widely in real-time multimedia
+
+    tcp - transport control protocol
+        provides a reliable end to end byte stream over unreliable internetwork transmission
+        defined in rfc 793
+        each machine supporting tcp has a tcp transport entity (user process or part of the kernel) that manages tcp streams and interfaces with the ip layer
+            - accepts user data streams from local processes, breaks them into pieces, and sends each as a separate ip datagram
+            - at the receiving end, ip datagrams are passed to the transport entity, which reconstructs the original bytestream
+            - tcp controls timeouts, reassembling, and retransmission
+
+    tcp service model
+        provides a connection between clients and servers
+        both the client and server create endpoints, called sockets 
+            - each socket has an address, consisting of the host ip and the 16-bit port number
+                (port is a tcp tsap : transport service access point)
+            - a tcp service has to explicitly establish a connection between two endpoints
+            - a socket can be used for multiple data connections at once
+        tcp contains algorithms to estimate round-trip time between client and server to estimate timepouts dynamically
+        tcp provides flow control - tells its perr exactly how many bytes of data it will receive
+            concept of a "window"
+        port numbers below 1024 are reserved, and called "well-known" ports
+            - 21: ftp (file transfer protocol)
+            - 22: ssh (secure remote login)
+            - 23: telnet (insecure remote login)
+            - 25: smtp (email transport between servers)
+            - 69: tftp (trivial file transfer protocol)
+            - 80: http (www insecure)
+            - 443: tls (www secure, https)
+
+            some internet traffic uses port 80, mostly port 443, more and more app-layer QUIC over udp
+                -> QUIC is more efficient as it is less general
+
+        all tcp connections are full duplex and point-to-point (no broadcating or multicasting)  tcp is bytestream, not message-stream
+            udp preserves message boundaries, but tcp does not
+            [[diagram]]
+
+        when an application sends data to tcp, it can send immediately or buffer it
+            (applications can use the PUSH command to tell tcp not to delay transmission)
+        URGENT data can also be sent
+            causes immediate send and an interrupt on receipt
+        
+    tcp protocol overview
+        each byte has a 32-bit sequence number, used for various purposes
+            sequence number is common to every byte in a segment
+        sending and receiving tcp entities exchange data in segments
+            segments consist of a fixed 20-byte header, zero or more optional headers, and zero or more bytes of data
+        tcp software decides how large segments will be
+            two limits: 65535-byte ip payload and network mtu
+            in practice mtu is nearly always 1500 bytes or less (because of ethernet)
+
+        basic protocol is sliding window
+            - sender transmits segment and starts timer
+            - if segment arrives, receiver sends acknowledgement including the next sequence number it expects to receive
+            - if timeout, resend
+        problems:
+            - fragmentation along the way
+            - delays can cause duplicates
+            - may hit a congested or broken network
+
+    tcp segment headers
+        [[diagram]]
+        ports: specify endpoints
+        sequence number: associated with every byte sent
+            sequence number is outbound direction
+        acknowledgement number: specifies the next sequence number expected
+        tcp header length: specifies how long the headers are, in 32-bit words
+            normal value (no extra headers) is 5 32-bit words
+                -> technically indicates where the data starts in the segment
+        flags:
+            - ACK: 1 if valid ack, 0 otherwise, and the relevant fields are ignored
+            - PSH: pushed data
+            - RST: reset connection
+            - SYN: 
+
+    // TODO: finsh this, pseudoheader, and extra options
+
+    NAC - negative acknowledgement
+
+
+    tcp connection establishment
+        "three-way handshake"
+        [[diagram]]
+        a) normal case
+        b) collision case
+            -> two hosts are trying to establish a connection between the same two sockets
+            only one connection will be established here
+
+        [[diagram]]
+        1) server must be prepared to accept an incoming connection, normally done by a "passive open" -> calling socket, bind, and listen
+        2) client issues an "active open" by calling connect. causes the 
+
+    // TODO: honestly just do all of this up later, had to pay attention in class
+    // cool diagrams though
+
+    // note: neverssl.com
+    // lets you view unencrypted web traffic, basically
+    // tls is a successor to ssl
+
+    // TODO: all three of these too
+
+    tcp termination protocol
+        [[diagram]]
+
+    tcp state transition diagram
+        [[diagram]]
+
+    tcp transmission policy
+        [[diagram]]
+        - window management in tcp, starting with the client having a 4096 byte buffer
+            // note: really the mss is less than the mtu of ethernet
+        - when window size is 0, sender is blocked
+            two exceptions:
+            - urgent data (interrupts, kill, etc.)
+            - sender may send a 1-byte segment for a reannounce of the next byte expected and window size
+        - senders are not required to immediately send data as it is received from the application layer
+            // this allows for buffering
+        - similarly, acknowledgements are not required to be sent immediately
+
+    tcp performance issues
+        - consider a telnet session to an interactive editor that reacts to every keystroke
+            // telnet is unencrypted ssh
+            -> using the worst case scenario:
+                - when a character arrives at the sending tcp entity, tcp creates a 21 byte segment, which is given to ip to be sent as a 41 byte datagram
+                - at the receiving side, tcp immediately sends a 40 byte ack (20 byte tcp and 20 byte ip headers)
+                - later, at the receiving side, when the application has read the character, tcp sends a window update, bitshift one byte right, this packet is also 40 bytes
+                - finally, when the editor has interpreted the char, it is echoed back, 41 bytes
+            -> 162 bytes of bandwidth and 4 segments for each character typed
+
+        tcp optimisations
+            - one solution that manu tcp implementations use is to delay ack and window updates for at least 500ms
+                -> the idea is to acquire some data that will be bundled in the ack or update segment
+                -> resolves inefficiencies at the receiving, but not sending end
+
+            nagle's algorithm
+                operation
+                    - when data comes into the sender tcp one byte at a time, send the first byte as a single segment and buffer subsequent ones until first is ack
+                    - then send all the buffered characters in one tcp segment and buffer again until ack
+                    - the algorithm additionally allows a new segment to be sent if enough data has accumulated to fill half the window or a new max segment
+                
+                greatly reduces bandwidth use 
+                can also be turned off at the start of a tcp connection; useful for something like reducing erratic movement of mouse pointer for remote desktop use
+
+            [[diagram]]
+                silly window syndrome (clark, 1982)
+                    - data is passed in large blocks but read in smaller slices
+
+                clark's solution
+                    - prevent receiver from sending a window update for one byte
+                    -  instead have the receiver advertise a decent amount of space available, specifically, receiver should only send a window update if it can receive mss (defined at establishment of connection) or its receiving buffer is half empty, whichever is smaller
+                    - furthermore, sender can help by only sending larger segments, and only send when it has accumulated a full segment or half buffer, estimated by the size of window updates previously received
+
+            // clark's and nagle's are complementary
+            // can also be aided on the application side by blocking READ unless buffer is sufficiently full
+
+    tcp congestion control
+        tcp deals with congestion by dynamically altering window size
+        first step in managing congestion is detecting it
+        a timeout caused by a lost packet can be caused by
+            - noise
+            - packet discard at a congested router
+            - bad pathing
+        due to modern infrastructure, most timeouts are caused by congestion
+        all tcp algorithms assume timeouts are caused by congestion and monitor timeouts to detect it
+        
+        [[diagram]]
+        two types of problems:
+            - network capacity
+            - receiver capactiy
+        congestion results when the flow offered to a network is more than it can handle due to one or the other of these problems
+        both monitored separately
+            -> sender maintains two windows
+                - widow that the receiver has guaranteed
+                - the congestion window
+            both of the windows reflect the number of byts that can be transmitted, actual number is the lower of these two
+                - e.g. if receiver says "send 8k" and congestion window says more than 4k will congest the network, sender sends 4k
+
+        // note: window is just the size of the buffer, the receiver doesn't know how fast the connection is
+
+        /*
+            tcp congestion control has variations: tahoe, reno, vegas
+            variation used depends on os
+            e.g. mac uses tcp reno
+
+            tahoe: slow start + aimd + fast retransmission
+            reno: tahoe + fast recovery
+            vegas: entirely different, based on congestion detection _before_ packet loss
+
+            https://www.geeksforgeeks.org/tcp-tahoe-and-tcp-reno/
+        */
+
+        slow start algorithm
+            Jacobson, 1988
+            https://datatracker.ietf.org/doc/html/rfc5681
+            when a connection is established, the sender initialises the congestion window to the maximum segment size; then sends a maximum segment
+                - if segment is acknowledged in time, the congestion window is doubled, and sender sends two segments, which need to be acknowledged separately
+                - as each segment is acknowledged in time, the congestion window increases by one segment (effectively doubles with each burst)
+            congestion window grows until timeout or receiver window is reached
+            [[diagram]]
+            congestion algorithm also uses a third parameter, the threshold, initially 64k, in addition to the windows
+                when timeout occurs, threshold is set to half current segment size, and window is reset to one segment
+                    // tcp reno added just dropping to threshold, not one
+                each burst causes the congestion window to grow exponentially until it reaches the threshold, then it grows linearly from there until window size is reached
+                
+                // does that mean if congestion window max is less than receiver it'll constantly keep resetting?
+                    // yes.
+
+        // useful for testing downloads: thinkbroadband.com
+        // also useful in wireshark: analyse -> follow -> tcp stream
+        // can check sequence numbers too
+
+    tcp timer management
+        tcp uses multipletimers to do its work
+            most important is retransmission timer
+                - when a segment is sent, retransmission timer is started
+                - if the segment is ack before the timer expires, the timer is stopped
+                - if timer expires before ack, retransmit and restart timer
+    // TODO: finish this too, damn
