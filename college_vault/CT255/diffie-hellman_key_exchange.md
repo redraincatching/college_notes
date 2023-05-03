@@ -78,7 +78,7 @@ b:
 
 ### d-h example
 - let q = 5 and a = 3;
-- XA = 2, therefore YA = $a^{XA$} mod 5 = 4
+- XA = 2, therefore YA = $a^{XA}$ mod 5 = 4
 - XB = 3, therefore YB = $a^{XB}$ mod 5 = 2
 - user A: K = $(YB)^{XA}$ mod q = $2^2$ mod 5 = 4
 - user B: K = $(YA)^{XB}$ mod q = $4^3$ mod 5 = 4
