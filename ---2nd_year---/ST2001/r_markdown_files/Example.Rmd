@@ -1,0 +1,27 @@
+---
+title: "Example R-Markdown"
+author: "Carl Scarrott"
+date: "9/5/2021"
+output:
+  html_document:
+    df_print: paged
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Simple Example
+
+I have created a simple example dataset and calculated the sample mean. 
+```{r}
+somedata = c(10, 23, 14, 12, 34, 26, 28)
+mean(somedata)
+```
+
+Here is a boxplot of the data
+```{r, echo = FALSE}
+boxplot(somedata)
+```

@@ -1,2 +1,0 @@
-circular queues
-    aiming to eliminate the "shuffling" that comes as a result of arrays that aren't circular

@@ -1,0 +1,206 @@
+ip address shortages
+    ip v4 is running out of addresses
+        - class A is too big for most organisatoins
+        - class C is too small
+        - B is roughly right
+        // in reality, half of class B networks have less than 50 hosts
+
+    two solutions
+        - Classles InterDomain Routing (cidr)
+        - Network Address Translation (nat)
+
+        cidr
+            basic idea is to allocate the remaining ip addresses in variable-sized blocks, without regard to classes
+            if a site needs, say 2000 addresses, it is given a block of 2048 addresses on a 2048 byte boundary
+                -> this makes routing a lot more complicated
+
+            old routing algorithm
+                - incoming packet to the router
+                    with destination address, e.g. 140.203.8.22
+                - router extracts destination ip and shift a copy of it right 28 bits to obtain the 4-bit class number
+                    e.g. 1000
+                - have a 16-way branch that sorts them into the class
+                    8 cases for a, 4 for b, 2 for c, 1 each for d and e
+                - these branches then apply the correct network mask, and can use the class lookup tables to find out the correct outgoing physical line
+
+            cidr routing algorithm
+                // called cidr because i would like to drink while working on it
+                - each routing table is extended by a 32 bit mask
+                - now a single routing table for all addresses, consisting of (net ip address, subnet mask, outgoing line) triples
+                - when a packet comes in:
+                    - its destination address is first extracted
+                    - the routing table is scanned, entry by entry, to find a match
+                        // if multiple matches are found, the longest mask found is used
+                    - commercial vsli chipsets for routers use this algorithm
+
+                practical example
+                    addresses are available at 194.24.0.0
+                    suppose that:
+                        - cambridge needs 2048 addresses
+                            given 194.24.0.0 to 194.24.7.255
+                        - oxford asks for 4096
+                        - edinburgh wants 1024
+                        
+                        // nuig has a full /16
+
+                        // TODO: finish this
+
+
+            nat
+                comes into play whenever there is a greater demand than there are real available ips
+                used in private home networks - most home internet connections only have a single public ip address
+
+                nat rfc 3022
+                    basic idea is to assign a single ip address (or a small number of them) for internet traffic, withn that group assign every computer a unique ip, which is used for internal routing, however it gets translated to the public address for external routing
+                    three ranges of ip addresses have been declared private to make this possible - these can be used as private within any organisation, however these packets cannot appear on the internet itself
+
+                [diagram]
+                // most common of these to be used is 192.168, which is a /16
+                // can also have double nat-ing
+
+                [diagram]
+                // source port 5503, dest port 80
+                // connection tracking has timeouts built in for the network mapping, basically like caching it for extended use (like several requests to and from a webpage)
+
+                nat problems
+                    - violates the architecture of the ip model, which states that every host worldwide should be identified should be identifiable by a unique ip
+                    - changes the internet from a connectionless network to a connection-oriented one
+                    - violates the most elementary rule of protocol layering, due to the use of port changing in the translation, which states that layer k should not make any assumption of what layer k+1 puts in the payload
+                        -> this is the real issue
+                        -> ports are associated with the transport layer
+                    - can only work with tcp and udp protocols
+                    - some applications inset ip in the text (payload), the receiver will extract these and use them, this obfuscation stops nat from working
+                        -> e.g. ms messenger
+
+
+
+internet control protocols
+    icmp (internet control message protocol)
+        used to report something unexpected, each icmp message is encapsulated in an ip packet
+        not a message transfer, used for network control
+        [diagram]
+            - destination unreachable
+                used when the subnet or router can't find the destination, or when a packet with the DF flag set can't reach a destination because a "small packet" network is in the way
+            - time exceeded
+                sent when a packet is dropped due to ttl counter dropping to zero
+            - parameter problem
+                indicates that an illegal header value has been detected
+                indicates an ip software bug
+            - source quench
+                used to slow down transmission on congested networks
+                obsolete, congestion control now done by transport layer
+            - redirect
+                routing seems wrong
+            - echo and echo reply
+                ping
+            - timestamp request and reply
+                ping with timestamp, used for measuring network performance
+
+    arp (address resolution protocol) and rarp (reverse address resolution protocol)
+        arp
+            network layer protocoland is required to allow a sending station to gather address information, and form a layer 2 frame complete with source and destination MAC addresses
+            does not use an ip header, as it is sent directly over ethernet frames, and is broadcast over lan with its own packet format
+            the ethernet type field uses 0x0806 and 0x0835 to indicate arp address and response
+            if a station does not know its ip address, it can send out a rarp request, read by a rarp server with a table of hardware and ip addresses
+            most hosts on a network will send out a gratuitous arp when they're initialising their ip stack (or reesetting their arp cache), which is a request for their own ip, used to check for duplicates
+            rfc 826 describes arp in detail, and rfc 903 rarp
+
+            arp packet format
+                [diagram]
+                // TODO: finish
+            
+    rarp, bootp, and dhcp
+        given a datalink (e.g. ethernet) address, what is the corresponding net address?
+            rarp
+                is using a broadcast destination address of all 1s (no forwarding), so there must be a rarp server in the network to catch this
+            bootp
+                uses udp messages, so they will be forwarded over routers
+                specifically designed for diskless stations, so provides additional information, such as ip of the file server holding the os image, etc
+                requires manual configuration of mapping tables
+            dhcp
+                popularised by windows
+                special server that allows automatic and manual ip assignment
+                may require a dhcp relay agent on local networks, so the DISCOVER packet may be forwarded outside lan
+                rfc 2131 and 2132
+
+
+            dchp
+                happens every time a device connects to a network, to initialise its ip stack
+                DORA:
+                    Discover
+                        broadcast request for ip information
+                    Offer
+                        ip address, default gateway, dns server(s), possibly ntp server
+                    Request
+                        client accepts offer
+                    Acknowledge
+                        server acknowledges (ack)
+
+
+ipv6
+    // "happy eyeballs" algorithm
+    cidr and nat may buy a few more years for ipv4, but its days are numbered
+    in 1990, ietfbegan work on ipv6, with the following goals
+        - support billions of hosts
+        - reduce the size of the routing tables
+        - simplify protocols
+        - better security
+        - aid multicasting
+        - allow protocol expansion
+        - allow roaming with no address change
+        - double-stack: allow v4 and v6 to coexist
+
+    ipv6 features
+        header simplification (big one)
+            only 7 fields vs the 13 in v4
+        better support for options
+            the way options are represented is different, making it simple for routers to skip over options not intended for them -> speeds up processing
+        improved auth security
+
+    ipv6 header
+        [diagram]
+        version:
+            always 6 for v6, and 4 for v4
+        traffic class:
+            used to distinguish between packets with different realtime delivery requirements
+        flow label:
+            experimental field
+            allow a source and destination to set up a pseudoconnection with certain properties
+            i.e. a stream of packets from a certain source may have stringent delay requirements, and thus need reserved bandwidth
+            ignored on the internet, but possibly useful in specific connections
+        payload length:
+            size in bytes of payload
+        next header:
+            optional extra headers for the packet, this tells which (if any) of the extensions will follow it, if it is the last, it specifies what transport protocol handler to send the packet to
+        hop limit:
+            old ttl fixed to hop limit
+        source and dest address:
+            use the new hex colon notation, e.g. 8000:0000:0000:0000:0123:4567:89AB:CDEF
+            eight groups of four
+
+    ipv4 vs ipv6
+        protocol field removed
+            next header dield takes on this duty
+        fragmentation field removed
+            can fragment on source host, and v6 routers are expected to resize datagrams dynamically
+            minimum size raised to 1280, allowing for 1024 bys + headers
+        checksum field removed
+            wasteful calculation, plus transport layers have their own checksums
+
+    ipv6 headers
+        [diagram]
+        [diagram]
+
+        hop by hop extension header
+            // TODO: finish this
+
+        ipv6 address types
+            [diagram]
+            ipv6 address can be written as 
+                2001:0DB8:AC10:FE01::   // :: means all remaining chars are 0
+                                        // :0: is the same as :0000:
+        
+
+
+    // given at minimum 2^64 addresses of ipv6, that's the smallest routable chunk
+    // nslookup -query=aaaa $hostname to chekc if a website has one

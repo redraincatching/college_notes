@@ -1,0 +1,13 @@
+linked lists
+    linear linked list
+        an adt which stores an arbitrary-length list of data objects as a series of nodes
+        each node consistes of data and a link to another node
+        each node, except the last, links to a successor node
+
+        self-referential structure type
+            every node has a pointer to a node of the same size
+        no issue of overflow
+        useful for dynamically growing or shrinking lists
+        easy to add/remove items from the middle of the list
+        sequential access
+            inefficient for retrieving arbitrary nodes

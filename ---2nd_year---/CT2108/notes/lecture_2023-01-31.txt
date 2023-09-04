@@ -1,0 +1,89 @@
+digital subscriber lines
+    [[diagram]]
+    dsl - opening the phoneline bandwidth above 25 kHz to about 1100 kHz, in 256 4-kHz channels
+        // prior to this, it was limited to 0-4 kHz, just for voice
+        // the channels were exactly 4312.5 kHz
+    DMT - discrete multi tone - modulation was used 
+
+    phone lines are full multiplex, and so the channels were divided between upstream and downstream usage, usually about a 20/80 split, as traffic has a downstream bias
+
+    vdsl vs. dsl
+        went from about 1.1 MHz to about 17 MHz, however the usable distance was cut from over a kilometer to a few hundred metres
+        [[diagram]]
+        just used more channels
+        similar to wifi, uses the phoneline as best it can
+
+        standard connector in ireland is an rj11 cable
+
+        fibre to the cabinet (fttc)
+            fibre connection to a cabinet on the street, essentially, and vdsl from there
+            [[diagram]]
+
+        fibre to the home (ftth)
+            mainly use GPON (gigabit passive optical network)
+            a single fibre is shared in a typical 64:1 split
+                // gpon is 1 gb raw, other variations include the 10 gb xgpon
+
+trunks and data multiplexing
+    fdm - frequency division multiplexing
+        multiplexing by division of wavelengths
+    tdm - time division multiplexing
+        timeslice multiplexing
+
+    fdm
+        [[diagram]]
+        // analog voice telephony is about3 kHz in width
+        the principle fm radio is based on, from about 88 to 108 mHz
+
+        wavelength division multiplexing - a variation on this
+            [[diagram]]
+            the same principle for fibre optics
+            // here the combiner and splitter aren't really electronic components, rather precision-engineered optical components
+
+    tdm
+        [[diagram]]
+        a snippet of the analog signal is sent within a channel of 8 bits (7 data and 1 signal bits) over a 193bit data frame
+        this frame takes 125 microseconds to pass
+        // this is a T1 frame, in europe we use E1
+
+        [[diagram]]
+        the analog signal is first recorded, and encoded into a digital form by sampling it to a certain degree of accuracy (the quantization level)
+            based on the idea that all analog signals are happening very slowly relative to the sampling speed
+        slight loss of fidelity due to this
+
+        [[diagram]]
+        these frame can also be multiplexed into higher-index signals
+
+        voip
+            e.g. deskphones in an office
+            in ireland we use G.711a codec (coder-decoder)
+                // also known as pulse code modulation
+                // one of the consequences of nyquist's theorem is that to reproduce an analog signal with a max spectral component of f, you must sample at a minimum rate of 2f
+                    -> nyquist sampling rate
+
+                // landlines have a value of 4kHz, and a sampling rate of 8 kHz
+                // pcm uses 8 bit samples, 2^8
+
+
+        /*
+            2.4 GHz wifi
+                has 11 bands, and the bands 1, 6, and 11 (the smallest) don't overlap
+                however, all the other bands receiver interference from bluetooth and other devices
+            5 GHz wifi
+                smaller range, however far less interference, over 400 MHz, with at least 20 non-overlapping channels
+        */
+
+cable tv
+    [[diagram]]
+    // coax is actually better for this than fibre
+
+    internet over cable
+        [[diagram]]
+            quicker than vdsl, and the bandwidth is ridiculously massive
+            when it comes to fibre, there's no interference, as there is no noise source
+        [[diagram]]
+
+    spectrum allocation
+        only about 200 MHz is used for downstream data, and about 40 for upstream, as the majority of the spectrum is given over to tv
+
+    cable modems

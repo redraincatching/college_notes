@@ -1,8 +1,0 @@
-cybersecurity - cisco definition
-    cybersecurity is the practice of protecting systems, networks, and programs from digital attacks. these cyberattacks are usually aimed at accessing, changing, or destroying sensitive information; extorting money from users; or interrupting normal business processes
-
-"don't get caught"
-    - dr. michael schukat, 2022
-
-social engineering - definition
-    social engineering is the term used for a broad range of malicious activities accomplished through human interactions. it uses psychological manipulation to trick users into making security mistakes or giving away sensitive information

@@ -1,0 +1,206 @@
+// note: mutex = mutual exclusion
+
+spinlock drawbacks
+    - if a process holds a lock, and is removed from the cpu, any other process waiting for that lock will just "spin" and waste cpu time until the first process returns to finifh
+    - a form of busy waiting (burns cpu time)
+    - inefficient if held for a long time, espacially with the overhead of context switching
+
+do locks give us sufficient safety?
+    check safety properties - these must always be true
+        - mutual exclusion: only one process can access a resource at a time
+        - absence of deadlock: when a non-terminating system cannot respond to any signal
+    check liveliness properties - these must eventually be true
+        - absence of starvation: information sent is delivered
+        - fairness: any contention must be resolved
+
+    if any of these can be proven to be false, the system does not work
+
+    lock deadlock scenario
+        [[diagram]]     // last week diagrams went up late, go back and check them
+        - spinlocks are prone to deadlocks
+
+    protocols to avoid deadlocks
+        - add a timer to the acquire() method
+            cancel job and attempt it another time
+        - add a lock.check() method to see if the lock is already held before requesting it
+            can do something else and come back again
+        - avoid hold and wait protocol
+            never hold on to one resource when you need two
+        
+        // ...these can all lead to their own problems
+
+    livelock due to trying to avoid deadlock
+        [[diagram]]
+    
+    starvation
+        more general form of livelock
+        1 process generates a disproportionate amount of hardware requests as it holds a lock for a disproportionate amount of time
+
+locks, critical sections, and reliability
+    - what if a program is interrupted or crashes in a critical section?
+    
+    developers must make sure critical sections are small always terminate
+
+mad max - beyond locks
+    locks only provide mutual exclusion
+    we need higher level locking mechanisms for this
+
+higher level locking mechanisms: semaphores
+    producer-consumer relationship
+        producer: creates a resource (data)
+        consumer: uses a resource
+
+        e.g.    
+            ps | grep "gcc" | wc
+
+    don't want producers and consumers working in lockstep (atomicity)
+    this would require lots of time wasted from context switching
+
+    solution:
+        place a fixed-size buffer between producers and consumers
+        synchronise access to buffer
+        producer waits if full, consumer waits if empty
+
+    
+    semaphores
+        invented by djikstra in 1965 as part of the os project
+        semaphores are a kind of generalised lock
+            the main synchronisation primitive used in the original unix
+        implemented with a counter that is manipulated atomically with signal() and wait()
+
+            wait(semaphore)
+                - a.k.a. down(), or P()
+                decrement counter
+                if counter is zero, then block until semaphore is signalled
+
+            signal(semaphore)
+                - a.k.a. up() or V()
+                increment counter
+                wake one waiter, if any
+
+            sem_init(semaphore, value)
+                set initial counter value
+
+
+            // wait and signal are critical sections, and must be executed atomically
+
+        
+        each semaphore has an associated queue of processes 
+            // these processes are not spinning, which frees up the cpu
+
+        pseudocode
+            struct semaphore {
+                int value;      // number of processes allowed to run
+                queue L;        // list of waiters
+            }
+
+
+            // finish later
+
+        semaphore initialisation
+            // to 1?
+            // to 2?
+
+        uses of semaphores
+            - allocating a number of resouces
+                shared buffers, each time you want to access a buffer call wait()
+                    queued if no buffer available
+
+            - counter initialised to n = number of resources
+                called a counting semaphore
+                useful for conditional synchronisation
+
+        semaphores for mutual exclusion
+            trivial to implement
+            
+                semaphore mutex = 1;
+                
+                void process(int i) {
+                    while (1) {
+                        // non critical section bit
+                        wait(mutex) // grab the mutual exclusion semaphore
+                        // do the critical section bit
+                        signal(mutex) //grab the mutual exclusion semaphore
+                    }
+                }
+                
+                int main() {
+                    cobegin {
+                        process(1); process(2);
+                    }
+                }
+
+
+        bounded buffer problem
+            producer-consumer problem
+                - buffer in memory, with finite size of n entries
+            a producer inserts entries, a consumer removes them
+
+            processes are concurrent 
+                we must use a synchronisation mechanism to control access to shared resources
+
+            producer-consumer single buffer
+                [[diagram]]
+
+        semaphores can be hard to use
+            complex patterns of resource usage
+                - cannot capture relationships, require extra variables for this
+            doesn't solve a crashing problem, V() has to be called to release
+
+    monitors
+        // do later
+
+deadlocks
+    detection and prevention of deadlock
+        requirements of deadlock
+        // all 4 must hold for deadlock
+            - mutex: at least one held resource must be non-shareable
+            - no pre-emption: no way to break priority or remove resource once allocated
+            - hold and wait: there exists a process holding one resource and waiting for another
+            - circular wait: there exists a set of processes p_1, p_2, ..., p_n such that p_1 is waiting for p_2, p_2 is waiting for p_3, and so on
+
+        // if only three hold, you can get starvation, but not deadlock
+
+        resolving this, we try to resolve circular wait problems
+            the others can actually make the code more efficient or be really hard to resolve, so we should leave them
+
+            one approach is to have an order for requiring locks
+
+
+        deadlocks without locks
+            deadlocks can occur for any resource, or any time a process waits
+
+        dealing with deadlocks
+            ignore:
+                just do nothing, reboot if it happens
+                embarassingly common
+            reactive:
+                periodically check for deadlock
+                bluescreen/terminate a low-priority process if it happens
+                // may corrupt data, so a cleanup must be performed afterwrds
+
+            proactive:
+                strategy 1: no mutex
+                    make everything shareable
+                    viable for read-only files
+                    not for much else
+
+                strategy 2: avoid hold and wait
+                    1) only request resources when you have none
+                        release x if you want y
+                        works in some cases, hard to maintain a relationship for x and y
+                    2) acquire resources at once
+                        z locks both x and y
+                        low concurrency with this approach, as more is locked than necessary
+                    
+                strategy 3: add pre-emption
+                    allow preemption of resources
+                    problems:
+                        only viable for some resources, e.g. virtual memory
+                        not possible if a resource cannot be saved and restored
+                        overhead cost of preempt and restore
+
+                strategy 4: eliminate circular wait
+                    impose an ordering on resources
+                    -> processes must acquire the highest ranked first
+                    

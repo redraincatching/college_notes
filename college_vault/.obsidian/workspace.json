@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "rust/source_files/fibbonacci.md",
+                "file": "rust/common_programming_concepts.md",
                 "mode": "source",
                 "source": true
               }
@@ -32,7 +32,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "rust/source_files/fibbonacci.md",
+                "file": "rust/common_programming_concepts.md",
                 "mode": "preview",
                 "source": true
               }
@@ -77,6 +77,14 @@
                 "sortOrder": "byCreatedTimeReverse"
               }
             }
+          },
+          {
+            "id": "f3493a1e3f054158",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ],
         "currentTab": 1
@@ -114,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "rust/source_files/fibbonacci.md",
+                "file": "rust/common_programming_concepts.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -143,9 +151,9 @@
   },
   "active": "5935d74946dd9ea9",
   "lastOpenFiles": [
+    "rust/source_files/fibbonacci.md",
     "rust/common_programming_concepts.md",
     "rust/basics.md",
-    "rust/source_files/fibbonacci.md",
     "rust/source_files/guessing_game.md",
     "rust/source_files",
     "CT255/social_engineering.md",

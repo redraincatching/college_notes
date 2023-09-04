@@ -179,6 +179,7 @@ sidenote; this function is adorable
 ---
 ## comments
 // single line comments
+/\* block comments\*/
 
 ---
 
@@ -268,7 +269,6 @@ for element in a {
 }
 ```
 
-            
 example use of a for loop to iterate a certain amount of times
 ```rust
 for e in (1..4).rev() {

@@ -1,0 +1,32 @@
+p, np, and np-complete problems
+    p problems
+        there is a deterministic algorithm that solves it in polynomial time
+        in other words, the complexity is O(p(n)) where p(n) is a polynomial function
+
+        these problems are "tractable"
+        
+        examples:
+            search an array of integers for a given value
+
+    np problems
+        nondeterministic polynomial
+            -> nondeterministic algorithms have two repeating steps
+                - generate a solution, either systematically or randomly
+                - check if it is correct
+
+        if verification algorithm is polynomial in complexity, it is np
+
+        examples:
+            subset sum problem
+                given a set of integers, does some nonempty subset of them sum to 0
+                e.g. does a subset of the set {−2, −3, 15, 14, 7, −10} add up to 0?
+                there is no polynomial algorithm to solve this problem
+                however, verification of a potential solution is polynomial,
+                in fact O(n) (just add up the numbers in the potential solution)
+            factoring large integers
+
+    // note: p is a subset of np
+
+    np complete
+        "as hard as all others in NP"
+        algorithms that are comparable to others in NP but not reducible to P

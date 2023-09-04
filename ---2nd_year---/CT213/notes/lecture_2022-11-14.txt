@@ -1,0 +1,211 @@
+segmented memory (cont.)
+    segmented virtual addresses
+        the segment is the unit of protection and sharing
+        2 ways to organise these
+            - virtual address space is split into a segment number and a byte number within that segment, usually fixed by system designer
+            [[diagram]]
+            - the segment number is supplied separated from the offset portion of the address
+                // done in x86 processors
+
+    segmented address translation
+        [[diagram]]
+        for dynamic address translation in the os
+            hardware must keep a segment table for each process in which the location of each segment is recorded
+        a process can have many segments, and only those being currently used for instruction fetch and operand access need to be in main memory
+        if an address is presented for a segment that is not present in main memory, then the address translating hardware generates an addressng exception
+            // handled by the os
+        
+        address translation in segmentation system
+            [[diagram]]
+
+    paged virtual memory
+        aims to resolve fragmentation and storage allocation issues
+
+        typical page size is small
+            1-4kb
+        the limited size of physical memory may cause problems
+        therefore
+            a portion of disk storage can be used as an extension (swap space)
+            the pages of a process may be in ram or in this backing storage
+        the os must manage two levels of storage and the transfer between them
+        it must keep a page table to record information for each process
+            present bit - whether page is in ram or not
+            modify bit - if page has been altered since last loaded
+                // if false, does not need to be written to disk when swapped out
+    
+
+        segmented memory
+            segments are swapped between disc and main memory as needed
+            program segments correspond to blocks of program code such as procedures and functions
+            data segments correspond to data structures such as stacks, queues, or graphs
+            segments vary in size
+            the os knows the start location and size of each segment in physical memory
+            each segment is atomic - it is either all in ram, or not in ram at all
+            segmentation can result in memory fragmentation
+                - a lot of small gaps between segments
+            segments can be "pushed together" to allow large processes to be loaded
+
+        paged memory
+            memory split up into small, equally sized sections called pages, or page frames
+            a single aplication may occupy multiple pages, which are not necessarily contiguous
+            each application has its own view of memory - logical memory - in which it is the only process loaded
+            a logical lookup table - the page table - records the actual locations of the pages in physical memory
+            unused pages may be "paged out" to virtual memory - to the swap file - and paged back in when needed
+            disk threshing - when too much paging activity is taking place, slowing down execution
+
+        
+    paging example
+        [[diagram]]
+            A has four pages
+            B has three
+            C has four
+            D has five
+        [[diagram]]
+            various page tables at a time
+            each page table entry (pte) contains the number of the frame in memory that holds the page
+            in addition, all free spaces are usually listed
+        [[diagram]]
+
+    paged address translation
+        [[diagram]]
+            translation of virtual address (page + offset) into physical address (frame + offset)
+            page table is stored in main memory
+                each process maintains a pointer to the table
+            the page number is used to index that table and lookup the corresponding frame number
+
+        processes could occupy huge amounts of memory
+            e.g., in a 32 bit os with pages of size 4kb
+                - 12 bit offset
+                - 20 bits for page number
+            this means 2^20 entries could be in each page table
+                // each entry is then 4 bytes, each table is 4mb -> too high
+            solution: a two-level scheme
+                root page table with 2^10 entries, constantly residing in main memory
+                pointing to user page tables that can reside in main or on the disk
+                [[diagram]]
+        the first 10 bits of a virtual address are used to find a pte of the user page table
+        next 10 bits find the pte of the page referenced by the virtual address
+        [[diagram]]
+        however:
+            every virtual memory reference causes two physical accesses
+                - one to find the appropraite user page table
+                - one to find the desired page
+            this is slow
+            to combat this, we use:
+
+            TLB - translation lookaside buffer
+                [[diagram]]
+                a kind of high speed cache
+                contains the most recently used pages
+                present nearly every time paged memory is used
+
+                the virtual page number is extracted from the virtual address and lookup is initiated
+                if multiple processes are being run, then special care needs to be taken so the wrong process' pages are not extracted from cache
+
+                if a match is found (tlb hit)
+                    the physical base page is appended to the offset to form the complete physical address
+                    the flags field indicates access rights and other information
+                if a page is in main memory but not tlb (tlb miss)
+                    a new entry in tlb is created for the page
+                if page is not in the main memory
+                    the lookup will fail, and the hardware will raise an exception - a page fault
+                    the os handles this
+
+
+device management
+    the process of managing the implementation, operation, and maintenance of physical or virtual devices
+    a broad term
+    the other main function is to implement application programming interfaces
+        apis
+
+    the os manages devices with the help of 
+        - device controllers:
+            hardware components that contain some buffer registers to store the data temporarily
+            e.g. disk controller
+        - device drivers:
+            programs used by the os to control devices
+
+    the device controller includes three diffferent registers
+        - command
+        - status
+        - data
+
+        [[diagram]]
+
+    each controller is specific to each device
+
+    methods to detect device input
+        polling
+            - implementation
+                periodically checking status of the device to see if it is time for the next i/o operation
+                i/o device simply puts the information in the status register, the process must retrieve it
+            - efficiency
+                simplest implementation
+                not efficient, wastes cpu time
+        
+        interrupt-driven
+            - implementation
+                a device sends an interrupt signal when it needs cpu attention
+                the cpu saves its current state, and invokes the proper interrupt handler using the interrupt vector
+                then, the cpu continues its original task as if it had never been interrupted
+            - efficiency
+                allows the cpu to handle input at any time
+                removes need for cpu to waste time checking for input
+
+        direct i/o
+            - implementation
+                uses software which explicitly transfers data to and from the controller's data registers
+                    separate i/o and memory address space
+                    control indicates whether address information is for memory or i/o
+                [[diagram]]
+            - efficiency
+                reduced cpu utilisation
+
+        memory-mapped i/o
+            - implementation
+                direct connection between i/o device and certain main memroy locations so the the i/o device can transfer a block of data without going through the cpu
+                the os allocates a buffer in memory to the i/o device to send data to the cpu
+                the i/o device operates asynchronously from the cpu, and interrupts it when finished
+            - efficiency
+                ideal for communication and other high-speed i/o devices
+                useful for long operations like network communicaton or transferring data to/from storage
+
+    design objectives
+        - efficiency
+            most i/o devices are extrememly slow compared to the processor and main memory
+            - buffering is one way to deal with this issue
+        - generality
+            it is desirable to handle all devices in a consistent and uniform manner
+            - in the way user processes see the devices
+            - in the way the os manages the i/o devices and operations
+
+        buffering
+            a technique the os can employ by which the device manager can keep slower i/o devices busy when the process does not require i/o operations
+                - input buffering:
+                    having the input device read information into the primary memory before the process requests it
+                - output buffering:
+                    saving the information to memory, and writing to the device while the process continues execution
+
+            hardware-level buffering
+                consider a simple character device controller that reads a single byte from a router for each input operation
+                    nomal operation:
+                        - read occurs
+                        - the driver passes a read command to the controller
+                        - the controller instructs the device to put the next character into the one-byte data controller's register
+                        - the process calling for the byte waits for the operation to complete, then retrieves the character from the data register
+
+                    buffered operation
+                        - the next character to be read by the process has already been placed into the data register, even though the process has not yet called for the read operation
+                        - adding a hardware buffer decreases the amount of time the process has to wait
+                            [[diagram]]
+
+            driver-level buffering
+                generally called double-buffering
+                    one for the driver to store data while waiting for the higher levels to read it
+                    one to store data for the lower-level module
+                        [[diagram]]
+
+            using multiple buffers
+                the number of buffers is extended from two to n
+                the data producer is writing into buffer i while the data consumer is reading from buffer j
+                // finish and diagram

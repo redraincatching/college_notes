@@ -1,0 +1,51 @@
+passwords and hash functions
+    a verifier needs to authenticate a claimant's password, two ways to do this
+        - store the claimant's password
+        - store a token derived from the password
+
+    linux password storage
+        structure of the /etc/passwd file:
+            example:
+                oracle:x:1021:1020:Oracle user:/data/network/oracle:/bin/bash
+            structure:
+                username:password(x means encrypted and stored in /etc/shadow):user_id:group_id:description:home_directory:command_path
+
+        structure of /etc/shadow
+            example:
+                // TODO: finish later
+
+    hash function
+        a one-way function which produces a fixed-size hash code based on a variable-size input message
+        the function is public
+        conventional checksums are not suitable (see hash function requirements)
+        128-512 bit hash values are regarded as suitable
+
+        putting it together
+        2 methods:
+            1) server-side hash
+                - user enters password
+                - password sent to server
+                - password hashed and checked against stored hash
+            2) client-side hash
+                - user enters password, which is hashed before sending over network auth protocol
+                - server checks against stored hash
+
+    requirements for hash functions
+        one-way property
+            for a given hash code h it is infeasible to find x such that H(x) = h
+        weak collision resistance
+            for a given password x it is infeasibile to find another password y such that H(x) = H(y)
+        strong collision resistance
+            it is computationally infeasible to find a pair of passwords (x,y) such that H(x) = H(y)
+
+
+        birthday paradox
+            what is the minimum value k such that the probability of two people in a group of size k have the same birthday?
+                unintuitively, k = 23
+
+        birthday paradox attack
+            the attack is used in the context of creating hash values for documents, used as an authenticator
+                - the document is stored as plaintext
+                - its authenticator, an m-bit hash value is safely stored elsewhere
+                - whenever the document is retrieved, its 
+                // TODO: finish later

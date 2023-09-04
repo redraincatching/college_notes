@@ -1,0 +1,37 @@
+summarising continuous data
+    numerical data properties
+        - central tendency
+            mean, median, mode
+
+            numerical summary of typical value
+                [[diagram]]
+                // note: another notation for sample median is q_2
+
+        - variation
+            range, variance, iqr, standard deviation
+
+            numerical summary of spread
+                range = max - min
+                    -> badly affected by outliers
+                iqr - tukey method
+                    q_0 is min
+                    q_1 is median of bottom 50%
+                    q_2 is median
+                    q_3 is median of top 50%
+                    q_4 is max
+
+                    iqr is q_3 - q_1
+                        -> above and below the median if n is even
+                        -> include median in both if odd
+
+                [[diagram]]
+                    - common measure of spread is the standard deviation
+                        -> distance of each datapoint from the mean
+                    - since the sum of all deviations is zero, we square them and find an average (sorta) of them, called the variance
+                    - we then root the average squared deviation
+
+                    //note: since we use the sample mean, we have to subtract one from n
+                    // the standard deviation is senstitive to outliers, and is in the sampel unit as the population
+
+        - shape
+            outliers, symmetry vs. skewness

@@ -1,0 +1,16 @@
+dynamic programming
+    solve a complex problem by breaking it into simpler sub-problems
+    when the solution to a subproblem is found, store it for reuse rather than having to recompute it
+    particularly useful when the number of repeating sub-problems grow exponentially with problem size
+
+    in general, this takes problems that appear exponential, and produce polynomial-time algorithms for them
+        tradeoff in storage for speed
+
+    towers of hanoi
+
+    knapsack problem
+        a one-dimensional constraint knapsack problem ->  
+            [[diagram]]
+            which boxes should be chosen to maximise the amount of money while keeping the overall weight <= 15 kg?
+
+        

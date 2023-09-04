@@ -1,0 +1,26 @@
+abstract data type (adt)
+    an abstract model of a data structure that specifies
+        - data stored
+        - operations that may be performed
+    specifies what each operation does, but not how
+        basically a black box tht hides the inner structure and operation of the data type
+        corresponds naturally to an interface definition
+        realised as a concrete data structure with an implementation of a class
+
+    composite adt
+        used to manage collections of data (hash tables, arrays, lists, ...)
+
+    stacks and queues - linearly ordered adts for list-structured data
+        stack
+            filo architecture
+            push and pop to add and remove
+            example applications
+                - processing nested structures
+                - undo operation in editor
+
+        queue
+            fifo architecture
+            enqueue and dequeue to add and remove
+            example applications
+                - process scheduler in an os
+                - ichec jobs

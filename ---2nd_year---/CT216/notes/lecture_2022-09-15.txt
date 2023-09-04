@@ -1,0 +1,17 @@
+ the software process
+    a structured set of activities required to develop a software system
+    four fundamental activities
+        - specification
+        - development
+        - validation
+        - evolution
+
+    1) understand the problem
+    2) plan the solution
+    3) carry out the plan
+    4) test the end result
+
+    3 generic phases
+        - definition, _what?_
+        - development, _how?_
+        - maintenance, _change_

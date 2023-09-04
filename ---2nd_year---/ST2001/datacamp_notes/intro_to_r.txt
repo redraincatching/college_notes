@@ -1,0 +1,87 @@
+r-specific syntax
+    %% - modulo
+    # - comment
+    * - multiplication
+    %*% - matrix multiplication
+    [var] <- [val]
+        assigning values to variables
+        e.g. foo <- 4
+    ---> vectors are not zero-indexed <---
+    [2]
+        element in vector
+    [c(2, 4)]
+        elements 2 and 4
+    [2:4]
+        elements 2 to 4
+    [1,]
+        all elements first row
+    [,5]
+        all elements fifth column
+    logical comparators
+        perform comparisons on all elements in an array, returns a boolean array
+        using a boolean array as a selector returns all true
+    <dataframe>$<variable_name>
+        selects that variable from the dataframe
+
+data types in r
+    numerics
+        numbers. integers are a specific subtype of numeric
+    logicals
+        booleans
+        note: declared in all caps
+    characters
+        text, strings, chars
+
+functions
+    class()
+        returns class of bracketed variable
+    c()
+        combine function
+        creates an n-dimensional vector, where n is the number of arguments given
+        e.g.
+            foo <- c(1, 2, 3, 4, 5)
+    name()
+        used with the combine function
+        assigns a "name" to every element in the vector
+        note: elements can be selected by name
+        e.g.
+            foo <- c(1, 2, 3, 4, 5)
+            names(foo) <- c("mon", "tue", "wed", "thu", "fri")
+
+            # printed output of foo
+            mon     tue     wed     thu     fri
+            1       2       3       4       5
+    sum()
+        sums values in vector
+    colSums()
+        sums values of columns in matrix
+    rowSums()
+        sums values of rows in matrix
+    mean()
+        finds mean of values provided
+    factor()
+        converts a vector to factors
+    levels()
+        assigns the levels of factors (note: can be ordered)
+    summary()
+        returns a summary of a variable
+
+matrices
+    constructed using the matrix() function
+    takes three arguments
+        values
+            given in the form of a vector, e.g. 1:9 or c(1, 2, 3)
+        byrow
+            boolean, if true fills by row, if false fills by column
+        nrow
+            int, number of rows
+        e.g.
+            matrix(1:8, byrow = TRUE, nrow = 4)
+    can name rows using rownames(), and columns with colnames()
+        e.g.
+            colnames(name_of_matrix) <- name_of_vector
+
+    cbind()
+        merges matrices by column
+    rbind()
+        merges matrices by row

@@ -1,7 +1,0 @@
-boxplot
-    graphical display showing centre, spread, shape and outliers
-    displays the 5-number summary
-        [[diagram]]
-        -> the "whiskers" help show asymmetry in the dataset
-
-    // note: boxplots are unreliable with small datasets, as with all summaries
