@@ -1,0 +1,100 @@
+software engineering
+    labs 10-12 thurs (we do have one this week)
+    look up netbeans & jakarta ee
+        -> jakarta used to be java enterprise edition
+    
+what is java ee?
+    the java platform, enterprise edition builds on the java se platform and provides a set of technologies for developing and running portable, robust, scalable, reliable, and secure server-side applications
+    so not just web logic, but also business logic, object persistence, messaging, security...
+    client-server model, in particular we'll look at mvc applications - model-view controller
+
+    java ee is a set of interoperable api specifications
+    was known as jee and then j2ee, now jakarta ee
+        -> java ee 8 became jakarta 8
+        -> was handed off from oracle to the eclipse foundation
+    
+    important specifications
+        - web specs
+            - servlet
+                basic entity, defines how you can manage http requests in a synchronous or asynchronous was
+            - websocket
+                provides a set of apis to facilitate connections
+            - java server faces
+                helps building guis from components
+                superseded by frameworks a little now
+            - unified expression language
+                simple language made to facilitate web app devs
+        - web service specs
+            - api for restful services
+            - api for json processing
+            - api for json binding
+            - api for xml binding
+        - enterprise specs
+            - contexts and dependency injection
+            - enterprise javabean
+                apis to provide transactions, remote procedure calls, and concurrency control
+            - persistence api
+                relational mapping
+            - transaction api
+                contains interfaces and annotations to establish interaction between transactions
+            - java message service
+                provides a common way to creaate, send, and read messages
+        - other specs
+            - validation
+            - batch applications
+                provides the means to run long-running background tasks which involve a large volume of data and need to be periodically executed
+            - java ee connector architecture
+                connects servers to enterprise information systems
+        
+    application servers
+        hosts your jee application, running the components you develop within containers, which provide the interfaces to manage them
+
+        lots of commercial and open source application servers
+            each has their own versions, which support their own versions of the jee spec, though not always all of it
+            e.g. apache tomcat supports servlets and jsp, the basic web components, but to use back-end business logic you'd need tomEE
+
+    java ee application
+        in a jee app we have
+            - the model
+                business-layer functionality represented by javabeans or ejbs
+            - the view
+                the presentation layer functionality represented by jsps or jsfs in a web app
+            - the controller
+                servlet mediating between the model and the view
+        must accomodate input from various input, such as http requests from web clients
+
+        ejb
+            - server-side components that encapsulate business logic
+            - transactions and security
+            - sits on top of persistence layer as an entry point for presentation-tier technologies
+            - can be built by annotating a pojo that will be deployed into a container
+
+            types of ejb
+                - session beans and message-driven beans
+                - 
+                [finish later]
+
+        packaging a jee web app
+            a webapp module contains
+                - servlets, jsps, jsfs, ejbs, and web services
+                - html and xhtml pages, css, javascript, images, videos, etc.
+            all of these packaged into a java archive (.jar) file, with the .war (web archive) file
+
+        mvc - typical example
+            using the controller servlet to act as a router / dispatcher for incoming http requests
+            - session bean acts as a facade hiding the complexity of the jpa interface, while the jpa api does the objedct mapping for us
+
+        can start small
+            pretty easy to build a robust webapp just using servlets, java server pages, and sql
+
+
+    >! --- for thursday --- !<
+    - download and install netbeans 18 (make sure you get java se and ee)
+    - update jdk if necessary
+    - go to window -> services -> open the services tab
+    - add a new server -> payara
+    - enable hot deploy
+    - new proj -> java with maven -> web app
+    - if any issues, go to pom.xml and change maven war plugin to 3.3.2
+    - right click on project and add new servlet
+    - servlet may need to change imports from javax to jakarta

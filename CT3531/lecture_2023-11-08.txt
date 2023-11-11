@@ -1,0 +1,6 @@
+QUIC protocol
+    designed by google to speed up internet connection
+    sent over udp to set up encryption
+        faster than tcp/ip three-way handshake
+
+    

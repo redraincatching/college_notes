@@ -1,0 +1,64 @@
+io streams
+    [diagram]
+    [diagram]
+    no matter the source or destination, the algorithms for reading and writing a stream is usually the same
+
+        open stream
+        while (information > 0)
+            read/write
+        close stream
+
+    the java.io package contains a collection of stream classes that support reading and writing streams
+    divided into two hierarchies based on the data (chars or bytes) on which they operate
+        [diagram]
+
+        -> often more convenient to group based on purpose, and not data type
+            [diagram]
+        two types:
+            - data sink
+                read from or write to specialised data sinks, such as strings, files, or pipes
+                generally use paired input and output, or reader and writer streams for each kind of string
+            - processing
+                perform some operation, such as buffering or data conversion, when they read or write
+    
+    byte streams
+        descendants of InputStream and OutputStream
+        used to read and write 8-bit bytes
+        typically used for binary data like images or sounds
+
+        subclasses provide specialised io
+            [diagram]
+            [diagram]
+            // data sink streams shown in grey, processing streams in white
+
+    character streams
+        descendants of Reader and Writer
+        operate on 16-bit unicode characters
+        
+        subclasses
+            [diagram]
+            [diagram]
+            // ds streams in grey, p streams in white
+
+    data sink streams
+        [diagram]
+    
+    processing streams
+        [diagram]
+
+
+    scanner
+        in java.util but can be passed an InputStream as a parameter
+        often used for reading from the console (i.e. the System.in InputStream)
+        used for working with input of formatted data consisting of primitive types and strings
+        translates input into tokens based on data type using a delimiter pattern
+        has a collection of "next" methods for different data types
+
+    formatting
+        PrintWriter is a processing character stream
+        includes common methods for formatting
+            - print
+            - println
+            - format
+        format method formats multiple arguments based on a format string with specifiers
+            used similarly to tokens in scanner

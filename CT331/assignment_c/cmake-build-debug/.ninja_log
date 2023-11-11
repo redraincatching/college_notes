@@ -1,0 +1,12 @@
+# ninja log v5
+24	239	7197104382027221	CMakeFiles/assignment_c.dir/assignment.c.obj	b7bf73c63d503204
+0	265	7197104382126939	CMakeFiles/assignment_c.dir/assignmentGeneric.c.obj	541849e2d4de08af
+65	340	7197104383204062	CMakeFiles/assignment_c.dir/linkedList.c.obj	3633713fb6991625
+472	596	7197104385787149	CMakeFiles/assignment_c.dir/testsGeneric.c.obj	46de84dc3fb98234
+245	471	7197104384350999	CMakeFiles/assignment_c.dir/genericLinkedList.c.obj	bc54570d3362b7c2
+340	525	7197104384969339	CMakeFiles/assignment_c.dir/tests.c.obj	f18b5d1f4e779401
+265	543	7197104385228645	CMakeFiles/assignment_c.dir/Question1.c.obj	1cba3a710d9df9ba
+3	263	7197105107332288	build.ninja	e0df40cc54c62b48
+3	147	7197105110224559	assignment_c.exe	2840e19485c36276
+3	158	7197107826791220	CMakeFiles/assignment_c.dir/genericLinkedList.c.obj	bc54570d3362b7c2
+159	285	7197107828067769	assignment_c.exe	2840e19485c36276

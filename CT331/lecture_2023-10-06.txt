@@ -1,0 +1,45 @@
+high order functions
+    functions that take one or more other functions as arguments, or return a function as a result
+
+    function pointer definition
+        type (*name) (arg_0, arg_1, ..., arg_n);
+
+        int (*add_numbers) (int, int);
+
+        // note: since this is technically a prototype, you don't need to name the variables, just give the arg types
+
+    why function pointers?
+        motivating example - a sorting high-order function
+            
+            void sort(int* array, int (*compare) (int, int)) {
+                // ...
+                 if (compare(array[i], array[j])) {
+                    swap(array[i], array[j]);
+                 }
+                // ...
+            }
+
+            // now can use the same sorting function with any given comparison function
+
+            int compare_less_than (int a, int b) {
+                return a < b;
+            }
+
+            int compare_greater_than (int a, int b) {
+                return a > b;
+            }
+
+        typedef and function pointers
+            // turns the above into
+
+            typedef int (*compare) (int, int);
+
+            int sort (int* array, compare compare_function) {
+                // ...
+                if (compare_function(array[i], array[j])) {
+                    swap(array[i], array[j]);
+                }
+                // ...
+            }
+
+            // creates the name of the function as a synonym for the pointer to a function of two char* arguments that returns an int

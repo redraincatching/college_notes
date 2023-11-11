@@ -1,0 +1,27 @@
+802.1q tag fields
+    - tag protocol identifier
+        value 0x8100 identifies 802.1q tag
+    - user priority
+        can be used to prioritise data (e.g. voice, data)
+        0 lowest
+        generally not used
+    - canonical format indicator
+        used for compatibility between different types of mac protocols
+    - vlan identifier (vid)
+        specifies vlan (1-4094)
+        0x000 indicates the frame does not belong in a vlan
+        vlan 1 reserved for management traffic
+        0xfff also reserved
+
+vlan tags
+    normal operation
+        - sender sends frame
+        - first switch adds tag
+        - last switch removes tag
+
+
+avoiding loops and broadcast storms
+    if loops exist in the topology, switches can end up forwarding traffic around in circles indefinitely
+    to avoid this, all switches use the spanning tree protocol (stp)
+        superseded now by rapid spanning tree, rstp
+    

@@ -1,0 +1,13 @@
+design: art or engineering?
+    design is considered to have two sides: form and function
+    art is evaluated for originality and expressiveness, it exists for its own sake
+    design, however, is valued for its fitness to a particular task
+
+    design principles
+        - learnability
+            help people access, learn and remember the system
+        - reduce user's cognitive load
+            - visibility
+            - consistency
+            - affordance
+            - familiarity

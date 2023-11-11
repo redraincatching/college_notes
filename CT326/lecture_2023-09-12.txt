@@ -1,0 +1,24 @@
+error handling (cont)
+    using printStackTrace and getMessage
+        printStackTrace
+            prints the method call stack
+        throwable class
+            getMessage retrieves informationString
+
+testing exceptions
+    we can use assertThrows to test if an exception has been thrown
+    can check for specific exceptions
+
+    example - trolley class
+        @Test
+        public void testAddNullItem() {
+            Trolley t = new Trolley();
+            Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                t.add(null);    // lambda expressions !!!
+            });
+        }
+
+what tests should we write?
+    - test single units of functionality in isolation
+    - not integration tests
+    - 

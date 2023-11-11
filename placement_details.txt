@@ -1,0 +1,34 @@
+15th jan start date - 30th august
+    - full-time
+    - flexible/remote
+
+working hours
+    - basically do the work and adjust
+    - irish work hours
+    - contract-perspective 9-6
+
+salary
+    27,000
+
+continuous learning
+    - not for interns, but afterwards
+    - gen-ed platform, internal learning
+    - similar to udemy // full access to basially all of them
+    - internal training on product areas
+
+annual leave
+    - allowance pro-rata
+
+sponsorship
+    - benevity: internal platform
+
+
+--- questions ---
+- linux?
+    computer provided, can't use 
+- c++ modules? ide?
+    package managers - sent over email
+    should help dependency things - vcpackage maybe
+    text editor
+- tips on switching languages
+

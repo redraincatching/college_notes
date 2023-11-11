@@ -1,0 +1,50 @@
+sql & relational algebra operators with hashing or sorting
+    [[select by indexes and join already done, fill in from liam's notes]]
+
+    set operators
+        - union
+        - intersection
+        - minus
+
+    others
+        - group by
+        - having
+        - project
+
+    intersection
+        given two relations r_1 r_2
+        we want values common to both lists
+
+        hash approach
+            hash to certain location and return any collisions
+            // union is the same but return the full hashed list
+            // minus similar, but remove collisions
+
+        sorting approach
+            index for both, move through both looking for match
+            // union and minus again both similar
+
+    group by
+        hashing
+            whatever value we're grouping by can be grouped on collision
+
+        sorting
+            the sorting implicitly groups them, simply start a new group on value change
+
+    having
+        two ways to look at this
+            - build groups then check values
+            - check values while building groups
+
+    project
+        // refresher - take only the selected attributes and discard others
+        given relation r with four values a_0, a_1, a_2, a_3
+        wish to project out a_1 and a_2
+
+        complexity -> unless a_1 and a_2 are candidate keys, tuples may not be unique
+            sql -> returns all tuples
+            relational algebra -> returns distinct tuples
+
+    // soall of these can be solved pretty efficiently with a hash or sort
+
+    

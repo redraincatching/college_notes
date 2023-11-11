@@ -1,0 +1,46 @@
+synchronisation
+    multi-threaded programming requires special care
+    you want mutex in critical sections
+    in java this is done with synchronised methods or statements
+
+
+    synchronised statements
+        synchronised <expression> statement
+            - expression : must resolve to an object or array
+            - statement : the critical section, usually a statement block (i.e. { in here })
+            
+            this attempts to acquire a lock for the object specified by the expression, and does not execute until this is obtained
+
+        this is not useful unless mutiple threads are used
+
+            public void sortArray (String[] array) {
+                synchronised (array) {
+                    // do whatever
+                }
+            }
+
+    synchronised methods
+        synchronised is most often used as a method modifier
+            indicates that the entire method is a critical section
+        static synchronised methods
+            java obtains a lock for the class
+        instance methods
+            java obtains a lock for that instance
+
+            public synchronised void sort () {
+                // bepis
+            }
+
+
+    dealocks - dining philosophers problem
+        you know the one
+        some solutions:
+            - number forks in some order, and philosophers must pick up the higher-numbered fork first
+                // doesn't break philosopher symmtery
+            - semaphores
+                pick up left fork
+                check if right is in use
+                    if not, pick up and eat
+                    if it is, put down the left fork and start again
+
+                "in use" is a flag, but for more complex resources can use a counter

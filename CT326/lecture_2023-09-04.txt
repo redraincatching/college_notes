@@ -1,0 +1,11 @@
+command line programming and common problems
+    compiling with javac
+        javac -d bin src/Account.java
+            -d changes the output folder to /bin
+        java -classpath bin Account
+            runs the compiled class
+
+
+        javac -d bin -classpath bin src/AccountApp.java
+            adds bin to the classpath so that AccountApp can use the compiled Account class
+

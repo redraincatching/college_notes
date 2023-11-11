@@ -1,0 +1,55 @@
+distributed databases
+    [todo: write out characteristics]
+
+    data fragmentation
+        horizontal fragmentation
+            fragment tables into sub-tables based on a SELECT restriction
+
+        vertical fragmentation
+            sets of attributes from a table are stored at different sites
+            can be defined by a PROJECT operation
+            never totally dijoint as key values need to be stored everywhere, which is necessary for table reconstruction
+
+        hybrid fragmentation
+            what it says on the tin
+
+        fragmentation schema
+            a full set of fragmentation definitions
+            in the data catalog for each client
+
+        allocation schema
+            defines where each fragment is located
+
+    
+    replication
+        full - store a full copy of each table at each site
+        partial - store some replicated data at each site
+        none - what do you think
+
+    query processing
+        [diagrams]
+        [todo: use notes to explain]
+
+    recovery
+        must ensure atomicity in critical sections to facilitate recovery
+        this is really difficult with a distributed system
+
+        [todo: full notes on this]
+
+        one way is a two-stage commit, coordinated by a singular entity
+        this coordinator has flaws:
+            - ruins our nice distributed system
+            - requires minimum 3n messages to be sent for every write that updates a shared resource
+                // this is worse as replication increases
+            - coordinator is a massive chokepoint and is loadbearing
+
+        essentially a transaction is about to happen, the coordinator checks to see if every other site is ready to accept this commit, and then if so, that transaction is made permanent and all other sites are informed of the commit
+
+        there are a lot of variations, like backup coordinators, raymond's tree, or election protocols to help when a coordinator goes down, but they don't really resolve the central issue
+
+        another approach - two-phase locking
+            lock manager at each site
+            this works no bother with disjoint tables
+
+            this gets troublesome with deadlock detection
+                further complicated by the issue of phantom deadlocks, yet another computng term that goes way too hard

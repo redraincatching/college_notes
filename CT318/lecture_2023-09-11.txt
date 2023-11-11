@@ -1,0 +1,28 @@
+design
+    what is design?
+        not merely a facade, a matter of merely external appearance, rather the essence of a thing
+            - moholy-nagy
+        design is the furthest thing from a veneer
+            - steve jerbs (the apple guy)
+        design is the interface between technology and people
+            - mitch kapor and donald norman
+
+    donald norman - poet
+        the Psychology Of Everyday Design
+        1988
+
+    the more intuitive the design, the less explanation necessary
+
+    dieter rams - principles of design
+        originally with braun as a product designer
+        good design
+            - innovative
+            - makes a product useful
+            - aesthetic
+            - understandable
+            - unobtrusive
+            - honest
+            - long-lasting
+            - thorough
+            - environmentally friendly
+            - as little design as possible

@@ -1,0 +1,70 @@
+ospf packet format
+    doesn't run over tcp or udp, separate protocol - 89
+        // runs directly over datagram
+    uses multicasting quite a lot within a neighbour
+    [diagram]
+
+    v2 - ipv4
+    v3 - ipv6
+        both can run concurrently on a given router, most do
+
+    [diagram]
+    [diagram]
+
+discovery of neighbours
+    routers multicast ospf hello packets on all ospf-enabled frequencies
+    if two routers share a link, they form an adjacency
+        after this, they perform database synchronisation
+
+    scenario: router 10.1.10.2 restarts
+        [diagram]
+
+    scenario: "normal" lsa exchanges
+        [diagram]
+
+    lsa updates are distributed to all other connected routers via reliable flooding
+        -> read in lsa, update database, send on lsa on all interfaces the lsa wasn't received on
+            -> if duplicate, ignore
+
+        a router sends and refloods lsa-updates whenever the topology or link cost changes
+            -> only if a received lsa contains new information
+        infrequently, maybe every half hour, a router will send on an lsa even without changes
+
+        once a router accumulates a full set of link state packets, djikstra's algorithm is run locally on each router, constructing a shortest-path tree to each node
+
+        practical considerations
+            - for a subnet of n routers, with k neighbours, the memory required to store the input data is proportional to kn
+
+hierarchical routing
+    as networks grow in size, the routing tables grow proportionally, more cpu time is required to process and scan them, and more bandwidth is necessary to send status reports
+    at that point, the network may grow beyond a point where it is feasible to hold full routing tables for all connected routers
+        at that point, routers can be grouped into regions, knowing what the other regions are but no internal knowledge of them
+
+    [diagram]
+    // area 0 is the backbone area, and this has other ospf implications, as every area must have a virtual link to it
+        // therefore ospf is not the best algorithm for hierarchical routing, so somewhere massive like amazon wouldn't use it
+
+
+autonomous systems
+    an autonomous system is a region of the internet that is administered by a single entity
+    examples
+        - HEAnet's national network
+        - eircom's backbone network
+        - regional isp
+
+    routing is done differently within an autonomous system (intradomain routing) and between autonomous systems (interdomain routing)
+
+bgp
+    border gateway protocol
+    currently in v4, supports ipv4 and v6
+    interdomain routing protocol for routing between autonomous systems
+
+    neither a link state or distance vector protocol
+    routing messages in bgp contain complete routes
+
+    uses tcp to send routing messages
+
+    designed with converging speed as a top priority
+        // not finding the optimal path, which isn't feasible since as' are black boxes
+
+    

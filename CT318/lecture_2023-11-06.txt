@@ -1,0 +1,9 @@
+questions:
+    - what's expected of the final prototype?
+        format:
+            - figma connected screens
+            - video stepping through with personas
+        just the design visually i guess
+
+notes:
+    - put images wih personas

@@ -1,0 +1,53 @@
+minimal cover sets - cont.
+    programmatically checking these qualities
+        - every functional dependency is a singleton (has only one attribute on the right hand side)
+            algorithm
+                check cardinality of rhs
+                if > 1, split into 2
+        - cannot remove any dependencies and remain equivalent
+            algorithm
+                assume one can be removed, so create a copy (F') with that dependency removed
+                if the original set F can be regenerated, F' is a more minimal set
+
+        - we cannot replace any dependency X -> A with a dependency Y -> A where Y \in X and still maintain equivalent to F
+            algorithm
+                for all lhs with cardinality > 1
+                    remove elements in every possible combination and check if still true
+                    if smaller cardinality, replace original
+
+    finding a minimal cover set
+        some minimal cover sets are better than others
+        some might require joins more frequently
+        some might be more intuitive to run queries on
+
+    we can always guarantee a dependency-preserving decomposition to 3nf
+    algorithm
+        - find minimal cover set G for F
+        - for each lhs X of a functional dependency in G, create a relation X_1 \union A_1 \union A_2 \union ... \union A_m in D, where each dependency is one that has X in the lhs
+            (basially, group all attributes with lhs X together in a relation D)
+        - group any remaining attributes together in another relation
+
+        this has three characteristics
+            - maintains all attributes
+            - maintains all functional dependencies
+            - all R_i are in 3nf
+
+    algorithm to decompose to bcnf
+        let database D = R : {R_1, R_2, ..., R_n}
+        while there is a schema B in D that violates BCNF do
+            choose B
+            find fd (X -> Y) that violates BCNF
+            replace B with (B - Y) and (X \union Y)
+
+            // how do we determine if a schema violates bcnf?
+                // all of the determinants are candidate keys
+
+        characteristics of moving to bcnf
+            - maintains all attributes
+            - all R_i
+            - _may not keep all fds_
+
+
+specifying F is difficult
+    these algorithms that we can use on created databases are fine and all
+    the struggle is defining real-world attributes and constraints as a database

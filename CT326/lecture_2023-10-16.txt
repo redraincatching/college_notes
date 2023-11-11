@@ -1,0 +1,94 @@
+collections
+    used for data types that form natural groups
+    implementations in early java included Vector and Hashtable in the java.util package
+
+    main implementations are the core collections interfaces
+        [diagram]
+
+    the core collections form a hierarchy
+        - a set is a special kind of collection, a sortedset is a special kind of set, etc.
+        - note the two distinct trees: a map is not technically a true collection
+
+    to keep the interfaces manageable, there isn't a separate one for each data type, among them immutable, read-only, or append-only
+        instead the modification operations are considered optional
+            - a given implementation may not support all operations
+            - if an unsupported operation occurs, it just throws the UnsupportedOperationException
+
+            // implementations are responsible for documenting which operations they support
+    
+    collection interface
+        // highest level parent of all of these
+        // the JDK doesn't directly implement this at all, rather list or set
+
+        // used to pass collections around or when maximum generalisability is desired
+
+        public interface Collection {
+            // basic operations
+            int size();
+            boolean isEmpty();
+            boolean contains(Object element);
+            boolean add(Object element); // optional
+            boolean remove(Object element); // optional
+            Iterator iterator();
+
+            // bulk operations
+            boolean containsAll(Collection c);
+            boolean addAll(Collection c); // optional
+            boolean removeAll(Collection c); // optional
+            boolean retainAll(Collection c); // optional
+            void clear(); // optional
+            
+            // array operations
+            Object[] toArray();
+            Object[] toArray(T[] a);
+
+        }
+
+    type-wrapper classes
+        collections manipulate and store objects, not primitive types
+        therefore, each java primitive type has a corresponding type-wrapper class in java.lang
+
+            - enables primitives to be manipulated as objects
+            - boolean, byte, character, double, float, integer, long, short
+            - numeric type-wrappers extend the more generic Number class
+
+        methods related to that class are also contained here
+            - e.g. parseInt()
+
+        autoboxing and autounboxing
+            automatic conversions between the primitive and the type-wrapper
+                boxing is primitve -> wrapper
+                unboxing is wrapper -> primitive
+
+                Double[] myDoubles = new Double[10];        // boxing
+                myDoubles[0] = 0.27;
+                double firstDoubleValue = myDoubles[0];     // unboxing 
+
+    Iterator interface
+        the object returned by the Collection.iterator() method
+
+        similar to an Enumeration, with two major differences
+            - allows the caller to remove elements from the underlying collection during iteration
+            - some improved method names
+
+        interface
+            public interface Iterator {
+                boolean hasNext();
+                Object next();
+                void remove();  // optional
+            }
+
+        
+        remove() can only be called once per call of next(), and throws an exception otherwise
+        
+        using Iterator
+            static void filter(Collection<?> c) {
+                for (Iterator<?> i = c.iterator(); i.hasNext();) {
+                    if (!cond(i.next)) {
+                        // obviously the condition here is whatever
+                        i.remove();
+                    }
+                }
+            }
+
+        // this code is polymorphic, shown with the <?>

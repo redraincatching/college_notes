@@ -1,0 +1,67 @@
+[[todo: fill in the start of the naming and addressing slides]]
+
+supernetting
+    [[diagram]]
+    move the prefix to the left to cover more ip ranges
+    in this example, the router has control of four /16 subnets
+    instead of sending that all on, the router sends the core network a single /14 address that covers all the subnets and handles the inner routing itself
+
+    saves space in routing tables and speeds up transfers
+
+naming guidelines
+    - short
+    - meaningful
+    - unambiguous
+    - distinct
+    - case insensitive
+
+domain name system (dns)
+    maps names to ip addresses
+    supports hierarchical naming
+        e.g. frodo.rivendell.middle-earth.com
+
+        /*
+            aside: fully qualified domain names
+                two types of dns records
+                    - a-records give ipv4
+                    - aaaa-records (quad-a) five ipv6
+            
+                names have nothing to do with routing, so before any transfer takes place, you have to query a dns server for the ip
+
+                fqdm - the full name with a . at the end
+                    e.g. www.google.com.
+                
+                normally not seen unless you're fucking about with zone files in a dns server
+                that last . is the root, and everything else derives from that
+
+                .ie, .com are top-level domains, sitting just below the root
+
+                some servers will act as authoritative sources for the root
+                    i.e. have authoritative zone files
+                some will then have a tld, e.g. .ie
+                more specified ones will have the actual websites, like universityofgalway.ie
+
+                dns servers can work recursively, so a top-level dns server will query another server with the tld, which will query lower and so forth
+
+                two types of dns servers
+                    - authoritative
+                    - recursive
+
+                the authoritative act as administrators, and only has data for the zones it administers
+                the recursive can traverse through these graphs to find the specified names, and can cache large amounts of information for significant lengths of time
+                    // the network administrator of an auth. server will decide how long their records can be cached
+        */
+
+    a dns server has a database of resource records that maps names to addresses in the server's "zone of authority"
+    client queries server
+        - uses udp port 53 for name queries and replies
+        - uses tcp port 53 for zone transfers
+
+
+    dns details
+        uses a client/server model
+        client is configured with the ip address of a dns server
+            // manually or provided by dhcp
+        dns resolver software on the client machine sends a queryto the dns server
+
+    // wifi routers can act as minor dns resolvers for their lan

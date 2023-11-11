@@ -1,0 +1,5 @@
+assignment 1
+    most of it is fairly straightforward until we get to the heap file stuff
+        // could look at it as distance between players - a query that may need to be made
+
+    look back over relational algebra because goddamn have i forgotten it all

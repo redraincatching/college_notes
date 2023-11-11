@@ -1,0 +1,120 @@
+throwing and handling exceptions
+    uses of exception handling
+        when a method cannot complete its task
+        process exceptions without crashing
+        uniformity in documenting, debugging, recovering from errors
+
+    other techniques
+        no error handling at all
+        exit application on error
+            -> both of these are kinda trash
+
+    basics of java error handling
+        a method detects an error and throws an exception
+            the error handler processes it, and it is considered caught
+        code that could generate errors get put in catch blocks
+        keyword throws specifies what errors a method may throw
+
+    try blocks
+        try {
+            // statements that may throw an exception
+        }
+        catch (ExceptionType exceptionReference) {
+            // catch is a unary operator to determine how to handle each error
+            // some solutions may be logging, others may be a new prompt
+        }
+
+        try blocks can be followed by any number of catch blocks, and we can use polymorphism to define errors
+
+    throwing errors
+        throw
+            indicates an exception has occurred
+            operand is any class derived from throwable
+        subclasses of throwable
+            exception
+                small error, shoould be caught and handled
+            error
+                major error, should terminate
+    
+        control then moves from throw to catch block
+
+
+    catching an exception
+        handler catches
+        program terminates if no appropriate handler
+        single catch can handle multiple exceptions
+        rethrow exception if catch cannot handle it
+
+    throws clause
+        lists the exceptions thrown by a method
+            int funcName (parameterList) 
+                throws Exception1, Exception2 {
+
+            }
+
+        runtime exceptions occur during execution
+            - ArrayIndexOutOfBoundsException
+            - NullPointerException
+
+    checked vs unchecked
+        - unchecked (runtime) exceptions shouldn't be handled, as they represent flawed program logic
+            -> you shouldn't be allowing null pointer exceptions to even happen
+        - checked
+            caught at compile time
+            everything other than runtime
+            predictable and recoverable
+            need throws declaration
+
+    finalisers
+        throw exception if constructor causes error
+        Finalize called when object garbage collected
+        inheritance of exception classes
+            allows polymorphic processing of related exceptions
+
+        finally block
+            resource leak
+                called when resources are not released by a program
+            appears after catch blocks
+            always executed
+            mainly used to release resources
+
+    example
+        // demo of try-catch-finally
+
+        public class UsingExceptions {
+            // execute application
+            
+            public static void main( String args[] ) {
+                // call method throwException
+                try {
+                    throwException();
+                }
+            
+                // catch Exceptions thrown by method throwException
+                
+                catch ( Exception exception ) {
+                    System.err.println( "Exception handled in main" );
+                }
+            
+                doesNotThrowException();
+            }
+        
+            // demonstrate try/catch/finally
+            public static void throwException() throws Exception {
+                // throw an exception and immediately catch it
+                try {
+                    System.out.println( "Method throwException" );
+                    throw new Exception(); // generate exception
+                }
+                // catch exception immediately
+                catch (Exception exception) {
+                    System.err.println("exception handled in method throwException");
+                    throw exception;    // immediately rethrown, as it can be handled in main
+                }
+                finally {
+                    System.err.println("executing finally in throwException");
+                }
+
+            }
+
+        }

@@ -1,0 +1,102 @@
+spanning-tree protocol
+    switches (bridges) running stp
+        - participate with other bridges in the election of a single bridge as the root bridge
+        - calculate the distance of the shortest path to the root bridge and choose a port (known as the root port) that provides the shortest path to the root bridge
+        - for each lan segment, elect a designated bridge and a designated port on that bridge. the designated port is the one on that bridge that is closest to the root bridge
+            -> each port on the root bridge is a designated port
+        - the root and designated ports are part of the spanning tree, and forward traffic. all others block traffic
+
+        [diagram]
+
+        the bridges talk to each other using a specific layer-2 protocol
+        the root bridge is the one with the lowest bridge id
+
+        [diagram]
+
+        cost isn't just distance, the interface speeds determine cost
+            // specific mapping, you can look up the default
+            // they can actually be manually changed
+
+        [diagram]
+        
+        topology is then "pruned" into a tree topology, so we no longer have a loop
+            no broadcast storms, etc.
+
+        [diagram]
+        
+        stp has to be able to detect changes and react accordingly
+
+
+    bridge vs switch
+        bridge is older, not vlan-aware
+
+    scaling stp
+        - keep the switched network small
+            shouldn't be more than seven switches, anything larger should be routed
+        - use bpdu skew detection on cisco devies
+        - use ieee302.w
+            rapid spanning tree protocol
+            provides rapid reconfiguration of the spanning tree
+
+
+mikrotik router os
+    introducing the routerboard and routeros
+    
+    router os
+        operating system based on linux
+        - wireless and wired interface
+        - stateful firewall with nat and powerful packet matching and inspection
+        - layer 2 config
+            vlans and bridging
+        - layer 3
+            ipv4 and ipv6
+        - advanced qos and traffic management
+        
+    firewall
+        [diagram]
+        stateful internal firewall
+            stateful - tracks state of transport-layer connection
+        filtering and layer7 matching (regex matching)
+
+    routing
+        static and dynamic routing
+        - ipv4
+            - rip v1 and v2
+            - ospf v2
+            - bgp v4
+        - ipv6
+            - ripng
+            - ospf v3
+            - bgp
+
+    mpls
+        multiprotocol label switching
+        not as big as it was ten years ago
+        can be more efficient than ipv4 direct matching, sometimes
+
+    vpn
+        routeros supports multiple vpn methods and tunnel protocols
+            - ipsec
+            - wireguard
+            - openvpn
+            - point to point tunneling
+            - simple tunnels
+            - 6to4 aupport
+
+    wireless
+        point-to-point
+        point-to-multipoint
+
+    qos
+        bandwidth control and traffic flow prioritisation
+
+    applications
+        - hotspot
+        - web proxy
+        - the DUDE network management
+
+    configuration
+        three methods
+            - shell acess by telnet, ssh, or serial port
+            - rudimentary web-based interface
+            - winbox (ew, gui)

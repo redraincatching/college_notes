@@ -1,0 +1,27 @@
+assignment 3
+
+    G = { V, E }
+        // any graph G can be defined as a set of vectors and edges
+
+    can store tuples (id_1, id_2, d)
+
+
+logic databases
+    incorporate logic and artificial intellignece
+    incorporates ideas from armstrong's inference rules
+        based on redicate calculus
+
+    allows storing of rules that can infer relations
+
+    uses an implementation of prolog called datalog
+
+    trivial example
+        supervise (jim, john)
+        supervise (john, jack)
+        supervise (jack, joe)
+
+        superior(X,Y) :- supervise (X,Y)
+        superior(X,Z) :- supervise(X,Y), superior(Y, Z)
+
+    safety
+        a program is said to be safe if it returns a finite set of facts

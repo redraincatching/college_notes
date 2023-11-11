@@ -1,0 +1,71 @@
+sample bcnf problem
+    let R = {a, b, c, d, e, f, g, h,}
+    the functional dependencies defined over this relation are
+        - {a,b} -> c
+
+    [TODO: finish from notes and add diagrams]
+
+
+design by synthesis
+    typically, we have the relation R and a set of functional dependencies F
+    we wish to create a decomposition D = R_1, R_2, ..., R_m
+
+    clearly all attributes of R must appear in at least one schema R_i
+    therefore
+        U^m_{i=1} R_i = R
+    this is the attribute preservation constant
+
+    functional dependencies
+        come from real world constraints
+            e.g. each student has a unique student number
+
+        an fd is a constraint between two sets of attributes
+            fd X -> Y exists if 
+                for all tuples t_m and t_n, 
+                    if t_m[X]=t_n[X] 
+                    then 
+                    t_m[Y]=t_n[Y]
+
+        given a set of fd f, the closure of F (denoted F^+) refers to all dependencies that can be derived from F
+            e.g.
+                F       -infers->       F^+
+                a->b                    a->b
+                b->c                    b->c
+                                        a->c
+
+    armstrong's axioms
+        // technically not axioms, really inference rules
+        these rules allow us to deduce or infer all inherent functional dependencies
+
+        - reflexivity
+            if X \superset Y, X -> Y
+            e.g.
+                R_1 = {s_no, s_name, s_email}, R_2 = {s_email}
+                R_1 -> R_2
+        - augmentation
+            if X -> Y, then XZ -> YZ
+            e.g.
+                d_no, s_no -> sname, d_no
+        - transitivity
+            if X -> Y, and Y -> Z, then X -> Z
+            e.g.
+                s_name -> s_no, s_no -> d_name, therefore s_name -> d_name
+        - projectivity
+            if X -> YZ, then X -> Y and X -> Z
+        - additivity
+            if X -> Y and X -> Z, then X -> YZ
+        - pseudo-transitivity
+            if X -> Y, WY -> Z, then WX -> Z
+
+        the first three have been shown to be sound and complete
+
+    cover sets
+        a set of fds, F, covers a set of fds E, if every fd E is in F^+
+
+        [diagram]
+
+        minimal cover sets
+            a set of fds F is minimal if
+                - every functional dependency is a singleton (has only one attribute on the right hand side)
+                - cannot remove any dependencies and remain equivalent
+                - we cannot replace any dependency X -> A with a dependency Y -> A where Y \in X and still maintain equivalent to F

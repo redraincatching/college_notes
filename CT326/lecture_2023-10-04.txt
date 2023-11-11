@@ -1,0 +1,51 @@
+structured data io
+    
+
+
+    sample code - reading from tab-separated structured file
+        // not complete code
+        // data in the form <name>\t<population>\t<size>\t<density>\n
+
+        public static void main(Sring[] args) {
+            List<County> counties = new ArrayList<County>();
+
+            BufferedReader in = null;
+            String line;
+
+            try {
+                in = new BufferedReader(new FileReader("counties.txt"));
+                while ((line = in.readLine()) != null) {
+                    Scanner lineScanner = new Scanner(new StringReader(line));
+                    counties.add(new County(lineScanner.next(), lineScanner.nextInt(), lineScanner.nextInt(), lineScanner.nextInt()));
+                    // whitespace (including tabs) is the default scanner delimiter
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            counies.forEach(c -> {
+                System.out.println("counties");
+            });
+
+            // next part of demo
+            DataOutputStream dout = null;
+            DataInputStream din = null;
+            boolean eof = false
+
+            try {
+               dout = new DataOutputStream(new FileOutputStream("countyDensity"));
+               din = new DataInputStream(new FileInputStream("countyDensity"));
+                for (County c : counties) {
+                    dout.writeUTF(c.getName());
+                    dout.writeInt(c.getDensity());
+                }
+
+                while (eof == false) {
+                    System.out.println("%s %d%n", din.)
+                }
+            } catch (EOFException e) {
+                eof = true;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }

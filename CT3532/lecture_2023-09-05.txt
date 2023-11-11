@@ -1,0 +1,20 @@
+database systems 2
+    topics
+        - design
+            - correctness
+            - boyce-codd normal form
+            - minimal cover sets
+                -> this leads to design by synthesis, and algorithms to automate design given a set of algorithms and functional dependencies
+        - efficiency
+            - indeing
+                - prmiary
+                - secondary
+                - hashing
+            - b-, b+ trees
+            - multi-attribute indexing
+        - transactions
+            - concurrent access
+            - recovery
+            - distributed databases
+        - relational model
+            - extensions

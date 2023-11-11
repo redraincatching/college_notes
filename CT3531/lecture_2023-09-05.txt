@@ -1,0 +1,12 @@
+course contents
+    - virtual lans
+    - router platform (mikrotik os)
+    - network simulation
+        gns3 & vmware
+    - dynamic routing (ospf and bgp)
+        ospf - open shortest path first
+        bgp - border gateway protocol
+    - bgp and internet exchanges
+    - network security
+    - network programming
+    - ipv6

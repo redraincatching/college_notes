@@ -1,0 +1,302 @@
+"a language that doesn't affect the way you think about programming isn't worth knowing"
+    - alan perlis
+
+why is learning alternative paradigms useful?
+    - different paradigms make different tradeoffs
+        - what's tricky in one can be almost trivial in another
+            e.g. passing functions to other functions in c vs in lisp, or recursion in java vs haskell
+    - changing paradigms forces you to "change gear"
+        - how to reverse an ordered list in java? c? scheme? prolog?
+    - it may become mainstream
+        - oop was once an alternative paradigm
+    - alternative paradigms influence the mainstream
+        - garbage collection came from functional programming
+    - will prepare you for learning languages you haven't heard of / that don't exist yet
+    - help you compare languages & find the best tool for the job
+    - help you understand languages more deeply
+
+why learn functional programming?
+    - one of the oldest paradigms (lisp: 1958, still widely used)
+    - heavily based on mathematical concepts (proofs, lambda calculations)
+    - elegant solutions (recursion)
+    - other paradigms can be interpreted in terms of functional programming
+
+    good at symbols, bad at numbers
+        logical structures and stuff
+
+why learn logical programming?
+    - long history
+    - allows implementation that are very difficult in other paradigms
+    - VERY different
+    - helps to conceptualise logical problems
+
+    // data and code aren't different, data is just code that doesn't do anything
+    // interpreted, not compiled, so very slow
+
+why learn imperative programming?
+    - earliest paradigm - as far back as punch cards and magnetic loops
+        // older, even, see jacquard 
+    - much closer representation of how the machine actually works
+    - can help to recognise some computational bottlenecks and optimisation issues
+    - contextualises other systems like unix, linux
+
+why learn oop?
+    - don't
+    - oop tries to represent real-world constraints
+    - uses abstraction and inheritance
+
+OOP
+    fundamentals of oop
+        - everything is an object
+        - computation is performed by message passing
+        - every object is an instance of a class which is a grouping of similar objects
+        - inheritance desscribes the relationship between classes
+
+    oop focuses on the objects the code represents and the behaviours they exhibit
+
+    4 major principles of oop
+        - encapsulation
+        - abstraction
+        - inheritance
+        - polymorphism
+
+        encapsulation
+            data is hidden as if "encapsulated" within the object
+                - direct access to data is restricted
+                - we use methods to get, set, and manipulate that data
+            object callers don't need to know what's going on behind the scenes
+
+        abstraction
+            functionality can be defined wihtout being implemented
+                - high-level interfaces provide methods types/names without implementation
+                - allow case-specific implementation
+                - allows one programmer to define functionality, and another to implement
+                - allows representation to be changed without affecting the "public" view of a class
+            helpful when designing large systems, if i can write an interface for a function and be sure that it will return a String, i can keep writing my code and not worry about implementing it right now
+
+        inheritance
+            - code can inherit functionality without re-implementing
+            - prevents code duplication
+            - encourages well-structured codebase
+
+        polymorphism
+            poly, meaning many
+            morphism, meaning shape
+
+            objects of one class can be treated as others
+            an object of type <Bike> can be cycled
+            an object of type <RacingBike> can also be cycled
+            two <Number>s, say an int and a float, can be added and subtracted as if they were the same type
+
+imperative programming
+    e.g. assembly (also fortran and sometimes basic)
+    - list of instructions
+    - GOTO statements
+    - little or no structure
+
+    telling the computer to perform a set of actions, one after the other
+    most programming languages have imperative aspects
+
+    // moves through statements one after another
+
+procedural programming
+    e.g. c, pascal, ada (also fortran and basic, sometimes)
+        // ada is like multi-threading pascal
+    - code is structured
+    - uses functions, or procedures
+        // procedural functions are distinct from functional programming
+    - encourages code re-use
+    - encourages encapsulation and composition
+
+    splits actions into procedures or tasks
+    procedures can be made up of other procedures (composition, recursion...)
+
+    // "has functions"
+
+structured programming
+    basically everything but assembly
+    
+    - code is structured
+    - while, for, if, else, switch, class, function, etc.
+    - less emphasis on GOTO
+    - creating a structure to manage instructions
+    - allows more complex programs to be built
+    - easier to understand
+    - avoids GOTO bugs and spaghetti code
+
+C
+    - procedural, imperative, structural, "systems language"
+    - came into being in 1969-1973 in parallel with the development of the unix os
+
+    int main(int argc, char* argc[]) {
+        // code...
+        // can use main's return for error codes, or to write a higher-level code into a .bat file
+        // not to be confused with the batfiles, which batman keeps on the justice league
+    }
+
+    - bcpl -> b -> c -> ...
+    - ansi standard since the 1980s
+    - now one of the most popular and powerful languages today
+        - probably still the fastest portable/general language today
+
+    - compiler now only makes minimal necessary changes, so if you add a semicolon or a single function, it just compiles the minimal necessary to recompile fully
+
+    when unix was being created, the DEC PDP-7 was too cramped to even compile it, so it was written on a completely different machine - the GEMAP assembler on a GE-3635 - to create physical ticker tape to allow the unix os to be created, with a primitive kernel, editor, assembler, shell, and commands like rm, ls, cat, echo...
+
+    bcpl, b, and c all fit in the traditional procedural family typified by fortran and algol 60
+    incredibly small code, very close to the machine
+    rely on library routines for io and other os interactions, which make them so portable (different libraries are all that are necessary to change machines)
+
+    examining hello world
+        #include <stdio.h>      
+        // header inclusion, provides instructions to the c linker as to which libraries to include
+
+        void say_hello();
+        // function prototype, tells the compiler the function exists before its implementation
+        // allows the compiler to handle functions calling each other, and recursion
+
+        int main(int argc, char* argv[]) {
+            say_hello();        // calling a function
+            return 0;
+        }
+
+        void say_hello() {
+            // function definition
+            printf("hello world!");     // printf takes char*
+        }
+
+    another sample program - adder
+        #include <stdio.h>
+
+        int add(int a, int b);
+
+        int add(int a, int b) {
+            return a+b;
+        }
+
+        int main(int argc, char* argv[]) {
+            int first = 8;
+            int second = 4;
+            printf("the first number is: %d\nthe second is: %d\n", first, second);
+
+            // note: %d is specifically a flag for decimal ints, %i handles ints in all bases
+
+            printf("result: %d\n", add(first, second));
+        }
+
+
+    c pointers
+        let
+            int i = 8;
+            int* p = &i;
+
+        turn a pointer into a value with * - dereferencing
+            int i2 = *p;
+        get the reference to a value with &
+            int* p2 = &i;
+
+        "breaking" rules with pointers
+            int a = 8;
+            int b = 9;
+            swap(&a, &b);   // swaps the addresses
+
+            void swap(int* x, int* y) {
+                int temp = *x;  // hold value of x
+                *x = *y;        // change the value of x
+                *y = temp;      // change y
+            }
+
+            // args by convention shouldn't be affected by a function, however this can be done by passing in addresses and messing with them
+            // the arguments themselves - the addresses - don't change, but the variables do via the side effect
+
+        arrays and pointers
+            // arrays decay to pointers in c
+
+            int int_arr[5];
+            // int_arr is a pointer to the first element of the array, decays to &int_arr[0]
+
+            int_arr[2] = 3;
+                // is the same as
+            *(int_arr + 2) = 3;
+
+                // the + operator here is not simple addition, it's moving the pointer that many times by the size of its type
+                // so the pointer gets moved over 4 bytes, or to the second location
+                // that is, historically, why arrays start at 0, the first location is 0 steps over, so it saves a subtraction that would have to be carried out evrey time the array is accessed otherwise
+
+
+        what about a swap function that works on any data type?
+            void swap(void* x, void* y) {
+                void temp = *x;     // doesn't work, we can't give temp a size as void has none
+                *x = *y;
+                *y = temp;
+            }
+
+            // we can, however, have a void* type
+        
+            void*
+                - specific pointer type, but not specifying what type it's pointing to
+                - points to _some_ location in memory
+                - no specific size, but pointers don't really need one
+
+            sizeof(type)
+                returns the size, in bytes, of the given type
+                built in to c
+
+            memcpy()
+                void* memcpy(void* to, const void* from, size_t size)
+                copies size bytes from the memory beginning at from to memory beginning at to
+                returns the value of to
+                    // even void functions return but void is no data, void* is an unspecified pointer
+                defined in string.h
+
+            generic swap
+                void g_swap(void* vp1, void* vp2, int size) {
+                    // only works for two variables of the same size
+                    // sorta, otherwise data leaks and shit
+                    char* temp_buf = (char*) malloc(size);
+
+                    memcpy(temp_buf, vp1, size);
+                    memcpy(vp1, vp2, size);
+                    memcpy(vp2, temp_buf, size);
+                }
+
+
+            // extra! memcpy source code
+                void *memcpy(void *dst, const void *src, size_t len) {
+                        size_t i;
+                
+                        /*
+                         * memcpy does not support overlapping buffers, so always do it
+                         * forwards. (Don't change this without adjusting memmove.)
+                         *
+                         * For speedy copying, optimize the common case where both pointers
+                         * and the length are word-aligned, and copy word-at-a-time instead
+                         * of byte-at-a-time. Otherwise, copy by bytes.
+                         *
+                         * The alignment logic below should be portable. We rely on
+                         * the compiler to be reasonably intelligent about optimizing
+                         * the divides and modulos out. Fortunately, it is.
+                         */
+                
+                        if ((uintptr_t)dst % sizeof(long) == 0 &&
+                            (uintptr_t)src % sizeof(long) == 0 &&
+                            len % sizeof(long) == 0) {
+                
+                                long *d = dst;
+                                const long *s = src;
+                
+                                for (i=0; i<len/sizeof(long); i++) {
+                                        d[i] = s[i];
+                                }
+                        }
+                        else {
+                                char *d = dst;
+                                const char *s = src;
+                
+                                for (i=0; i<len; i++) {
+                                       d[i] = s[i];
+                                }
+                        }
+                
+                       return dst;
+                }

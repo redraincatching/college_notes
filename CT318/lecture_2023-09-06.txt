@@ -1,0 +1,47 @@
+human-computer interaction
+    "a discipline concerned with the design, evaluation, and implementation of interactive computing systems for human use, and the study of major phenomena surrounding them"
+        - acm sigchi, 1992
+
+    what is hci?
+        "lots of things now i guess"
+            - john m carroll
+        social use and aiming to design for universal, not individual access
+        
+    evolution of hci
+        in the 70s/80s computing moved from being a specialist tool, like heavy machinery, to being a personal computer
+            needed to, therefore, move away from cli which needed specialist training to use, and towards gui and general audiences
+            spreadsheets were the first apps that prompted these changes
+
+        first computer?
+            depending on the definition, the abacus, sundial, anything that allowed you to offload computation
+        first mechanical computer?
+            charles babbage's difference engine
+        first electronic?
+            first world war, ada lovelace
+                -> really interesting topic, the social changes as computing moved more mainstream and away from being a "woman's job" as it became clear money could be made from it
+        now personal computers, mobile devices, embedded devices, wearable computers
+
+    initial hci evolved to consider 
+        - overall ux
+        - flow (how users make use of and move through an interface)
+        - fun/user enjoyment
+        - well-being
+            > obviously negative aspects investigated here, as companies exploited the human psyche to enable addiction
+        
+    does it matter?
+        "interaction designers can make an effort to keep simple tasks easy for the user, and to make complex tasks possible"
+            - alan kay
+        what is the human doing?
+            - interacting, how?
+            - manipulating
+            - selecting
+            - memory
+            - creating
+        what is the computer doing?
+            - computing
+            - information storage/retrieval
+            - data analysis & visualisation
+
+        https://www.interaction-design.org/literature/article/understand-the-social-needs-for-accessibility-in-ux-design
+
+        https://www.w3.org/WAI/tips/designing/

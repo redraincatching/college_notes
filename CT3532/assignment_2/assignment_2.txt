@@ -1,0 +1,59 @@
+tuple
+    
+    timestamp, { <p_id, x, y > }, <x, y, z>
+
+        where:
+            - timestamp : integer value indicating position in sequence
+            - {} : set of triples where
+                - p_id : player id
+                - x : given player's x location
+                - y : given player's y location
+            - <> : triple comprising the x, y, and z locations of the ball
+
+    // temporal order
+
+    assumptions:
+        - this data will not be queried until after the game is finished, or at least not during active play (it will be used by the coaches to talk to the team, so this makes sense)
+            // can allow for a partway generation of database after half time
+        - for all questions generate two tables - first_half and second_half
+            - this lends itself quite well to parallelisation and also the players swap side halfway through the match, so separating them would be useful at times
+        - they're playing rugby, not football, because it's better
+        
+
+    question 1:
+        heatmap:
+            clamp values to range 0-1, where 1 is the highest value found
+                // 0 will always be the lowest
+            clamping is then done with x/(highest val)
+            // how does this work with parallelisation then? - clamping may need to be done last
+
+        subdivisions:
+            
+
+    question 2:
+
+    question 3:
+        divide the pitch into a 3x3 grid of equal size
+        wish to find the times a player is in a given rectangle 0-8
+
+        suitable indexing approach & pseudocode to calculate values for a heatmap
+
+        // can we just search each triple containing player_id in each timestamp? if so;
+
+            array 0-8 corresponding to grid
+                each index contains a dynamic hashmap of timestamps
+
+            // only need to store the sequence no. and player_pos, because only have one player 
+
+            return list for specified rectangle and then size of longest list = 1 for clamping
+
+            // create these structures for each player on creation of the database
+                // do note that this is an intensive operation, both in terms of memory and space
+
+    question 4:
+        compare non-empty lists for given players
+            // if no non-empty lists are the same, the players were never in the same grid so can return immediately
+            // these "drop empty grid" speedups are less useful efficiency-wise in rugby, but camógie or similar games with forwards/backs would have large speedups here
+
+        for each non-empty list, return each sequence number that exists for both players
+        final output is 0-9 lists of integers

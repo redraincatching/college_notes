@@ -1,0 +1,118 @@
+catchup
+
+enumerated types
+    enum declaration defines a class
+    can switch on them
+    have a static values() method that returns an array of 
+        commonly used in combination with the for-each construct
+    can provide methods, fields
+        -> each enum has its own namespace
+    enum constructors
+        implicitly private, and this can't be changed
+    can compare variants directly using > and <, using the sequence entered
+
+    limitations
+        can't inherit from other classes
+
+    example
+        Planet - an enum that represents the solar system
+            has constant mass and radius, passed to the constructor when created
+
+            public enum Planet {
+                MERCURY(3.303e+23, 2.4397e6),
+                // ...
+                PLUTO(..., ...);
+
+                private final double mass;  // in kg
+                private final double radius; // in metres
+            }
+
+            public double radius() {
+                return radius;
+            }
+
+            public static final double G = (i don't remember what the universal gravitational constant is);
+
+            public double surfaceGravity() {
+                return (G * mass) / (radius * radius);
+            }
+
+            public double surfaceWeight(double mass) {
+                return mass * surfaceGravity();
+            }
+
+    importing an enum
+        can import static so that it can be used in main, as it won't be changed
+
+    !!! variable amount of arguments !!!
+        use Type ... name
+
+
+    example enum
+        public enum Ship {
+            CARAVAL(20, 20, 1, 4),
+            SLOOP(15, 25, 1, 2),
+            JUNK(25, 17, 2, 4),
+            GALLEON(45, 10, 3, 10),
+            BARQUE(30, 15, 2, 6),
+            BRIG(30, 12, 2, 4),
+            BRIGANTINE(35, 12, 2, 8);
+
+            private final int size;         // in metres
+            private final int speed;        // in knots
+            private final int masts;        // in... masts?
+            private final int cannons;     // in cannons
+        }
+
+        enum Attribute {
+            SIZE, SPEED, MASTS, CANNONS
+        }
+
+        public Ship compareCards(Attribute a, Ship ... ships) {
+            Ship out = ships[0];
+            switch (a) {
+                case SIZE:
+                    for(Ship s : ships) {
+                        if (s.getSize() > out.getSize()) 
+                            out = s;
+                    }
+                    break;
+                case SPEED:
+                    for(Ship s : ships) {
+                        if (s.getSpeed() > out.getSpeed()) 
+                            out = s;
+                    }
+                    break;
+                case MASTS:
+                    for(Ship s : ships) {
+                        if (s.getMasts() > out.getMasts()) 
+                            out = s;
+                    }
+                    break;
+                case CANNONS:
+                    for(Ship s : ships) {
+                        if (s.getCannons() > out.getCannons()) 
+                            out = s;
+                    }
+                    break;
+                default:
+                    return out;
+            }
+            return out;
+        }
+
+        private int getSize() {
+            return size;
+        }
+
+        private int getSpeed() {
+            return speed;
+        }
+
+        private int getMasts() {
+            return masts;
+        }
+
+        private int getCannons() {
+            return cannons;
+        }

@@ -1,0 +1,87 @@
+[TODO: b trees notes]
+    for this we need to know
+        - structure
+        - efficiency
+        - search
+        - insert
+            - deletion (converse of insert)
+
+        O(log_p n) searching
+
+        one of the most dominant data structures in database systems or relational databases
+
+hashing
+    -> can we improve upon logarithmic searching?
+        hashing is a technique that attempts to provide constant time searching and insertion
+
+    
+    for b-trees, the running time is based on the number of comparisons, i.e. O is a function of n
+    for a hash function, we try to remove any need for comparisons
+        we do this by using a hash function to find which "bucket" in a hash table that the input results in
+        so h(k) -> x, where x is a location in the hash table
+
+        [diagram]
+
+
+        obstacles
+            - how do we find a hash function?
+                mod n?
+                    only easily done if input is numeric
+                has to use all of the components of the key (unless otherwise stated)
+                need to ensure that the hash function is cheap and fair
+                    -> uniform distribution across slots
+                
+    efficiency depends on the number of collisions
+        -> number of collisions depend mainly on the load factor, lambda, of the file, defined to be 
+            \lambda = no of records / no of slots
+
+        therefore we end up with n < k, so can't afford a bijective (one-to-one) mapping
+        so we have to deal with collisions, can't just overwrite
+
+        one approach is chaining
+            - each slot is now a different data structure, maybe an array
+                -> this leads to inefficiencies as we lose the nice hash function
+
+            - can just put it into the next empty slot (next-free-space probing)
+                -> also just leads to linear search, and maximum size = n
+                -> as a cluster grows, the probabilities of collisions increase
+
+    some serious limitations, then, for our goal of O(k)
+        -> collisions degrade performance
+    
+    if we can estimate the amount of records in advance, and know our collision resolution device, we have create a large enough space to bound the worst case
+        // space-time tradeoff
+    we could also hash until performance degrades, then do something like double the file
+
+    fixed size tables
+        waster of space
+            or
+        inefficient access
+
+        
+    dynamic hashing
+        use a family of hash functions h_0, h_1, ...
+        h_{i+1} is a refinement of h_{i}
+            for example, k mod 2^i
+
+        we start with a fixed size table, then dynamically resize whenever necessary
+            // may be real resize or logical resize
+        
+        develop a base hash function that maps a key to a positive integer
+        then use h_0 (x) = x mod 2^b for a chosen b
+            // 2^b buckets initially
+        then as we increment b we effectively double the size of the table
+
+            // mod 2 really just considers the value of the least significant bit, and places based on that
+            // then we consider two bits, and so on
+                // this is why using 2 is fine even though it's not a prime number
+
+        only need to keep track of two hash functions
+            h_i and h_{i+1}
+
+        common approaches
+            extendable hashing, and linear hashing
+                equivalent in efficiency
+
+            extendable hashing
+                

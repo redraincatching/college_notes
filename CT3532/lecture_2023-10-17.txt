@@ -1,0 +1,75 @@
+inter-query parallelism
+    different transactions run in parallel on different processors
+
+intra-query parallelism
+    strategies
+        - load-balancing
+        - compute subqueries
+        - pipelining
+        - operators
+
+    can run a single query in parallel on multiple processors (and disks)
+    can achieve parallel execution by parallelising individual components
+    can also achieve parallel execution byt evaluating portions of the query in parallel
+    can also combine both
+
+    
+    R \join S
+        on a_i = a_j
+
+            we have n disks and n cpus, and we want to reduce the computation cost of this query
+
+            // the most common way to do this is to simply partition between the cpus 
+
+            hashing
+                - guarantees the criteria we need: two matching values of a_i = a_j need to end up in the same partition, otherwise the join will miss those tuple
+                - only downside is that the hash function may be biased
+
+            range
+                - also works
+
+            straight join is O(|R| + |S|)
+            this is now O(|R/n| + |S/n|)
+                // in the ideal situation, but no matter what it's better than a straight join
+
+    R \join S
+        on a_i > a_j
+
+            neither hash or range partitions will guarantee correctness
+            e.g. 3 > 1 but if the hash function is mod 4, both will end up in different partitions and the join will be incorrect
+
+            what we can do is divide up R, and compare that to all of S
+
+            new time is O(|R/n| + |S|)
+                // slower than equijoin, but that's the same on a centralised disk
+
+            // note: we want to replicate the smaller database, if that's meaningful
+
+    sorting the relation R
+        R \map R'
+            on a_i
+
+            range partition
+                - by definition, all tuples in chunk n+1 are later in sequence than tuples in chunk n
+                    - similar to bucket or radix sort
+
+            the partition is O(|R|)
+
+            then sort the values in each partition
+                O here is dependent on the sorting algorithm used
+
+            then concat
+
+    R is partitioned
+        however we have no partial ordering
+        R/n tuples in each
+
+        first step is sort each partition locally
+            cost is then |R/n| log |R/n|
+
+        then merge and range partition out in parallel
+            // basically insertion sort into buckets using multiple pointers
+            // n-way external sort merge
+
+        then finally concat
+

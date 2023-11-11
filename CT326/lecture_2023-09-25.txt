@@ -1,0 +1,44 @@
+packages
+    why use them?
+        - to make types easier to find and use
+        - to control access
+        - to minimise naming conflicts
+        - to bundle related types
+
+    definition
+        a collection of related types providing access protection and namespace management
+        types refer to classes, interfaces, enums, and annotations
+    
+    the types that are part of the java platform are members of 
+    [[todo]]
+
+    creating a package
+        [[todo]]
+
+    package scope
+        - the scope of the package statement is the entire source file, so all 
+
+    naming a package
+        it is very likely that multiple programmers will use the same name for similar classes
+        the compiler will allow this as the full name of 
+
+        generally works fine unless two programmers use the same name for their package
+        what prevents this?
+            convention
+                companies use their reversed internet domain name in their package names, e.g.: com.company.package
+
+                name collisions within a single company are handled by internal convention
+
+static imports
+    implemented as "import static"
+    enables you to refer to static constants from a class without needing to inherit from it
+        // used with imports
+
+    for-each loop
+        can be used to replace an iterator when traversing through a collection
+        the compiler generates the looping code necessary and with generic types, no additional casting is required
+            for (type v : collection) {
+                // do things
+            }
+        
+    

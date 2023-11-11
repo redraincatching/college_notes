@@ -1,0 +1,35 @@
+unit testing techniques
+    - equivalence testing
+        - possible inputs are partitioned into equivalence classes, and a test case is selected for each class
+        - so any inputs we expect the code to handle similarly get grouped together
+        - minimises number of test cases
+    - boundary testing
+        - special case of equivalence testing that exist at the boundaries of equivalence groups
+        - e.g. <= arr.len() vs < arr.len() in a loop may cause issues
+    - path testing
+        - by exercising all possible paths through the code at least once, most faults will trigger failures
+        - requires knowledge of the source code and data structures
+
+    equivalence class examples
+        for testing valid phone numbers
+            valid cases 
+                - numbers that start with 083
+                - numbers that start with 086   ...
+            invalid
+                - non-number input
+                - <10 digit number
+                - >10 digit number
+                - number with an invalid prefix
+
+    boundary cases 
+        using the same example
+            - 10-digit input that is not a number
+            - input with a valid prefix and length that is not a number
+            - 9 and 11 length inputs with valid prefixes
+
+
+testing code with dependencies
+    often the component we're testing has external dependencies
+    if unit testing, we need to isolate this component, otherwise it's integration testing
+        -> an issue because application logic doesn't work without dependencies
+    solution: create a stub that simulates function of outside component

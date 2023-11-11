@@ -308,3 +308,6 @@ given 194.24.0.0 to 194.24.7.255
                     - can only work with tcp and udp protocols
                     - some applications inset ip in the text (payload), the receiver will extract these and use them, this obfuscation stops nat from working
                         -> e.g. ms messenger
+
+
+> #networks_and_communications 

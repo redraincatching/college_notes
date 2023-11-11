@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "rust/common_programming_concepts.md",
+                "file": "CT2108/modulation.md",
                 "mode": "source",
                 "source": true
               }
@@ -32,8 +32,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "rust/common_programming_concepts.md",
-                "mode": "preview",
+                "file": "CT2108/modulation.md",
+                "mode": "source",
                 "source": true
               }
             },
@@ -122,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "rust/common_programming_concepts.md",
+                "file": "CT2108/modulation.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -130,6 +130,16 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "6bcf688731c67b25",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "CT2108/modulation.md"
               }
             }
           }
@@ -151,8 +161,22 @@
   },
   "active": "5935d74946dd9ea9",
   "lastOpenFiles": [
-    "rust/source_files/fibbonacci.md",
+    "CT2108/modulation.md",
+    "CT2108/images/transport_protocol_1.png",
+    "CT2108/images/protocol_hierarchies_0.png",
+    "CT2108/images/parallel_communication_0.png",
+    "CT2108/images/noise_and_distortion_4.png",
+    "CT2108/images/transport_protocol_0.png",
+    "CT2108/images/network_types_0.png",
+    "CT2108/images/net_layer_20.png",
+    "CT2108/images/net_layer_19.png",
+    "CT2108/images/net_layer_18.png",
+    "CT2108/images/net_layer_17.png",
+    "CT2108/network_layer.md",
+    "see also, the later diagram that makes more sense.md",
+    "CT2108/datalink_layer.md",
     "rust/common_programming_concepts.md",
+    "rust/source_files/fibbonacci.md",
     "rust/basics.md",
     "rust/source_files/guessing_game.md",
     "rust/source_files",
@@ -165,22 +189,9 @@
     "CT230/file_organisation.md",
     "CT255/gdpr.md",
     "CT255/http_cookies.md",
-    "CT255/images/reversible_transformation.png",
-    "CT255/images/properties_of_groups_rings_fields.png",
-    "CT255/images/playfair_cipher.png",
-    "CT255/images/pharming_0.png",
-    "CT255/images/mod_table.png",
-    "CT255/images/lfsr.png",
-    "CT255/images/image_steganography.png",
-    "CT255/images/hash_function_message_auth_2.png",
-    "CT255/images/hash_function_message_auth.png",
-    "CT255/images/hash_chain.png",
     "CT255/images",
-    "CT2108/network_layer.md",
     "CT255",
-    "CT2108/modulation.md",
     "CT2108/physical_layer.md",
-    "CT2108/datalink_layer.md",
     "CT2108/mac_sublayer.md",
     "CT2108/network_software.md",
     "CT2108/computer_networks.md",
@@ -195,8 +206,6 @@
     "CT248/matlab_example_functions/clean_grades.m",
     "CT248/matlab_example_functions/sir_model/SIR.m",
     "CT248/operations_on_matrices.md",
-    "CT248/matlab_introduction.md",
-    "CT102/recommender_systems.md",
-    "CT102/compression.md"
+    "CT248/matlab_introduction.md"
   ]
 }

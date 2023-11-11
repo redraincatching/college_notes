@@ -1,0 +1,100 @@
+recursion
+    scheme has no concept of loops, or repetition
+    control flow is achieved through recursion
+
+    recap:
+        a well-defined recursive function has two characteristics
+            - a certain case, the base case / base criteria, where the function does not recurse
+            - each time the function is called, it moves closer to the base criteria
+
+    recursive problem solving
+        - what is the base case?
+        - what should the answer be there?
+        - how do we reduce to it?
+            // in lisp, this is often taking the cdr of a list
+        - what other work needs to be done for each function call?
+        - how can these steps be put together?
+
+    base cases
+        - for numbers
+            often 0 or 1
+        - for lists
+            often when list is empty
+        - note: may have multiple base cases
+
+    mistakes to avoid
+        - wrong number of arguments passed to function
+        - no base case/base case impossible to reach
+        - not reducing
+
+    example recursive function - factorial
+        base case: 1
+        answer at base case: 1 (1! = 1)
+
+        (fact 1) => 1
+        (fact 2) => 2 * (fact 1)
+
+        what work needs to be done at each step?
+            (fact n - 1) * input
+
+
+        simpler example first: sum
+
+            (define(sum num)
+                (if (> num 1)
+                    (+ num (sum (- num 1)))
+                    1))
+
+        recursive factorial
+
+            (define (fact num)
+                (if (> num 1)
+                    (* num (fact (- num 1)))
+                    1))
+
+    example recursive function - all_atom?
+
+        asks if all the elements of a list are atoms, returning #t or #f
+
+        base cases:
+            - (null? lst)
+                stop and output #t
+            - (car lst) != an atom
+                stop and output #f
+            - one element in list, and it's an atom
+                stop and output #t
+
+        reduction
+            if (car lst) is an atom, continue and check (cdr lst)
+
+    example recursive function - sequence
+        
+        passed a number num, and returns a list 1 to num
+
+        base case:
+            - num < 1?
+        reduce:
+            - -1 from num
+        work:
+            append num to end of new list
+
+        // note: this is inefficient, as it repeatedly creates and destroys lists
+
+    example recursive function - maxlst
+
+        get the largest number in a list
+        // easy in c, harder with recursion
+        // this is a built-in function, max
+
+        base case:
+            - one element in list?
+                (null? (cdr lst))
+                return that with (car lst)
+        reduction
+            - compare the first two items in the list, then remove one
+                // if 1 > 2
+                (> (car lst) (cadr lst))
+                    if #t, remove the second, and join 1 and 3-> to pass to the next call
+                    otherwise, ignore (car lst) for the recusrive call
+
+                

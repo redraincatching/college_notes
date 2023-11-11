@@ -1,0 +1,90 @@
+VLANs
+    logically segmented switched networks based on the functions of the organisation regardless of the physical location or connections to the network
+    all workstations and servers used by a particular workgroup share the same vlan
+
+    used to divide up a massive flat LAN virtually so that traffic from one section doesn't end up clogging up others
+
+    broadcast traffic in lans is sent to all devices on that lan
+    [diagram]
+    traditional solution:
+        interconnect lans by ip routers
+        however, lan membership of host is tied to a local switch
+            -> to make any major changes, rewiring is required
+    better solution:
+        vlans separate the broadcast domain from the location of the hosts
+        partitions the lans logically, so software-based, rather than actually moving routers around
+            -> can have people from two departments working next to each other, but since their traffic shouldn't need to intersect, they won't be on the same vlan
+            this is all based on mac addresses, so it's a level 2 technology
+
+    vlans function so that packets are only switched between ports designated for the same vlan
+        [diagram]
+    routers in vlan topologies provide broadcast filtering, security, and traffic flow management
+    switches can't bridge traffic between vlans
+
+    broadcast domains and vlans
+        [diagram]
+        a vlan is a broadcast domain created by one or more switches
+
+        switches can perform layer 1 and 2 traffic management, so they can send traffic within a lan
+        to send traffic to another network, you'd need to go to a router
+        vlan-aware access points do the same, the switches have to send traffic back to the router in order to send it to other vlans
+        [diagram]
+
+        vlans on switches
+            - the switch maintains a different bridging table for each vlan
+            - if the frame comes in on a port in vlan 1, the switch searches for vlan 1 in the table
+            - when the frame is received, the switch adds the source address to the table if it was not already known
+            - the destination is checked so that a forwarding decision can be made
+        
+    vlans vs subnets
+        vlans act an an entirely different lan, so they'd have at least one entirely different ip subnet
+        [diagram]
+
+    operation
+        each switch port could be assigned to a different port
+        ports on the same vlan share broadcast traffic
+        users attached to the same shared segment share that segment's bandwidth
+            -> more users lead to the deterioration of traffic, so splitting users up like this saves space overall on the network
+        the default vlan for every port is the management vlan
+            -> always vlan 1, and may not be deleted
+            -> all other ports can be reassigned, not vlan 1
+
+    dynamic vlans
+        allow for membership based on the mac address of the devices connected to the switch port, or if the device tries to use a certain ip range
+        as the device enters the network, it queries the switch for a vlan membership
+            [diagram]
+        this isn't done in the university, and you could spoof your own mac address to access a different vlan
+        all known users need to be allocated a vlan
+
+    vlan types
+        three basic memberships for determining and controlling how a packet gets assigned
+            - port-based
+            - mac address based
+            - protocol-based
+        the frame headers are encapsulated
+        [todo: finish later]
+
+        port-centric vlan
+            in a port-based vlan membership, the port is assigned to a specific vlan, regardless of the user or system attached to the port
+                [diagram]
+        
+    network administrators are responsible for configuring vlans both manually and statically
+        manually
+            - admins configure port-by-port
+            - eac
+            [todo: finish later]
+
+    
+    tagging
+        if vlans span multiple switches, then the traffic between the switches belong to different vlans
+            [diagram]
+        switches need to be able to demultiplex these
+
+        ieee 802.1Q - vlan tagging
+            for traffic between switches, they add a tag that identifies the lan
+            this is not usually passed between end user devices
+                tags can be made transparent to end systems
+                sometimes sent to endpoints that can handle multiple vlans like certain wifi access points
+            [diagram]
+            most important bit is the 12-bit valn identifier
+            therefore, you can have 2^{12}, or 4096 vlans in a network

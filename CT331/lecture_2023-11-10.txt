@@ -1,0 +1,109 @@
+[todo - last week]
+
+rules
+    head :- body
+
+        head is true if body is true
+
+    logical operators
+        , - and
+        ; - or
+
+
+
+dependence and definitions
+    rules are used for dependence
+        i use an umbrella if it is raining
+
+    they are also used for definitions
+        man is a featherless biped
+
+formulating rules
+    joe likes anyone who likes compiuters
+        joe likes x if x likes computers
+        likes(joe, X) :- likes(X, computers)
+
+variable scope
+
+    likes(joe, X) :- likes(X, computers),
+                     likes(X, cars).
+
+    X is insantiated inside the rule, in likes(X, computers)
+    it is checked again in the second likes, and is then returned
+
+    essentially variable scope is per function
+
+        func(X) :- 
+                    red(X),
+                    blue(X).
+        func(X) :-
+                    blue(X),
+                    green(X).
+
+        these two functions have two entirely unrelated variables, they just happen to look the same
+
+unification
+    occurs
+        implicitly when prolog searches for the head of a clause that matches a goal pattern
+        explicitly using the = symbol
+
+lists
+    [a, b, c, d]
+
+    different notation
+        [head | tail]
+            // head can be anything, tail must be a list
+        []  // empty
+
+
+    unification with lists
+        when [X|Y] is unified with a list
+            - X is bound to the head
+            - Y is bound to the tail list
+
+    examples
+        ?- [H | T] = [a, b]     
+        ?- [H | T] = [[a,b], c, d, e]
+
+
+control
+    depth first search
+        prolog picks the rules in order from top to bottom, and literal clauses left to right
+        it also works sequentially
+        control relies heavilly on being able to backtrack to decision points
+        execution can be very inefficient
+        have to write predicates that minimise both the search time and memory usage
+            similar to heuristic optimisation in relational db, most restrictive queries first to minimise the relations to check
+
+operations on lists - membership
+    recursive function
+    X is a member of a list if X == H || X == T
+
+    base case
+        membr(X, [X|T])
+    reduce
+        member(X, [H|T]) :- membr(X, T)
+
+        // essentially, check the head of the list, then to check the tail move to the second rule
+
+    using anonymous variables
+        anonymous variable - _
+            usable for any variable only referred to once
+
+        could rewrite these rules as
+            member(X, [X|_])
+            member(X,[_|T]) :- member(X, T)
+
+            the anonymous variable is useful here for legibility, the first rule only deals with the head, so we can ignore the tail, and so on
+
+arithmetic equality
+    not unification
+        ?- X = 4 + 5
+
+        > 4 + 5
+
+        need to use the "is" operator
+
+
+    note:
+        can do [H | T], but can also do [A, B | T] , which will only work if the list contains at least two elements

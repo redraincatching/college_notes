@@ -1,0 +1,80 @@
+programming paradigms
+
+
+    going to look at three languages
+        - c
+            most modern we'll be doing
+            procedural programming
+        - lisp
+            LISt Processing
+            just functions
+            one of the worst languages he's ever seen
+            functional programming
+        - prolog
+            french
+            slow but precise
+            logical/declarative programming
+
+    programming isn't about solving problems, it's about abstracting away from them
+
+programming paradigms
+    a pattern or model of programming
+
+    various types of programming languages, some are better suited to specific problems than others
+        c is fast and precise, java is higher level but slower
+        python doesn't compile, so if a piece of code doesn't execute the code just isn't looked at
+
+        ----------------
+        often, compilers change syntax, so 2 + 3 would change into a tree with + as the root, and the operands as the leaf nodes
+        ----------------
+
+        c used to be a multipass language, the compiler would read through the code three times before compiling
+            recursion was a bit fucky, for example, so early compilers needed to define it
+            now new compilers just need a function prototype
+
+    syntax
+        refers to the rules of the language
+        allows us to form valid expressions and statements
+        tells you what form the language takes
+
+    semantics
+        the meanings of those statements
+    
+    programming languages can be classified according to features they have with respect to conceptual and implementation level
+        programming paradigms are, essentially, a collection of abstract features that categorise a group of languages
+
+    "the poplarity of a paradigm is due to one community deciding which problems are important to solve, and then supporting the most promising paradigm for attacking those problems"
+        - thomas kuhn
+
+    influences on paradigms
+        - computer capabilities
+            vacuum tubes to transistors to integrated circuits to microcomputers ...
+        - applications
+            scientific, business, industrial, entertainment, communication applications
+        - programming methods
+            language designs have evolved to reflect changing understanding of good methods for writing large and complex programs
+        - implementation methods
+            early compilers to optimised compilers, structured engineering to software engineering, data abstraction to oo
+            handwritten assembly is slower than compiled c - why? 
+                -> optimisers
+        - theoretical studies
+            formal maths methods have deepened our understanding of strengths and weaknesses of language features and thus influenced the choice and inclusion of those features
+        - standardisation
+            has proved to be a strong conservative influence on the evolution of programming language design
+
+    "there are two ways of constructing software design. one is to make it so simple that there are obviously no deficiencies. the other is to make it so complicated that there are no obvious deficiencies"
+        - c.a.r. hoare
+
+    "everyone knows that debugging is twice as hard as writing a program in the first place. so if you're as clever as you can be when you write it, how will you ever debug it?"
+        – brian kernighan
+
+    reference material
+        https://racket-lang.org/
+        https://www.swi-prolog.org/
+
+
+
+
+    "c is weakly typed"
+    "i've never programmed in java"
+        - finlay smith

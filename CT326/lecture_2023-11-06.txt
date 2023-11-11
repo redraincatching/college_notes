@@ -1,0 +1,85 @@
+multithreaded programming
+    process - instance of a program being executed
+        not actually in parallel on the same processor, timeslicing etc.
+        [link this]
+    thread - lightweight process
+        doesn't have all of the overhead of setting up an address space
+    
+    process vs thread
+        both have their own independent cpu state
+        multiple threads can share the same memory space, not generally so with processes
+
+    java has language-level support for threads
+        any class that is a subclass of java.lang.Thread or that implements java.lang.Runnable can be used to create threads
+
+    one of Thread's constructors takes objects that implement Runnable
+        e.g.
+            Thread t = new Thread(new Whatever());
+
+            t.start();
+
+    Runnable interface
+        public interface Runnable() {
+            public void run();
+        }
+
+    
+        Thread.start() invokes run(), and the thread terminates when the run() method terminates
+
+    thread priority and daemons
+        every thread has a priority
+            higher priority means preference of execution
+        a thread may be marked as a daemon
+            a background thread that is not expected to exit
+        a new thread typically has its priority set to that of the creating thread
+            a new thread is a daemon iff the creating thread is a daemon
+
+    the JVM and threads
+        when the JVM starts, there is usually a single non-daemon thread (user) initially
+            this thread calls main()
+        the JVM continues to execute threads until either 
+            the exit() method of the class Runtime is called
+                or
+            all non-daemon threads have exited
+
+
+    creating a thread
+        method 1 - extending Thread
+            create a subclass of Thread and override run()
+
+            class PrimeThread extends Thread() {
+                private long minPrime;
+                
+                public PrimeThread(long minPrime) {
+                    this.minPrime = minPrime;
+                }
+
+                @Override
+                public void run() {
+                    // do logic here
+                }
+            }
+
+            // to run this
+            PrimeThread p = new PrimeThread(143);
+            p.start();
+
+            we try to avoid having to explicitly stop threads with stop()
+
+        method 2 - implementing Runnable
+            class PrimeRun implements Runnable {
+                private long minPrime;
+
+                public PrimeRun(long minPrime) {
+                    this.minPrime = minPrime;
+                }
+
+                public void run() {
+                    // do logic here
+                }
+            }
+
+            // to run this
+            PrimeRun p = new PrimeRun(143);
+            new Thread(p).start();      // don't need to use an anonymous Thread but it's fine
+

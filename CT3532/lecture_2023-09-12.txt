@@ -1,0 +1,66 @@
+normalisation
+    [[see last year's notes on this topic]]
+    1st normal form
+        - no repeating fields
+
+    2nd normal form
+        - in 1nf
+        - every non-prime attribute is fully functionally dependent on the primary key
+
+    3rd normal form
+        - in 2nf
+        - no non-prime attribute is transitively dependent on the key
+        - visible in diagram as a chain [draw diagram]
+
+    boyce-codd normal form
+        // protects against deletion and update anomalies
+
+        - in 3nf
+        - every determinant is a candidate key
+
+        if a field has a functional dependency, that field it is dependent on is its determinant
+        therefore, the only determinants should be ones that can determine all other keys
+
+        example schema
+            student_no      course      advisor
+            -----------------------------------
+            123             it          smith
+            123             excon       murphy
+            444             bio         o'reilly
+            617             it          jones
+            829             it          smith
+
+            // the composite key here is student_no & course
+
+            what's wrong with this?
+
+            if we delete student 444, we've then lost the fact that o'reilly teaches at all
+
+            fds
+                {st_no, course} -> {advisor}
+                {advisor} -> {course}
+
+                st_no & course determines all 3 fields
+                but advisor only determines itself and course, which is a subset of the full relation
+
+                the existence of that functional dependency is the issue
+
+            resolving this
+                we have relation R
+                we have problematic fd x -> y
+
+                decompose R into two relations
+                    - R - {y}
+                        // R minus y
+                    - {x} y
+
+                so in our example
+                    R_0
+                        {st_no, advisor}
+                    R_1
+                        {advisor}, course
+
+            however
+                we've lost the functional dependency that student_no + course guarantees a unique advisor
+                ignoring a real-world constraint
+                only way to guarantee correctness here is insisting on a certain constraint programmatically

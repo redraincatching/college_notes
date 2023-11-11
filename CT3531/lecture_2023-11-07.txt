@@ -1,0 +1,23 @@
+network programming
+    sockets
+        developed as a BSD Unix abstraction to allow users to write programs that utilise the underlying comms protocols
+        unrelated processes can use them to communicate across a network
+        it's an endpoint to which a "name" (i.e. a port) can be bound
+        allows programs to be largely independent of lower protocols
+
+        [diagram]
+
+        the socket api provides access to an ipc mechanism
+        mostly just using udp/ip and tcp/ip
+
+        java sockets
+            java.net
+            supports two types of communication
+                socket-based communication
+                    - views networking as a stream
+                    - connection-based
+                    - uses tcp
+                packet-based communication
+                    - individual packets transmitted
+                    - connectionless
+                    - uses udp

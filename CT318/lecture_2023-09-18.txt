@@ -1,0 +1,86 @@
+---! read all articles up on canvas !---
+
+design process
+    how to design?
+        - first: what are we designing?
+        - then: how do we design it?
+            - what steps are involved?
+            - what tools and techniques?
+
+    ux design
+        - don norman, apple's first ux architect in the 90s
+            "ux encompasses all aspects of the end-user's interaction with the company, its services, and its products"
+        ux - how a product behaves and is used by people when they interact with it
+        cannot design a user experience, can only design for an experience
+
+        design exercise - an alarm clock
+            - why?
+                wake you up
+            - what?
+                - ease of use
+                - on/off/snooze
+            - how?
+                - gentle / annoying?
+                - mood / sleep cycle?
+
+        ux starts from the why - the needs and emotions involved in the actions
+            the _appropriate_ way to combine intent and action
+
+
+        exs   |   ixd
+        -------------
+        ur    |   ia 
+
+            exs
+
+                [diagram] x4
+        
+interaction model
+    norman
+        - 1988
+        - stages of action in an interactive product
+        - interactive cycle
+            - user formulates a plan of action (intention)
+            - executes this at interface (action)
+            - when executed the user observes the interface for the result to determine future actions (evaluation)
+
+            good user design - their intention will be easy to achieve and basically the same as intended
+
+            action and evaluation are broken down into seven stages
+                - establishing a goal
+                - forming the intention
+                - specifying the action sequence
+                - executing the action
+                - perceiving the system state
+                - interpreting the system state
+                - evaluating the state wrt goals and intentions
+            
+            e.g.
+                - what do i want to do? 
+                    - find the customer support email
+                - i click on "contact us"
+                - i look for that link
+                - i click that link
+                - page updates
+                - i read and there is no email
+                - this means i have to make a new action to find the email
+                    -> cycle repeats
+
+    execution
+        user and system use different languages - translation is our job as designers
+        if system actions correspond to user actions, the interaction is effective
+        gulf of execution:
+            difference between user's formulation of actions to reach the goal & actions allowed by system
+            -> interfaces should be designed to reduce this gulf
+
+    evaluation
+        similar concept with the gulf of evaluation:
+            distance between physical system state and user expectation
+        should be obvious that an action has taken place, whether executed successfully or failed
+
+    visibility vs expectation
+        e.g. does a button show the state that the system is in, or the state that is will be in once pressed?; windows setting toggle switch vs video player play/pause button
+
+    design in terms of interaction model
+        create visual and functional similarities to familiar designs
+            

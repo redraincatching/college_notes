@@ -1,0 +1,75 @@
+object serialization
+    two streams in java.io - ObjectInputStream and ObjectOutputStream - are special in that they can read and write actual objects
+
+    can be used in multiple ways
+        rmi - remote method invocation
+            communication between objects via sockets, i.e. passing objects back and forth between a client and server
+        lightweight persistence
+            archival of an object for later use in the same program
+
+    object serialization in practice
+        example - get the current time in ms by constructing a Date object, and serialising that
+
+            FileOutputStream out = new FileOutputStream("theTime");
+            ObjectOutputStream s = new ObjectOutputStream(out);         
+            // oos is a processing stream, and so needs to be constructed on another stream
+
+            s.writeObject("Today");
+            s.writeObject(new Date());
+            s.flush();
+
+            // note that there's no standard file extension for serialised objects
+
+    serialization with related objects
+        if an object refers to other objects, all objects that are reachable from the first must be written at the same time so as to maintain the relationships between them
+            thus, writeObject traverses references recursively and throws a NotSerializableException if any found objects don't implement Serializable
+
+    reconstructing serialised objects
+        example - read the stored data from the previous example
+            FileInputStream in = new FileInputStream("theTime");
+            ObjectInputStream s = new ObjectInputStream(in);
+            String today = (String) s.readObject();
+            Date date = (Date) s.readObject();
+
+        
+serialising classes
+    to allow a class to be serialised, you simply need to implement the Serializable interface
+    this is an empty interface, so no methods to implement, just distinguishes objects as serializable 
+
+    all instance variables must be serialisable
+    primitive types are by default
+    anything references must be serialisable
+
+        // can ignore instance variables by declaring them transient
+
+    defaultWriteObject
+        writes out everything needed to reconstruct an instance of the class, including
+            - class name
+            - class signature
+            - values of all non-transient instance variables
+
+        for many classes, the default behaviour is fine, but sometimes you need more specific methods, this can be done by providing the writeObject and readObject methods for a class
+
+    custom serialising
+        writeObject controls what information is saved and is typically used to append additional information to the stream
+
+        readObject either reads the information written by the corresponding writeObject or can be used to update the state of the object after storing
+
+        
+        private void writeObject (ObjectOutputStream os) throws IOException {
+            os.defaultWriteObject();
+
+            // now do custom things with writeObject
+            // very useful when reference objects aren't serialisable
+        }
+
+        private void readObject (ObjectInputStream is) throws IOException, ClassNotFoundException {
+            is.defaultReadObject();
+
+            // now custom shit
+
+            // will probably also need a try/catch for ClassNotFoundException, as you'll almost certainly need to cast the object to a class
+        }
+
+
+    any serialization required by a superclass is handled automatically, but if, for any reason, you need to control that, you can implement Externalizable

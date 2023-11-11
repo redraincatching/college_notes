@@ -1,0 +1,100 @@
+inex and ixps
+    ixp
+        internet exchange point
+        a layer 2 network
+        essentially just a massive switch
+        a network facility that enables the interconnection and exchange of internet traffic between more than two independent ASs
+
+        only AS interconnection
+
+        ixp vs ip transit
+            ixp
+                - limited prefixes/routes
+                - member and community
+                - greater control
+                - greater qos
+                    - traffic remains local
+                    - lower latency
+                    - no congestion
+                - greater reliability
+                - greater security
+
+            ip transit
+                - dfz, default free zone (all prefixes)
+                - you're just a cusotmer
+                - limited or no control
+                - main problems
+                    - latency
+                    - routing
+                    - congestion
+
+        ixp examples
+            inex in dublin
+                // internet neutral exchange
+            linx in london
+            ams-ix in amsterdam
+            six in seattle
+            jpnap in tokyo
+
+            /*
+                tromboning
+                    ip transit bringing traffic in a very roundabout route
+                    e.g. isps in ireland could get traffic between them routed through london in the past
+            */
+
+    inex
+        internet neutral exchange
+        set up as a coop (for companies :/)
+        emphasis on neutral
+            - not for profit
+            - owned by the members
+            - open to anyone agreeing to and meeting the mou
+        
+        mandate requires
+            - high-speed, reliable, resilient ip exchange facilities
+            - keep irish ip traffic in ireland
+            - no feature creep in other business areas
+
+        three ixps
+            inex lan1 and lan2 are in dublin
+                - mandatory to join lan1, but most join lan2 for redundancy reasons
+            inex cork
+                - opened in 2019
+
+        [bunch of diagrams]
+            // the "negative" traffic is uplink
+
+        what happens when an as joins inex?
+            - inex operations assigns you an ip address
+                - INEX LAN1: 185.6.36.0/23 / 2001:7f8:18::/64
+                - INEX LAN2: 194.88.240.0/25 / 2001:7f8:18:12::/64
+                - INEX Cork: 185.1.69.0/24 / 2001:7f8:18:210::/64
+
+            - they do a quarantine procedure
+            - your first bgp peering session is with the route collector, a first cousin of the child catcher
+                purely diagnostic but mandatory
+                looking glass: https://www.inex.ie/ixp/lg/rc1-lan1-ipv4
+
+        what next?
+            how do you peer with actual websites like google?
+                well you could email them, but the whole ixp couldn't, that's too many connections
+
+                would be \frac{n(n+1)}{2} individual bgp sessions
+
+                therefore, can use a route server
+                [diagram]
+                [diagram]
+
+                these aren't actually routers, as they're not in the traffic path
+                all that flows through them is traffic information
+
+            route servers
+                rfc7947 - ixp bgp route server
+                rfc7948 - ixp bgp route server operations
+
+                "third party brokering system" run by the ix
+                    - doesn't change advertised routes in any way
+                    - doesn't put own asn in as path
+                    - the next hop address is the other member's router
+
+                ip addresses ending in .8/.9/::8/::9 in each lan, asn is 43760

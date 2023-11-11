@@ -1,0 +1,173 @@
+c types
+    four basic arithmetic type specifiers
+        - int
+        - char
+        - float
+        - double
+
+    four modifiers
+        - signed
+        - unsigned
+        - short
+        - long
+
+    //  sizeof()
+        int is only guaranteed to be "equal to or greater than short", which is >= char
+        same as long long >= long >= int
+        the actual size is platform and compiler dependent
+        and when they're combined the space they take up may be messed with for alignment reasons
+
+        there is no fixed size for data types in c
+        the size of an int _should_ reflect the native word size of your system
+            e.g. in a 32-bit system sizeof(int) returns 4
+
+            on most modern machines
+                short int = 2 bytes
+                int = 4
+                long int = 8 (maybe)
+                long long int = 8 (usually the max)
+
+    char
+        nothing special
+        just a 1-byte integer
+
+        then how does it print a letter?
+            formatted output
+        what about other integers?
+            yeah, just print using the %c flag
+
+    floats and doubles
+        represent real values in binary
+        a finite number of binary representations given a finite number of bits
+        an infinite number of floats
+            -> therefore, necessarily imprecise
+
+        stored
+            m*b^e
+            
+            m = mantissa
+            b = base
+            e = exponent
+
+        ieee-754 standard
+            bit 31  30     23  22                     0
+                s   eeeeeeee    mmmmmmmmmmmmmmmmmmmmmmm
+
+            double uses 64
+                11 exp, 52 mantissa
+            
+enumerated types
+    also just an integer
+    just with a special name
+
+    enum flag {constant_1, constant_2, ..., constant_n}
+
+    enum constants can be given a specified value
+        // they can actually have the same value
+        // can mix default and assigned values
+
+        enum State = {working = 1, failed = 0, frozen = 0};
+        enum day = {sunday = 1, monday, tuesday = 5, wednesday, thursday = 10, friday, saturday}
+            // not sure why you'd do this one though
+
+    constants must be unique within their scope
+        enum state {working, failed};
+        enum result {failed, passed};
+        
+        // compiler error
+
+structs
+    struct structure_name {
+        data_type member_0;
+        data_type member_1;
+        //...
+        data_type member_n;
+    };
+
+    struct person {
+        // ...
+    } bob;
+
+    struct person {
+        // ...
+    };
+
+    struct person bob;
+
+
+    // malloc and structs
+        if you free memory in a struct, you just free the data stored there
+        therefore if a struct has a pointer, that pointer gets freed, but the value stored in it does not
+
+        e.g.
+            struct person {
+                int age;
+                char* first_name;
+                char* surname;
+            } ct331_class[];
+
+            // you'd have to use 
+            if (student->first_name != null) {
+                free(first_name);
+                // and do the same for the other data
+            }
+            free(student);
+
+typedef - user defined types
+    typedef existing_name alias_name
+    e.g.
+        typedef unsigned char BYTE;
+        BYTE b;
+        b = 10;
+
+        typedef struct {
+            char name[30];
+            int number;
+        } STUDENT;
+
+    typedef doesn't actually create anything new, it just aliases an existing type
+
+dynamic memory allocation
+    - malloc
+    - calloc
+    - free
+    - realloc
+
+    malloc
+        void* malloc(size_t size);
+
+        size is in bytes, sizeof() returns bytes
+            -> we can dynamically allocate space with malloc() and sizeof()
+
+        sizeof() struct gives the size of the whole struct
+
+    calloc
+
+
+        takes two arguments, the number of elements and their size
+        slightly more advanced, because it also assigns the value 0 to each of the elements
+            // malloc just returns the space, calloc also initialises it
+            // useful for dynamically creating arrays
+
+    free
+        (bird)
+        bew new new ew new new new new new new new new new bew new new new newwww new newwww new newwww ne newww newww newww
+
+        releases memory, allowing it to be used
+        takes a single argument - a pointer to the memory being released
+        no return 
+        does not delete the values stored in that memory, jsut changes access
+
+    realloc
+        changes the size of a referenced bloclk of memory
+            // well no, makes a new block and copies the existing data over
+        takes two arguments
+            pointer to the memory currently referenced
+            number of bytes now to be pointed to
+        returns pointer to new block of memory
+
+        // super inefficient
+
+
+
+

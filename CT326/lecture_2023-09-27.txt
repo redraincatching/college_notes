@@ -1,0 +1,31 @@
+javadoc and lambda expressions
+    javadoc is a means of documenting java code that can be used to generate full documentation
+    a javadoc comment is similar to a regular comment, but starts with /** rather than /*
+    
+    for examples look at existing java classes
+
+    two main uses - before class definition and before methods
+
+    uses annotations
+        - @author
+        - @version
+        - @return
+            what is returned from a given method
+        - @param
+            parameters of a methods
+
+lambda expressions
+    parameter -> expression
+    (param1, param2) -> expression
+
+    anonymous inner classes that are based on a single method interface, like actionlistener, can be implemented as lambda functions
+
+        e.g.
+            public interface Whatever {
+                public int returnShit(int param);
+            }
+
+            // another class
+            Whatever w = thing -> {
+                // do stuff
+            };

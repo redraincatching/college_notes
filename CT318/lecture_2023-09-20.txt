@@ -1,0 +1,28 @@
+the design process
+    double diamond design process
+        [diagram]
+        discover - define - develop - deliver
+
+    laseau's funnel
+        [diagram]
+
+        first part of design is to establish and fully define the problem, in order to figure out which solution is the best
+
+    interaction design process
+        - a goal-directed problem solving activity informed by intended use, target domain, materials, and cost
+
+        4 basic activities
+            - identifying needs and establishing requirements
+            - developing alternative design
+            - building interactive versions of the design
+            - evaluating design
+
+    design thinking
+        - iterative, nonlinear design process
+        - well-suited to ill-defined, unknown process
+
+        empathise -> define -> ideate -> prototype -> test
+
+        [diagram]
+
+        

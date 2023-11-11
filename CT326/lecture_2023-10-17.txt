@@ -1,0 +1,61 @@
+set implementations
+    jdk contains 3 general-purpose set implementations
+        - HashSet
+            stores elements in a hash table
+            best performance
+            unpredictable ordering
+        - TreeSet
+            stores its elements in a tree format
+            guarantees the order of iteration will be based on natural ordering
+        - LinkedHashSet
+            hash table and linked list implementation
+            predictable (but not enforceable) ordering
+                // the order in which the elements were inserted
+
+        NavigableSet
+            interface that extends sortedset
+            methods
+                - ceiling
+                    returns the last element in the set greater than the provided element
+                    or null if none
+
+    using set
+        using an interface data type is a strongly recommended practice
+            - gives you the flexibility to change implementations just by changing constructor
+        if you use a more concrete implementation then changing the data type requires a lot more work and changing the actual code, e.g. parameter and field data types
+
+list implementations
+    ordered collection, sometimes called a sequence
+    can contain duplicate elements
+    integer index-based random access
+        Vector is a list
+
+    interface
+        public interface List extends Collection {
+            // positional access
+            Object get(int index);
+            Object set(int index, Object element);
+            // optional
+            void add(int index, Object element);
+            // optional
+            Object remove(int index);
+            // optional
+            abstract boolean addAll(int index, Collection c);
+            // optional
+
+            // search
+            int indexOf(Object o);
+            int lastIndexOf(Object o);
+
+            // iteration
+            ListIterator listIterator();
+            ListIterator listIterator(int index);
+            
+            // range-view
+            List subList(int from, int to);
+        }
+
+    jdk contains two general-purpose list implementations
+        - ArrayList
+            generally the best-performing
+        - LinkedList

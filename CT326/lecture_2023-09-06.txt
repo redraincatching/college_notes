@@ -1,0 +1,55 @@
+testing
+    systematic process of analysing a system or component to detect the differences between the specified and observed behaviour
+    the aim is to find all inconsistencies
+
+    - unit testing
+        testing individual classes and mechanisms
+    - integration testing
+        testing groups of classes or components and the interfaces between them
+    - system testing
+        testing the system as a whole
+
+    test-driven development
+        a software process that relies on the repetition of a short dev cycle
+        rationale is "write the test, then pass it"
+        tries to find faults with participating objects with respect to the use cases and use case model
+
+        tdd cycle
+            [diagram]
+
+    -----
+    testing in intellij
+        go to class you wish to test
+        name of class -> alt + enter
+        create test
+    -----
+
+    test cases
+        a test component is part of a system that can be isolated for testing
+        unit testing finds differences between a specificationof an object and its realisation as a component
+        a test case is a set of inputs and expected results that exercise a test component with the purpose of causing failures and detecting faults
+        blackbox testing focuses on the externals (i.e. that the result is expected) and ignore internal workings
+        whitebox testing focus on the internal structure and dynamics
+
+    after writing a failing test, then write the _minimum amount of passing code_
+        this is important, so if we want something to return 1 to pass, instead of implementing functionality, we first just make it return one
+        then we make tests more sophisticated so that they can't be passed without correct functionality
+
+    test case annotations
+        @Test
+            - this function is a test
+        @BeforeEach
+            - used if you want to execute some preconditions before each test case
+            - used for init methods
+        @AfterEach
+            - teardown methods like memory cleanup or logout
+        @BeforeAll
+            - execute once before all tests
+            - used for expensive operations like database startup
+            - must be static
+
+        can also use LOG.info("message") to notate this
+        e.g.
+            startup ...
+            executing test ...
+            teardown ...

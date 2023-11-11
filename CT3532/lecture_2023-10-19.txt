@@ -1,0 +1,102 @@
+concurrency control and recovery mechanisms
+    gets harder as you move to a distributed database
+    no user should be able to affect another user's queries in such a way that one or both queries are incorrect, or that the database is left incorrect after the query
+    we should also not try to echo an effect in the real world and end up with an incorrect database
+
+    transaction
+        an atomic, logical unit of database programming
+        either sql queries, or embedded in other lower-level programming languages
+
+    reading
+        finding the address of a disk block that contains the item x
+        copy that disk block to a buffer
+        copy item x from buffer to program variable X
+
+    // so what happens if the system dies halfway through a transaction? how do we ensure that, no matter what, we end up with a correct database?
+
+
+    sample transaction
+        read_item(X)
+        x : = x-n
+        write_item(X)
+
+    
+        every transaction has its own unique process id
+        we need to keep track of what data these transactions are accessing and mutating
+
+        it is desirable (in most dbms environments) to allow many people to access the database at the same time
+        how do we ensure correctness with unchecked access?
+
+
+        lost update problem
+            transactions interleave and the order of operations in critical sections change the values of certain variables while others are accessing them
+
+            example
+                t_1                 t_2
+                read_item(X);
+                x := x-n;
+                                    read_item(x);
+                                    x := x+m;
+                write_item(x);      
+                                    write_item(x);
+                
+                // results in the incorrect value for x being stored
+
+        
+        
+
+        temporary update problem
+            one transaction changes values, another reads the changed values
+            then t_1 crashes, so all it changed is reverted
+            t_2 is then incorrect, as the changed values it read are now incorrect
+
+        incorrect summary problem
+            occurs when one transaction is calculating a sum of values (or some other aggregate function) of a range of values, and another transaction is concurrently changing those values
+            this doesn't result in an incorrect database, rather incorrect information provided to the user
+
+    serializability
+        a schedule is any collection of transactions (T_1, T_2, ..., T_N), each containing a number of read and write operations
+        we cannot control their ordering within transactions as we don't control the specific interleaving of each cpu
+        we want to maximise concurrency without impacting correctness
+
+        serial schedule
+            simplest solution, no concurrency
+            allow only a single transaction at a time
+            n! orderings that are all correct
+
+            massively inefficient
+
+            serializable schedule
+                an ordering of operations that is equivalent to a serial schedule
+                allows concurrency and maintains correctness
+                    serial \subset serializable
+
+                how do we define equivalence? the most common way is to use conflict equivalency
+
+                conflict:
+                    - multiple accesses to the same item x
+                    - one or more is a write operation
+
+                    example
+                        t_1, t_2, t_3
+
+                        t_1 : w(x), w(y)
+                        t_2 : w(x), w(y)
+                        t_3 : r(x)
+
+                        // so there are conflicts here, however, we know there are n! potential orderings of these with absolutely no issues (each transaction finishes before the next one begins)
+
+                        we allow any other orderings of conflicts such that they occur in the same order as the serial sechdule
+
+                        a schedule S is said to be conflict serializable if this can be done
+
+
+            can graph conflicts
+                serial schedule
+                    {t_1} -> {t_2} -> ... -> {t_n}
+                
+                schedule with errors
+                    {t_1} <-> {t_2}
+
+                    // any graph with a cycle is incorrect
+                    // graphs that are corret are chains

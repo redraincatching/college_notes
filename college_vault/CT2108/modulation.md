@@ -1,3 +1,8 @@
+
+---
+tags:
+  - networks_and_communications
+---
 # modulation
 due to attenuation - and other problems - digital (square) waves cannot be used over long distances
 AC signalling is used instead

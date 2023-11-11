@@ -1,0 +1,83 @@
+efficiency considerations in recursion
+    problem: 
+        multiple activations of a recursive function causes stack growth
+        space for multiple parameters needed
+        time needed to allocate and release memory
+
+    solution:
+        don't
+
+tail recursion
+    the value of the recursive call provides the complete result of the original call
+    no waiting to activate
+
+    in scheme
+        if the last action of a function is another function call, it is replaced by that function on the stack -> no stack growth
+
+    [diagram]
+    [diagram]
+    [diagram]
+
+    // see tail_fact.rkt
+
+    advantages and disadvantages
+        - only requires enough memory space for one active invocation at a time
+            each invocation disappears as the next is called
+        - often difficult to create and read
+        - very good for dealing with infinite loops
+            however, if it gets into an infinite loop, it wouldn't stop due to lack of memory like normal recursion
+        - unless you write a helper function, you need to remember the extra value to pass to the function
+
+binary search trees
+    data structure to store an ordered set of items
+        - fast lookup
+        - fast addition and removal
+        - can be used to implement
+            - dynamic sets of items
+            - lookup tables that allow finding an item by its key
+
+    rules
+        - no duplicates
+        - maximum of 2 child nodes
+        - left child is smaller than the parent, right is larger
+
+    each leaf node is also a bst, a subtree
+    smallest possible subtree is null
+
+    bsts kep their keys in sorted order, so that lookup and other operations can use the principles of binary search
+    on average, this means each comparison allows operations to skip about half the tree
+        - not as fast as a hash table
+        - much faster than linear search
+
+    bst operations
+        - searching
+        - insertion
+        - deletion
+        - traversal
+        - verification
+
+        search
+            is curr == null?
+                t: item not in tree
+                f: continue
+            is curr == target
+                t: return, found
+                f: continue
+            if target < curr
+                t: recurse on left
+                f: recurse on right
+
+        insert
+            is curr == null?
+                t: insert
+                f: continue
+            is curr == insert
+                t: return, no duplicates
+                f: continue
+            is insert < curr?
+                t: recurse on left
+                f: recurse on right
+
+        delete
+            if curr == null?
+                return

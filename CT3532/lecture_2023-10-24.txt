@@ -1,0 +1,33 @@
+two main approaches for ensuring serializability
+    - locking protocols
+    - time-stamping
+
+    locking
+        a variable associated with a data item in the database that is used to signify the status of access to that variable
+
+        binary locks:
+            two states: locked and unlocked
+            if an item is locked by one transaction, it cannot be accessed by another transaction
+
+            different levels of granularity, could lock tables, or tuples, or atomic items
+                the higher granularity, the higher the concurrency, but more work to be done
+
+        two-phase locking
+            guarantees correctness
+            a transaction cannot issue a lock request once it has issued an unlock
+
+            "growing phase"
+                a phase where locks are obtained
+                locks here are _monotonically non-decreasing_
+            
+            "shrinking phase"
+                a phase where locks are released
+
+            this can, however, cause deadlock
+            in that case, we have two steps
+                - detect
+                    build a conflict graph of all elements in the queue
+                    cycle detection is the most common, and this usually gets kicked off if a transaction hasn't made any progress in x ms
+                - resolve
+                    // this is actually just kill one transaction, freeing all of its locks
+                    // usually, that's the one that started later

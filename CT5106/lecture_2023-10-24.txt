@@ -1,0 +1,18 @@
+java server faces
+    a mvc framework
+    focused around connecting ui components/widgets with data sources and server-side event handlers
+    renders the components automatically for the reuired client type
+
+    syntax
+        that weird <c:url> shit butit's <h:outputText> this time
+        also we get values similarly to ${} in jsps, but it's #{}
+
+    any class can function as a bean
+        - needs to be annotated 
+            @Named(value = "whatever")
+            @RequestScoped
+                // this one can also be application- or session-scoped
+        
+    can map stuff like forms to fields or methods of a bean class
+
+    if the output is null the whole html item won't be shown

@@ -1,0 +1,112 @@
+Game
+    -* game_id
+    - team_home
+    - team_away
+    - result_team_home
+    - result_team_away
+
+Goals
+    -* game_id
+    -* player_id
+    -* time
+
+Sent off
+    -* game_id
+    -* player_id
+    - time      // assuming this needs to be recorded too
+
+Substitutions
+    -* game_id
+    -* player_id_off
+    -* player_id_on
+    -* time
+
+    // thought about having a team attribute here, but led to normalisation issues
+
+Team
+    -* name
+    - home venue
+    - manager
+    - wins
+    - draws
+    - losses        // points are calculated at runtime
+
+Squad
+    -* player_id
+    - team_name     // player_no depends on id and team, so have to move it
+    - name
+
+Player_Number
+    -* player_id
+    - player_no
+
+    /* 
+        key
+            -* is primary key
+            -| is foreign key
+    */
+
+    // assumptions
+        - all players, starting or not, are part of the squad
+        - all players have an unchanging player number, unique on a team
+        - players can be substitued an unlimited number of times individually, without going over the 5 total substitutions
+        - two goals cannot be scored within the same minute
+            // unlikely that one person could score twice in 60s, but unable to uniquely store that
+        - a player can only be sent off once per match (we're recording reds, not yellows)
+
+
+testing queries
+    // get all substitutions a team made in a given match
+    SELECT
+        s.game_id,
+        s.player_id_off AS substituted_out,
+        s.player_id_on AS substituted_in
+    FROM
+        Substitutions s
+    JOIN
+        Squad sq ON s.player_id_off = sq.player_id  // both players on same team
+    WHERE
+        s.game_id = 'whatever'
+        AND sq.team_name = 'whatever'
+
+Sample Queries
+    - List all players in a given team
+
+        SELECT * FROM Squad WHERE team_name = "whatever";
+
+    - List all players who have scored in a given game
+
+        SELECT Goals.player_id, Squad.name
+        FROM Goals
+        JOIN Squad ON Goals.player_id = Squad.player_id
+        WHERE Goals.game_id = "whatever";
+
+    - List the top five goal scorers in the league
+
+        SELECT Squad.name, COUNT(Goals.player_id) AS goals_scored
+        FROM Squad
+        LEFT JOIN Goals ON Squad.player_id = Goals.player_id;
+        GROUP BY Squad.name
+        ORDER BY goals_scored DESC
+        LIMIT 5;
+
+            this query performs the following steps:
+                - it joins the squad table (to get player names) with the goals table (to count goals scored) using a left join on the player_no column.
+                - it groups the results by player name using the group by clause.
+                - it counts the number of goals scored by each player using count(g.player_no).
+                - it orders the results in descending order of goals scored using order by goals_scored desc.
+                - it limits the result set to the top five goal scorers using limit 5.
+
+    - List all teams and the amount of points they have so far
+
+        SELECT name, ((wins * 3) + (draws * 1)) AS current_points FROM Team;
+
+
+
+normalisation
+    1NF
+        all values are atomic
+    2NF
+        all attributes fully f.d. on the primary key
+    3NF
+        no transitive dependencies, as far as i can tell

@@ -1,0 +1,64 @@
+dynamic routing
+    [[todo: finish this]]
+
+    distance vector vs link state routing
+        distance vector
+            [diagram]
+            each node only has information of the next hop
+            makes poor decisions if directions are not completely correct (e.g. if a link is down)
+            parts of the directions are incorrect, the routing may be incorrect until algorithms reconverge
+
+        link state routing
+            [diagram]
+            each node has a full map of the topology
+            this is _difficult_, however, if any node fails, traffic can be rerouted very quickly
+
+            link state replaced distance vector for two reasons
+                - the delay metric was queue length, didn't take into account the line bandwidth
+                - the algorithm took too long to converge
+
+            each link state node must do the following
+                - discover their neighbours and learn their net addresses
+                - define a cost or delay to each neighbour
+                - construct a packet containing all it has learned
+                - send this packet to all other routers
+                - compute the shortest path to every other router
+
+            basic principles
+                - each router establishes a relationship (adjacency) with its neighbours
+                - each router generates link state advertisements (LSAs) which are distributed to all routers
+                    // lsa = link id, state of link, cost, neighbours of link
+                - each router maintains a (link state / topological) database of all received LSAs, which describes a graph with weighted edges
+                - each router uses its link state database to run djikstra's algorithm to produce each shortest path
+
+
+ospf
+    open shortest path first
+    the most important link state routing protocol on the internet
+    not used for autonomous systems, bgp does that
+    
+    history
+        1989 - rfc 1131, v1
+        1991 - rfc 1247, v2
+        1994 - rfc 1583, v2 revised
+        1997 - rfc 2178, v2 revised
+        1998 - rfc 2328, v2 current (ipv4 current version)
+        2008 - rfc 5340, v3 (ipv6 current version)
+
+    today's devices use either 2 and 3 together, as a single process, or separately, to handle ipv4 and ipv6
+
+    features
+        provides authentication of routing messages
+            // bad information can lead to an incorrect routing map, which could break the whole thing
+        enables load balancing by allowing traffic to be split evenly across routes with equal cost
+        type-of-service routing allows to set up different routes according to the tos field
+        supports subnetting
+        supports multicasting
+        allows hierarchical routing
+
+    link costs are called metric
+    metric is in the range [0, 2^{16}], and can be symmetric or asymmetric
+        // the cost from a to b might be different to the cost b to a
+
+    LSAs are sent to all routers in the network using reliable flooding
+

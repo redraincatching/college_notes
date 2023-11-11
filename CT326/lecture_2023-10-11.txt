@@ -1,0 +1,40 @@
+// when using streams, use and close them in a try/catch/finally
+
+    try {
+        // do things with streams
+    } catch (IOException e) {
+        e.printStackTrace();
+    } finally {
+        if (steam != null) {
+            stream.close();
+        }
+    }
+
+random file access
+    all other files we've seen have been sequential access
+    random access use case - zip
+        [[diagram]]
+        zip files contain a dir-entry at the end that specify where the files inside begin
+
+    the RandomAccessFile class in java.io implements a random-access file
+        - implements both the DataInput and DataOutput methods, and so can perform both halves of io
+        - the object is created with different arguments for read or write mode
+        - must specify a file in the native filesystem to open
+        
+            RandomAccessFile rf = new RandomAccessFile("name.txt", "r");
+
+        after the file has been opened, you can use the common readXXX or writeXXX operations on the file
+
+    random access is achieved using a file pointer, initially 0
+        calls to read and write move the pointer by that many bytes
+        e.g.
+            int data = file.readInt();
+            file.writeInt(data);
+
+        three methods exist for explicitly manipulating the file pointer
+            - skipBytes()
+                moves the pointer forward x bytes
+            - seek()
+                positions the file pointer just before the specified byte
+            - getFilePointer()
+                return the current byte location of the file pointer

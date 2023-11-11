@@ -1,0 +1,38 @@
+the "internet"
+    - each ip block is routed by a single network
+    - a network may have many ip blocks, but not the other way around
+    - each network is described by an autonomous sytsem (as) number
+
+bgp
+    border gateway protocol
+    designed to route between as'
+
+    1989, rfc 1105 - bgp
+    1990, rfc 1163 - bgp2
+    1991, rfc 1267 - bgp3
+    1995, rfc 1654, rfc 1771, rfc 4271, ... - bgp4
+
+    bgp is an exterior gateway protocol
+        sets up inter-as routing
+        also, in terms of data centre managers like amazon, used internally
+
+        // ospf is an igp
+
+    bgp allows one as to signal to others the ip prefixes that can be reached through it
+    these nlri (network layer reachability information) messages go to peers or neighbours of the as
+
+    three main types of peers
+        - transit
+            you are the customer to an upstream isp
+        - peering
+            normally settlmenent free, ixp or pni
+        - customer
+            you are the isp providing downstream connectivity
+            
+    default route
+        gateway of last resort
+    default free zone
+        the "full" routing table, no default route
+
+    differences to ospf
+        - no topological information, so no shortest paths
