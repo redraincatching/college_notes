@@ -1,0 +1,148 @@
+streams sample exam question
+    intermediate operation
+        returns a stream, not executed until a terminal operation is added to the pipeline
+    terminal
+        returns something that's not a stream
+    short-circuiting operation
+        allows you to create a subset form the stream, like limit
+
+    also look at stateless, stateful, bounded, unbounded operations
+
+
+    suppose you have a collection of objects that implement AbstractSocialMediaPost (interface below)
+
+        public interface AbstractSocialMediaPost {
+            public String getPostText();
+            public User getPostAuthor();
+            public int getLikes();
+            public int getShares();
+        }
+
+    (i) get a List<String> of the unique usernames in the collection, you can assume User has the getUsername() method that returns a string
+
+        // so we need to perform a mapping from AbstractSocialMediaPost to String -> we want a list of strings
+            // also we use distinct() to remove duplicates
+
+        List<String> usernames = postList.stream()
+            .map(p -> p.getPostAuthor().getUsername())
+            .distinct()
+            .toList();
+
+    (ii) find three posts with > 50 shares
+        // look at collect vs just straight toList()
+    
+        List<AbstractSocialMediaPost> topThreeShares = postList.stream()
+            .filter(p -> p.getShares() > 50)
+            .limit(3)
+            .collect(toList());
+
+    (iii) find the first post with > 50 likes and print if it exists. you can assume a toString exists
+        // look at optional type, returned by findFirst seems similar to Option in rust
+
+        // in place
+        postList.stream()
+            .filter(p -> p.getLikes() > 50)
+            .findFirst()
+            .ifPresent(result -> System.out.println(result));
+
+        // assigning
+        Optional<AbstractSocialMediaPost> firstPostOverFifty = postList.stream()
+            .filter(p -> p.getLikes() > 50)
+            .findFirst();
+
+        if (firstPostOverFifty.ifPresent()) {
+            System.out.println(firstPostOverFifty.get());
+        }
+
+    (iv) get the total number of likes across all posts
+        // look at reduce and accumulators
+            // note namespacing
+
+        int totalLikes = postList.stream()
+            .map(AbstractSocialMediaPost::getLikes)
+            .reduce(0, (a, b) -> a + b);
+
+    (v) find the three posts with the largest number of shares
+        // note that toList and comparing would have to be imported statically, otherwise you'd need to use Collector.toList() and Comparator.comparing()
+
+        List<AbstractSocialMediaPost> topThreeShares = postList.stream()
+            .sorted(comparing(AbstractSocialMediaPost::getShares).reversed())
+            .limit(3)
+            .collect(toList())
+
+    (vi) get the total number of letters in the posts' text
+        // look at flatmap
+            // if we split it up we get a hierachical structure of string arrays, so we flatmap it to 1d to process it
+
+        int totalLetters = postList.stream()
+            .map(AbstractSocialMediaPost::getPostText)
+            .map(w -> w.split(""))
+            .flatMap(Arrays::stream)
+            .count();
+
+    (vii) count the vowels used
+
+        int totalVowels = postList.stream()
+            .map(AbstractSocialMediaPost::getPostText)
+            .map(w -> w.split(""))
+            .flatMap(Arrays::stream)
+            .filter(l -> l.equals(a) || l.equals(e) || l.equals(i) || l.equals(o) || l.equals(u))
+            .count();
+
+    (viii) provide a distinct list of post authors sorted in lexographical order by the usernames
+        // in an implementation of User, what would you need to do?
+            // -> we need an equals and and a hashcode method, as streams call hashcode and then equals
+
+        // in the first question we could use distinct by itself, because String has an equals and hashCode method already, but User doesn't, so we need to make them
+
+        class ConcreteUser implements User {
+            // do stuff
+
+            @Override
+            public boolean equals() {
+                // do whatever is necessary here
+            }
+
+            public hashCode
+        }
+
+        List<User> distinctAuthors = posts.stream()
+            .map(AbstractSocialMediaPost::getAuthor)
+            .distinct()
+            .sorted(comparing(User::getUsername))
+            .collect(toList());
+
+    (ix) get the author with the most posts
+        // very hard, but interesting
+            // can do this with a version of the collect method by defining our own collector
+
+
+        AuthorCounter authorship = postList.stream()
+            .collect(AuthorCounter::new, AuthorCounter::accept, AuthorCounter::combine)
+
+            // we have here a supplier, an accumulator, and a combiner
+            /*  
+            *   supplier: factory function, constructs a new instance of the collector
+            *   accumulator: incorporates a stream element into the collector
+            *   combiner: combines each instance together - the number is counted recursively
+            */
+
+        public class AuthorCounter implements Supplier<AuthorCounter> {
+            private Map<User, Integer> authorship = new HashMap<User, Integer>();
+
+            public void accept(AbstractSocialMediaPost a) {
+                if(!authorship.containsKey(a.getPostAuthor())) {
+                    authorship.put(a.getPostAuthor, 1);
+                }
+                else {
+                    authorship.put(a.getPostAuthor, authorship.get(a.getPostAuthor()) + 1);
+                }
+            }
+
+            // this is a concatenation
+            public void combine(AuthorCounter ac) {
+                Map<User, Integer> result = result = Stream.concat
+            }
+
+            // TODO: finish out this code, he's put it up
+        }

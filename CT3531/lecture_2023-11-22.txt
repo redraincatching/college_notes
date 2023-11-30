@@ -1,0 +1,9 @@
+route server
+    used by an ixp
+    allows multilateral peering
+        used to exchange routing information so that peers can transfer packets directly between each other
+        not used as a hop itself
+    cuts down on the amount of bgp peering sessions necessary
+
+whatever/0 - the shortest possible prefix, will match anything that doesn't fit the other entries in the routing table
+    default gateway

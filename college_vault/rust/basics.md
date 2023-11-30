@@ -15,3 +15,4 @@ cargo creates a lock on your version on build, and the version can be updated wi
 
 note: if using vscode's rust-analyser, use it in the actual folder, so that the extension can find the cargo.toml file
 
+> #rust 

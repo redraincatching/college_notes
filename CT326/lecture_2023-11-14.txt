@@ -1,0 +1,85 @@
+stream processing
+    introduced in java 8
+    a sequence of data items that areconceptually produced one at a time
+        items from a stream can be read or written one by one
+    can be combined - one process' output stream can be another's input stream
+        - consumer/producer and so on
+        - unix analogy 
+            cat file file2 | tr"[A-Z]" "[a-z]" | sort | tail -3
+            [diagram]
+
+    streams api
+        Stream<T> is a stream of items of type T
+        allows for programming at a higher level of abstraction
+        contains many methods that can be chained to make a pipeline
+        includes parallelism _almost_ for free
+            - processing streams on multiple cpus concurrently
+            - don't have to deal with threads
+
+    limitations of collections
+        operations like grouping by category or searching involve reimplementing lots of iterators
+        take an sql query as a counterexample
+            - SELECT name FROM dishes WHERE calorie < 400
+        streams provide similar functionality for Collections
+            can manipulate data in a declarative way
+
+    declarative code
+        specify what you want to achieve
+        chain together operations to crete a processing pipeline
+        can be tailored with different lambda expressions
+            [diagram]
+            can sometimes be replaced by a method call
+                [diagram]
+
+    streams are...
+        sequences of elements
+            an interface to a sequenced set of values of a given type
+        that consume from a data-providing source
+            like collections, preserving ordering
+        that supports data processing operations
+            sequential or in parallel
+
+    stream characteristics
+        - pipelining
+            many stream operations return streams
+            this allows chaining to form a database-like query
+        - internal iteration
+            iteration is black-boxed
+
+    [diagram]
+
+    streams vs collections
+        both interfaces to data strutures representing a sequenced set of a given type
+        collections are represented completely in memory
+            can be manipulated
+        streams are conceptually fixed structures
+            elements are computed on demand
+            values computed as and when they are required
+        streams are laxily (just-in-time) constructed, collections are eagerly constructed
+
+    stream iteration
+        like iterators, streams are only traversable once
+            they are consumed on traversal
+            throws an exception if you try more than once
+        [diagram]
+
+    stream operations
+        intermediate operations
+            can be connected to form a pipeline
+        terminal operation
+            doesn't return a stream - cause the pipeline to be executed and then closed
+    
+        [diagram]
+
+        intermediate
+            return another stream
+            allow combination
+            only process when a terminal operation is invoked on it
+                intermediate operations can usually be merged by the interpreter - loop fusion
+            includes filter, and sorted
+
+        terminal
+            produce a non-stream value, e.g. List, or void
+
+        [diagram]
+        [diagram]

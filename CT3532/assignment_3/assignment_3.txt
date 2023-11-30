@@ -1,0 +1,71 @@
+team as dynamic graph
+    every player is a vertex, and the distances between them are weighted edges
+
+    - how to store in a relational database
+        G = {V, E}
+        use {timestamp, p1_id, p2_id} as primary key
+
+    - suitable data structure
+        adjacency matrix
+            - full, connected graph
+            - vertex addition and removal is rare (substitution and being sent off happens relatively few times per match)
+
+            // lends itself well to graph laplacian, which can show the smoothness of the graph
+            // also maybe add the degree matrix
+
+    - similarity of graphs
+        look at old notes on vector similarity maybe
+        also chatgpt prompt had some ideas
+
+        frobenius norm?
+
+            ||A||_F = \sqrt{sum 1-to-n sum 1-to-m a^2_{i,j}} = trace([A^T A])^{1/2}
+
+        graph edit distance?
+            https://en.wikipedia.org/wiki/Graph_edit_distance
+            simple but not right here, the structure of the graph less important semantically than the weights
+        
+        spectral clustering
+            -> graph laplacian, which is the adjacency matrix - the degree matrix
+                https://csustan.csustan.edu/~tom/Clustering/GraphLaplacian-tutorial.pdf
+                https://changyaochen.github.io/spectral-clustering/
+                https://nbviewer.org/github/changyaochen/changyaochen.github.io/blob/master/assets/notebooks/spectral_clustering.ipynb
+
+                would be able to use the weighted adjacency matrixx by using x>0 := 1
+
+                We consider undirected weighted graphs: Each edge eij is weighted by wij > 0.
+                    The Laplacian as an operator:
+                    (Lf)(vi) = X
+                    vj∼vi
+                    wij (f(vi) − f(vj ))
+                    As a quadratic form:
+                    f
+                    >Lf =
+                    1
+                    2
+                    X
+                    eij
+                    wij (f(vi) − f(vj ))2
+                    L is symmetric and positive semi-definite.
+                    L has n non-negative, real-valued eigenvalues:
+                    0 = λ1 ≤ λ2 ≤ . . . ≤ λn.
+
+
+
+
+        https://www.cs.cmu.edu/~jingx/docs/DBreport.pdf
+
+    - with constraint: only keep edges > threshold
+        // idea that when two players are close enough together, they're essentially in the same place
+            // how does this work with an adjacency matrix?
+                -> set anything under the threshold to 0
+
+        - write code to calculate the degree of each node for a given timestamp 
+            // for an undirected graph like this, the degree of player i the sum of the valid entries in row i of the adjacency matrix
+                // obviously this only matters within this constraint, otherwise the degree of everything would be equal and maximal
+
+        - write code to determine which nodes are the most influential (i.e. on the most paths)
+            // node influence metric - https://en.wikipedia.org/wiki/Node_influence_metric
+            // centrality indicators - https://en.wikipedia.org/wiki/Centrality
+            // betweenness centrality -  https://en.wikipedia.org/wiki/Betweenness_centrality
+                // https://snap.stanford.edu/class/cs224w-readings/brandes01centrality.pdf

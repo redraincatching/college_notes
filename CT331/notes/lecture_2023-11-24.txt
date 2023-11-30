@@ -1,0 +1,99 @@
+deletion
+    representation
+        del(X, L, L1)
+            // delete x from list L resulting in L1
+    for example, if del is suitably defined
+        ?- del(a, [c, d, a, f], R).
+
+    base case
+        if x is head of L, result of deleting X is tail of L
+    reduction
+        add head of L to res and delete X from tail of L
+
+    strict prolog
+        delete_one(Term, [Term | Tail], Tail)
+            // the base case
+            // because of ordering, the next versions only get checked if this is false
+
+        delete_one(Term, [Head | Tail], [Head | Result]) :-
+            delete_one(Term, Tail, Result)
+            // the recursion
+
+        // missing one clause - element not in list
+        // need another clause at the start
+        delete_one(_, [], [])
+            // wild card to match whatever, and if empty list, empty list
+
+    but this only deletes one instance, how do we delete every instance?
+        base case:
+            [TODO: finish this]
+
+
+        delall(_, [], []).
+
+        delall(Term, [Term | Tail], )
+
+    remove duplicates from a list
+        representation
+            deldups(L, Res)
+        
+        delete duplicates of all elements from list L resulting in Res
+
+        base case:
+            empty list, result is empty list
+
+        reduction:
+            if the first element in the list is a member of the tail of the list, remove it and check the tail
+            otherwise, add it to the result and then check the tail
+
+        prolog
+            deldups([], []).
+
+            deldups([H|T], Res1) :-
+                membr(H,T), deldups(T,Res1)
+
+            // if we get here, membr was false so we know we can add the head to the result
+            deldups([H|T], [H|Res1]) :-
+                deldups(T, Res1)
+
+tail recursion
+    only one recursive call - the last goal of the last clause in the procedure
+    the goals preceeding the recursive call must be deterministic so that no backtracking occurs
+
+reverse a list
+    base case:
+        empty list -> empty list
+
+    reduction:
+        reduce towards empty list by reversing the tail
+            reverse(T,L)
+        add head of list to a new list using merge/concalready defined
+            conc(L, [H], R)
+
+    prolog
+        reverselist([], [])
+
+        reverselist([H|T], R) :-
+            reverselist(T, L), conc(L, [H], R)
+
+        // not tail recursive though
+
+    tail recursive version
+        use temporary list to add each successive head value
+        use a helper funciton reverse2 with empty list as current value of temporary list
+
+        base case:
+            [] -> []
+
+        reduction:
+            add head to Temp for each call of reverse2
+
+        prolog
+            reversetr(L, R) :-
+                reverse2(L, [], R).
+
+            reverse2([], R, R).
+                // once we've emptied the imput, we have the answer
+
+            reverse2([H|T], Temp, R) :-
+                reverse2(T, [H|Temp], R).

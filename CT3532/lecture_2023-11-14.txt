@@ -1,0 +1,116 @@
+security in databases
+    dbms typically include an authorisation system
+        database security typically concerns what happens after this step
+    areas of consideration
+        - preventing unauthorised access
+        - access systems
+            - discretionary
+            - mandatory
+        - statistical database security
+
+    the database administrator (dba) has access to a number of commands for granting and revoking access for users and groups
+    these include
+        - account creation
+        - privelege granting/revocation
+        - security level assignment
+
+        access protection
+            - all users have a username and password
+            - keep track of all operations, particularly updates
+            - expand system log
+
+    discretionary access control
+        operations against the database may be controlled
+        two levels of assigning priveleges
+            - account level
+            - relation level
+
+            account level
+                a given account has whatever provided capabilities, like CREATE TABLE, INSERT, whatever
+
+                can also add different "views" of the database, so a user with a given security level can only see a certain amount of the database or of a certain relation
+
+        access rights for a relation
+            - follow the access matrix model
+                - rows correspond to subjects
+                - columns correspond to objects
+
+            can be expanded in sql to allow the following priveleges
+                - select
+                - modify
+                - references
+                    so if a user has access to R_1 but not R_2, any foreign keys in R_1 to R_2 can't be visible
+                - M(i, j) corresponds to the access subject i has to object j
+
+        propagation of priveleges
+            GRANT in sql
+            a user with a certain privelege that can then pass on those priveleges to others
+
+            limiting propagation
+                hzl: can grant to i total users
+                vtl: limits the "depth" of the grant option
+
+    mandatory access control
+        allows a number of security classes (e.g. top secret, secret, classified, unclassified)
+            unix has three
+        can be used in conjunction with discretionary access control
+
+        specify a security calss for each piece of information and an identical hierarchy for users
+        users can only access items when their class is >= that of the data
+
+        can have a number of classes that form a lattice
+
+        models to guarantee correctness on this
+            bell lapadula
+            clark wilson
+            // ...
+
+        bell lapadula model - two main restrictions
+            a subject S is not allowed read access to object O unless class(S) >= class(O) 
+                the simple security property
+                    // some problems, if i am denied access to an object i know it exists, etc.
+            a subject S is not allowed to write to an object O unless class(S) <= class(O)
+                the star property
+                    // there are some models that have this as a strict =, the strong star property
+
+
+            writing up
+                with the star property, trying to write up and being blocked would give unnecessary information
+                we'd then keep multiple copies, essentially - the false one at class c, and the real one at the higher class
+
+                in order to incorporate multi-level security notions, we can associate classification attributes with every normal attribute
+                the schema then becomes
+                    R(A_1:C_1, A_2:C_2, ..., A_n:C_n | TC)
+                        // where TC is the classification of the tuple, set to max(c_1, ..., c_n)
+
+                apparent key
+                    the apparent key is the set of attributes that would ordinarily form the key
+                        - store the entire tuple at the highest classification and form the lower-level classifications through filtering
+                        - polyinstantiation: store the tuple multiple times
+
+
+statistical databases
+    storing information that shouldn't be accessible 
+
+
+    obviously when a set becomes too small, that's a point query
+        -> can simply block a result when size = 1
+
+    this gets harder when you use many queries to still return large amounts of data but reducing the size of the intersection
+        creating a linear set of equations
+            q_0 = cond_0 AND cond_1 AND cond_2
+            q_1 = cond_0 AND cond_1
+            q_2 = cond_0 AND cond_2
+            q_3 = cond_1 AND cond_2
+
+            this is really hard to stop, even with knowledge that the queries are malicious
+                could intersperse with innocuous queries, could split the work over a large timeframe or between multiple people
+                tracking users is hard, and supressing queries to be intentionally broad might limit perfectly allowable queries
+
+    solutions
+        noise
+            everything becomes their own value +- a certain amount, distributed in some way to not change the summary statistics but to obfuscate the actual data
+
+        shuffle
+            change the rows that given columns are in
+            obviously if we only want to know summaries we don't care if individual entries have the accurate data to the person, as long as the data is accurate overall

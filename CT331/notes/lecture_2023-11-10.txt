@@ -1,0 +1,48 @@
+logic programming
+    a series of assertions written in the language of formal logic
+    results are derived by symbolic reasoning
+
+    in general, most logic programming is based on
+        - horn-clause logic
+        - negation-as-failure
+        - backwards chaining
+
+    horn-clause logic
+        in logic, a clause is formed from a finite collection of literals
+        a clause is called a horn clause if it contains at most one positive literal
+            - definite clause has exactly one
+            - negative clause has none, also called a goal
+
+    negation as failure
+        failure of unification is treated as establishing the negation of a relation
+            - closed-world logic
+
+            e.g. if bono isn't in our database and we asked if he was irish, prolog would reply "no"
+
+    backwards chaining
+        an algorithm that works backwards from the goal, chaining throuhg rules to find known facts that support the proof
+        follows classical depth-first search
+
+    different perspectives of logical programming
+        - computation as deduction
+        - theorem proving
+            uses the notion of an automatic theorem prover as an interpreter
+            note that the proof must be constructive, so not just t/f
+        - non-procedural programming
+            doesn't specify how to do something, just what to do
+            so the programmer specifies:
+                - the set of objects involved
+                - the relationships that hold them
+                - the constraints which must hold for the problem to be solved
+            and the language or interpreter decides how to satisfy them
+
+    prolog - programming en logique
+        - weakly typed
+        - no data or functional abstraction
+        - no mutable state
+        - no explicit control flow (get rekt goto)
+
+        programming in prolog
+            load facts/rules into the interpreter
+            make queries to see if a fact is in the logic database (or can be inferred)
+

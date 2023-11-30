@@ -1,0 +1,35 @@
+gracefully end a thread - get it to return, can use a shutdown() method that changes a while boolean
+
+intbuffer for producer/consumer
+
+    public class IntBuffer {
+        private int value;
+        private boolean available;
+
+        public int consume() {
+            if (!available) {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            available = false;
+            notifyAll();
+            return value;
+        }
+
+        public void produce(int i) {
+            if (available) {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            value = i;
+            notifyAll();
+            available = true;
+        }
+
+    }

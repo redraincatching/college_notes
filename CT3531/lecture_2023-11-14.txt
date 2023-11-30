@@ -1,0 +1,40 @@
+packet filters and firewalls
+    a packet filter is a piece of software which looks at the header of incoming packets to decide its fate
+        - ACCEPT
+        - DROP
+        - something more complicated
+
+    on linux, packet filtering is built into the kernel
+
+    functions
+        - control
+            allow only packets you are interested in to pass through
+        - security
+            reject malicious packets
+                ping of death, external telnet
+        - watchfulness
+            log packets in/out
+
+    packet filters under linux
+        - ipfw
+            1st generation, from BSD
+        - ipfwadm
+            2nd gen, from linux 2.0
+        - ipchains
+            3rd gen, linux 2.2
+        - iptables
+            4th gen, linux 2.4
+
+    iptables
+        kernel starts with three lists of rules called firewall chains
+            - INPUT
+            - FORWARD
+            - OUTPUT
+
+            each rule says, essentially, "if the header looks like this, do this"
+
+        [diagram]
+
+        when a packet first comes in, the packet looks at the destination and header - routing decision
+        if destined for the current process, pass to input
+            it will then be passed to the 

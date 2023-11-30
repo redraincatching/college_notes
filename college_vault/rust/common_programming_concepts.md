@@ -68,7 +68,7 @@ numbers can be specified in other bases, as follows
 
 #### floating-point
 f32 and f64, both signed
-all algned to ieee-754 standard
+all aligned to ieee-754 standard
 defaults to f64
 
 #### boolean

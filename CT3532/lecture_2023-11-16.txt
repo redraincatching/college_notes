@@ -1,0 +1,61 @@
+exam
+    - two hours long
+    - four questions, do any three
+    - similar enough to the worksheets
+
+    - q1: design
+        a) fds/mcs
+        b) normalising (solve a problem)
+        c) denormalisation
+
+        functional dependencies
+        cover sets/minimal cover sets
+        denormalisation for increased efficiency
+        normalising up to bcnf
+            // look at the algorithms for getting up to bcnf
+        armstrong's axioms
+
+    - q2: transactions
+        a) problems
+        b) concurrency control protocols
+        c) dist db
+
+        lost update, etc
+        serializability
+        two-phase locking
+        timestamping
+        recovery
+            // system log
+        distributed databases
+
+    - q3: indexing
+        a) b/b+ trees
+        b) dyn index
+        c) multiattribute
+
+        b and b+ trees
+        hashing (dynamic and linear)
+        multi-attribute indexing
+        operators
+        parallelising
+
+    - q4: db models
+        a) parallelising
+        b) inferential/logic db
+        c) security
+            bell lapadula model
+
+        CT3532 & CT332 for past papers
+
+
+        b+ tree indexing
+            query such as 
+                SELECT *
+                FROM R
+                WHERE a_i <= k;
+                AND a_j <= l;
+
+            good general approach: use both b-trees to index the rows/cols of a matrix
+                // building a grid file
+            good for point queries: hashing with index, one possible function is concat values
+                // point query being that the 

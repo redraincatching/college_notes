@@ -55,14 +55,15 @@ fn main() {
     // get the longest vector of timestamps, so that we can clamp the heatmap
         // i love rust
     let max_length = grid.iter()
-        .flatten()
-        .map( |sq| sq.timestamps.len())
-        .max()
-        .unwrap_or(0);
+        .flatten()  // change to a 1d array
+        .map( |sq| sq.timestamps.len()) // map each square to its length
+        .max() // get the max value
+        .unwrap_or(0);  // and default to 0 if None
 
     let heatmap : [[f64; COLS]; ROWS] = grid.iter()
         .map(|row| 
                 row.iter().map(|sq| {
+                    // iterate through each row and clamp with len()/max_len
                     if max_length == 0 {
                         0 as f64
                     } else {
